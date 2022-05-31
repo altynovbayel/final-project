@@ -1,0 +1,137 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .navbarTop {
+    width: 100%;
+    padding: 1rem 0;
+
+    .wrapperTop {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        font-size: 30px;
+        font-weight: 700;
+        color: #E07153;
+      }
+
+      .navigations {
+        display: flex;
+        gap: 3rem;
+
+        a{
+          font-size: 20px;
+          color: #1b1b1b;
+          transition: .2s;
+
+          &:hover{
+            color: #E07153;
+          }
+        }
+      }
+
+      .personsContainer {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .cart {
+          background: #F5F5F5;
+          padding: 14px 1rem;
+          display: flex;
+          gap: 1rem;
+          border-radius: 6px;
+          align-items: center;
+
+          svg {
+            font-size: 25px;
+            color: #1b1b1b;
+            transition: .2s;
+
+            &:hover{
+              color: #E07153;
+            }
+          }
+
+          span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            span {
+              font-size: 20px;
+              font-weight: 500;
+            }
+
+            svg{
+              font-size: 22px;
+              color: #1b1b1b;
+              pointer-events: none;
+            }
+          }
+
+        }
+
+        .profile {
+          background: #F5F5F5;
+          padding: 10px;
+          border-radius: 6px;
+
+          svg {
+            font-size: 30px;
+            transition: .2s;
+
+            &:hover{
+              color: #E07153;
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .navbarUnder {
+    width: 100%;
+    background: #F5F5F5;
+    padding: 1rem 0;
+
+    .wrapperUnder{
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+
+      a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+
+        &.active svg{
+          color: #E07153;
+        }
+
+        &.active span{
+          color: #E07153;
+        }
+
+        svg{
+          font-size: 30px;
+          color: #1b1b1b;
+        }
+
+        span{
+          color: #1b1b1b;
+
+        }
+      }
+    }
+  }
+}
