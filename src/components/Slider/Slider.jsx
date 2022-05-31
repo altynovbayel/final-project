@@ -34,7 +34,7 @@ function Slider() {
       </div>
       <div className={c.dots}>
         {
-          Array.from({length: SliderList.length}).map((item, i) => <div className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
+          Array.from({length: SliderList.length}).map((item, i) => <div key={i} className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
         }
       </div>
     </>
