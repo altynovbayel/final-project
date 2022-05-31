@@ -15,7 +15,9 @@ function Slider() {
     <>
       <div className={c.slider}>
         {
-          SliderList.map((url, index) => <img key={index} className={indexImg === index + 1 ? c.imagesActive : c.images} src={url} alt={'slider'}/>)
+          SliderList.map((url, index) =>
+            <img key={index} className={indexImg === index + 1 ? c.imagesActive : c.images} src={url} alt={'slider'}
+            />)
         }
         <button
           className={c.prev}
@@ -34,7 +36,9 @@ function Slider() {
       </div>
       <div className={c.dots}>
         {
-          Array.from({length: SliderList.length}).map((item, i) => <div className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
+          Array.from({length: SliderList.length}).map((item, i) =>
+            <div key={i}
+              className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
         }
       </div>
     </>
