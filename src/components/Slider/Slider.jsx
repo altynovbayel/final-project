@@ -1,7 +1,7 @@
 import React from 'react';
 import {SliderList} from "../../utils/List";
 import c from './Slider.module.scss'
-import {BsArrowLeftCircle, BsArrowRightCircle} from 'react-icons/bs'
+import {HiOutlineArrowNarrowRight, HiOutlineArrowNarrowLeft} from 'react-icons/hi'
 
 function Slider() {
   const [indexImg, setIndexImg] = React.useState(1)
@@ -22,19 +22,20 @@ function Slider() {
           onClick={prevSlide}
           disabled={indexImg === 1}
         >
-          <BsArrowLeftCircle/>
+          <HiOutlineArrowNarrowLeft/>
         </button>
         <button
           className={c.next}
           onClick={nextSlide}
           disabled={indexImg === SliderList.length}
         >
-          <BsArrowRightCircle/>
+          <HiOutlineArrowNarrowRight/>
         </button>
       </div>
       <div className={c.dots}>
         {
-          Array.from({length: SliderList.length}).map((item, i) => <div className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
+          Array.from({length: SliderList.length}).map((item, i) =>
+            <div className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
         }
       </div>
     </>
