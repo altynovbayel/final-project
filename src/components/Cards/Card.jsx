@@ -4,6 +4,8 @@ import {ProductList} from "../../utils/List";
 
 function Card() {
   const [count, setCount] = React.useState(0)
+  const countIncrement = () => setCount(prev => prev + 1)
+  const countDecrement = () => setCount(prev => prev - 1)
   return (
     <>
       <div className={c.container}>
@@ -22,11 +24,13 @@ function Card() {
                 <h4>{price} som</h4>
                 <div className={c.btns}>
                   <div className={c.counter}>
-                    <button>-</button>
-                    <span>{count}</span>
-                    <button>+</button>
+                    <button onClick={countDecrement}>-</button>
+                    <span>{count} шт</span>
+                    <button onClick={countIncrement}>+</button>
                   </div>
-                  <button className={c.cart_btn}>В корзину</button>
+                  <button className={c.cart_btn}>
+                    В корзину
+                  </button>
                 </div>
               </div>
             </div>
