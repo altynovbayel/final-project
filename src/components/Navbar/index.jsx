@@ -6,6 +6,7 @@ import {RiCopyrightLine} from "react-icons/ri";
 import {BsFillPersonFill} from "react-icons/bs";
 import {FaShoppingBag} from "react-icons/fa";
 import {GoThreeBars} from "react-icons/go";
+import {MdArrowBackIosNew} from "react-icons/md";
 
 
 const Navbar = () => {
@@ -17,15 +18,39 @@ const Navbar = () => {
 			<div className={cls.topNavContainer}>
 				<div className={cls.topNavWrapper}>
 					<div className={cls.topNav}>
-						<GoThreeBars className={cls.burgerIcon}/>
+						<GoThreeBars
+							className={cls.burgerIcon}
+							onClick={() => setIsDropDown(prev => !prev)}
+						/>
 						<nav
-							className={isDropDown && cls.active}
+							className={isDropDown ? cls.active : ''}
 						>
-							{
-								navbarNavigation.map(({id, title, route}) => (
-									<Link key={id} to={route}> {title} </Link>
-								))
-							}
+							<div className={cls.navigation}>
+								<h4>Навигация</h4>
+								{
+									navbarNavigation.map(({id, title, route}) => (
+										<Link key={id} to={route}> {title} </Link>
+									))
+								}
+							</div>
+							<div className={cls.categories}>
+								<h4>Категории</h4>
+								{
+									navbarCategories.map(category => (
+										<Link
+											key={category.id}
+											to={category.route}
+										>
+											{<category.categoryImg/>}
+											<span>{category.title}</span>
+										</Link>
+									))
+								}
+							</div>
+							<MdArrowBackIosNew
+								className={cls.closeDropdown}
+								onClick={() => setIsDropDown(prev => !prev)}
+							/>
 						</nav>
 						<div>
 							<div className={cls.cart}>
@@ -47,17 +72,7 @@ const Navbar = () => {
 			<div className={cls.navContainer}>
 				<div className={cls.navWrapper}>
 					<nav>
-						{
-							navbarCategories.map(category => (
-								<Link
-									key={category.id}
-									to={category.route}
-								>
-									{<category.categoryImg/>}
-									<span>{category.title}</span>
-								</Link>
-							))
-						}
+
 					</nav>
 				</div>
 			</div>

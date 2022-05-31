@@ -17,16 +17,77 @@
 
       nav{
         position: absolute;
-        display: flex;
         align-items: center;
         flex-direction: column;
-        gap: 15px;
+        gap: 40px;
+        width: 100%;
+        z-index: 100;
+        background: #F5F5F5;
+        left: 0;
         height: 0;
+        top: -100%;
+        transition: all 0.3s ease-in-out;
+        padding: 2rem;
+
+        .closeDropdown{
+          position: absolute;
+          bottom: 1rem;
+          transform: rotate(90deg);
+          font-size: 40px;
+          color: #E07153;
+        }
 
         &.active{
-          position: absolute;
-          min-height: 60vh;
+          min-height: 100vh;
+          display: flex;
+          top: 0;
+        }
 
+        .navigation{
+          display: flex;
+          flex-direction: column;
+
+          a{
+            font-size: 18px;
+            color: #1b1b1b;
+            transition: .3s;
+
+            &:hover{
+              color: #E07153;
+            }
+          }
+
+          h4{
+            color: #E07153;
+            font-size: 25px;
+            font-weight: 700;
+          }
+        }
+
+        .categories{
+          display: flex;
+          flex-direction: column;
+          a{
+            font-size: 18px;
+            color: #1b1b1b;
+            transition: .3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            svg{
+              font-size: 25px;
+            }
+
+            &:hover{
+              color: #E07153;
+            }
+          }
+
+          h4{
+            color: #E07153;
+            font-size: 25px;
+            font-weight: 700;
+          }
         }
       }
 
@@ -50,7 +111,6 @@
             top: 50%;
             transform: translateY(-50%);
             left: 60%;
-
           }
 
           .sum{
