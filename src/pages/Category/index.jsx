@@ -18,9 +18,11 @@ const Category = () => {
 
 	return (
 		<div>
+
 			{
 				<Card productList={productBase}/>
 			}
+
 		</div>
 	);
 };

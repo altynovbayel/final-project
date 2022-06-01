@@ -2,6 +2,7 @@ import React from 'react';
 import {SliderList} from "../../utils/List";
 import c from './Slider.module.scss'
 import {BsArrowLeftCircle, BsArrowRightCircle} from 'react-icons/bs'
+import {MdOutlineCake, MdCake} from 'react-icons/md'
 
 function Slider() {
   const [indexImg, setIndexImg] = React.useState(1)
@@ -16,7 +17,7 @@ function Slider() {
       <div className={c.slider}>
         {
           SliderList.map((url, index) =>
-            <img key={index} className={indexImg === index + 1 ? c.imagesActive : c.images} src={url} alt={'slider'}
+            <img key={index} className={indexImg === index + 1 ? `${c.images} ${c.imagesActive}` : c.images} src={url} alt={'slider'}
             />)
         }
         <button
@@ -37,8 +38,15 @@ function Slider() {
       <div className={c.dots}>
         {
           Array.from({length: SliderList.length}).map((item, i) =>
-            <div key={i}
-              className={indexImg === i+1 ? c.dotsActive : c.dot_item}></div>)
+            <div
+              onClick={() => setIndexImg(i + 1)}
+              key={i}
+              className={c.dots_item}
+            >
+              {
+                indexImg === i + 1 ? <MdCake/> : <MdOutlineCake/>
+              }
+            </div>)
         }
       </div>
     </>
