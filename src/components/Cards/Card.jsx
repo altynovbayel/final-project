@@ -1,8 +1,7 @@
 import React from 'react';
 import c from './Card.module.scss'
-import {ProductList} from "../../utils/List";
 
-function Card() {
+function Card({list}) {
   const [count, setCount] = React.useState(0)
   const countIncrement = () => setCount(prev => prev + 1)
   const countDecrement = () => setCount(prev => prev - 1)
@@ -10,7 +9,7 @@ function Card() {
     <>
       <div className={c.container}>
         {
-          ProductList.map(({productImg,productName,price,id}) => (
+          list.map(({productImg,productName,price,id}) => (
             <div key={id} className={c.card}>
               <div className={c.card_img}>
                 {
