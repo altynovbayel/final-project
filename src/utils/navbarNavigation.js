@@ -43,7 +43,7 @@ export const navbarCategories = [
 		id: 2,
 		route: '/products/sweets',
 		title: 'Сладости',
-		categoryImg: 	GiWrappedSweet,
+		categoryImg: GiWrappedSweet,
 	},
 	{
 		id: 3,

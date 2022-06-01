@@ -16,7 +16,7 @@
     }
 
     .burgerIcon{
-      font-size: 40px;
+      font-size: 35px;
       cursor: pointer;
       transition: .2s;
 
@@ -33,10 +33,10 @@
       .cart{
         border-radius: 6px;
         background: #F5F5F5;
-        padding: 10px 1rem;
+        padding: 9px;
         display: flex;
         align-items: center;
-        gap: 2rem;
+        gap: 1rem;
         position: relative;
 
         &::before{
@@ -47,9 +47,9 @@
           border-radius: 6px;
           top: 50%;
           transform: translateY(-50%);
-          left: 60%;
-          background: black;
-          z-index: 100;
+          left: 55%;
+          z-index: 10;
+          background: #c0bdbd;
         }
 
 
@@ -59,17 +59,17 @@
           gap: 5px;
 
           span{
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 500;
           }
 
           svg{
-            font-size: 20px;
+            font-size: 16px;
           }
         }
 
         .cartIcon{
-          font-size: 22px ;
+          font-size: 20px ;
           cursor: pointer;
           transition: .2s;
 
@@ -88,7 +88,7 @@
         border-radius: 6px;
 
         svg {
-          font-size: 25px;
+          font-size: 22px;
           cursor: pointer;
           transition: .2s;
 
