@@ -1,0 +1,14 @@
+button{
+  padding: 14px 0;
+  width: 100%;
+  border-radius: 6px;
+  background: #E07153;
+  color: whitesmoke;
+  font-weight: 600;
+  font-size: 14px;
+
+  &:disabled{
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}

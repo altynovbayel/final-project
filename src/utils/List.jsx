@@ -5,7 +5,7 @@ export const SliderList = [
   'https://searchthisweb.com/wallpaper/thumb1000/main1000_muffins_3840x2160_8vsnp.jpg',
 ]
 
-export const ProductList = [
+export const productList = [
   {
     id: 1,
     category: 'bakery',

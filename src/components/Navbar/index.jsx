@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useMediaQuery} from "react-responsive";
 import MobileNavbar from "./MobileNavbar";
 import LaptopNavbar from "./LaptopNavbar";
+import cls from "./Navbar.module.scss";
 
 
 const Navbar = () => {
@@ -14,7 +15,6 @@ const Navbar = () => {
 
 	return (
 		<>
-
 			{
 				isMobileOrTablet &&
 				<MobileNavbar
@@ -29,9 +29,9 @@ const Navbar = () => {
 					moneySum={moneySum}
 				/>
 			}
-
 		</>
-	);
+	)
 };
+
 
 export default Navbar;

@@ -1,13 +1,15 @@
 import React from 'react';
 import Slider from "../../components/Slider/Slider";
 import Card from "../../components/Cards/Card";
-import {ProductList} from "../../utils/List";
+import {productList} from '../../utils/List'
+
+
 
 function Main() {
   return (
     <div>
       <Slider/>
-      <Card list={ProductList}/>
+      <Card productList={productList}/>
     </div>
   );
 }

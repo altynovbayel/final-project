@@ -10,6 +10,8 @@ import Contacts from "./pages/Contacts";
 import More from "./pages/more";
 import Navbar from "./components/Navbar";
 import Category from "./pages/Category";
+import Register from "./pages/Register";
+import Auth from "./pages/Auth";
 
 function App() {
 	return (
@@ -23,6 +25,8 @@ function App() {
 					<Route path='*' element={<Navigate to='/'/>}/>
 				</Route>
 				<Route path='/' element={<Main/>}/>
+				<Route path='/user/register' element={<Register/>}/>
+				<Route path='/user/auth' element={<Auth/>}/>
 				<Route path='/products/:category' element={<Category/>} />
 				<Route path='products/:category/:id' element={<More/>} />
 				<Route path='/promotions' element={<Promotions/>}/>
