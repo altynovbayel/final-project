@@ -5,24 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/contacts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/browntooth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/pngegg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/tooth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/logo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/lorem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/final-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +90,8 @@
       <workItem from="1654189336702" duration="73000" />
       <workItem from="1654190439296" duration="11263000" />
       <workItem from="1654248775912" duration="1219000" />
+      <workItem from="1654251344709" duration="1499000" />
+      <workItem from="1654253017750" duration="2771000" />
     </task>
     <servers />
   </component>
