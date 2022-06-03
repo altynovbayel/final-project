@@ -1,0 +1,48 @@
+Index: src/components/Cards/Card.module.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.container{\r\n  width: 90%;\r\n  margin: 60px auto 0;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  gap: 40px;\r\n  @media (min-width: 768px) {\r\n    flex-direction: row;\r\n    flex-wrap: wrap;\r\n    justify-content: space-around;\r\n  }\r\n  .card{\r\n    width: 300px;\r\n    min-height: 300px;\r\n    background-color: white;\r\n    border-radius: 10px;\r\n    position: relative;\r\n    .type{\r\n      position: absolute;\r\n      z-index: 12;\r\n      font-size: 20px;\r\n      background-color: #A1DCDC;\r\n      width: 50px;\r\n      height: 50px;\r\n      border-radius: 100%;\r\n      display: flex;\r\n      justify-content: center;\r\n      align-items: center;\r\n      top: -10px;\r\n      right: -7px;\r\n      text-transform: capitalize;\r\n    }\r\n    .card_img{\r\n      width: 100%;\r\n      height: 150px;\r\n      object-fit: cover;\r\n      position: relative;\r\n      img{\r\n        width: 100%;\r\n        height: 100%;\r\n        position: absolute;\r\n        padding: 5px;\r\n        border-radius: 10px;\r\n      }\r\n    }\r\n    .card_body{\r\n      display: flex;\r\n      flex-direction: column;\r\n      gap: 20px;\r\n      padding: 10px 10px;\r\n      .text{\r\n        display: flex;\r\n        justify-content: space-between;\r\n        div{\r\n          h3{\r\n            margin-bottom: 20px;\r\n          }\r\n        }\r\n        .like{\r\n          font-size: 30px;\r\n          cursor: pointer;\r\n        }\r\n      }\r\n      .btns{\r\n        display: flex;\r\n        justify-content: space-between;\r\n        align-items: center;\r\n        .counter{\r\n          margin-bottom: 10px;\r\n          display: flex;\r\n          gap: 10px;\r\n          align-items: center;\r\n          button{\r\n            width: 40px;\r\n            border-radius: 10px;\r\n            cursor: pointer;\r\n            background-color: transparent;\r\n            color: black;\r\n            font-size: 24px;\r\n          }\r\n        }\r\n        .cart_btn{\r\n          width: 110px;\r\n          height: 40px;\r\n          font-size: 20px;\r\n          border-radius: 10px;\r\n          color: #fff;\r\n          transition: .3s;\r\n          &:hover{\r\n            background-color: transparent;\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/Cards/Card.module.scss b/src/components/Cards/Card.module.scss
+--- a/src/components/Cards/Card.module.scss	
++++ b/src/components/Cards/Card.module.scss	
+@@ -60,6 +60,7 @@
+         .like{
+           font-size: 30px;
+           cursor: pointer;
++          height: auto;
+         }
+       }
+       .btns{
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5a5ceafb-7494-492c-9320-dd80c06f3b41\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"JsbtTreeLayoutManager\">\r\n    <layout place=\"tools.popupnpm\">\r\n      <scroll-view-position x=\"0\" y=\"0\" />\r\n      <selected-paths>\r\n        <path>\r\n          <id value=\"$PROJECT_DIR$/package.json\" />\r\n          <id value=\"start\" />\r\n        </path>\r\n      </selected-paths>\r\n    </layout>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2A1U93iIY2Ys47umh6YPqmvAhhz\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/rusla/Desktop/cake/my-app/src/components/Footer/image&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\rusla\\Desktop\\cake\\my-app\\src\\components\\Footer\\image\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\rusla\\Desktop\\cake\\my-app\\src\\components\\Footer\\image\" />\r\n      <recent name=\"C:\\Users\\rusla\\Desktop\\cake\\my-app\\src\\assets\\img\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"start\" type=\"js.build_tools.npm\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <package-json value=\"$PROJECT_DIR$/package.json\" />\r\n      <command value=\"run\" />\r\n      <scripts>\r\n        <script value=\"start\" />\r\n      </scripts>\r\n      <node-interpreter value=\"project\" />\r\n      <envs />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"npm.start\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5a5ceafb-7494-492c-9320-dd80c06f3b41\" name=\"Changes\" comment=\"\" />\r\n      <created>1654176433871</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1654176433871</updated>\r\n      <workItem from=\"1654176433886\" duration=\"131000\" />\r\n      <workItem from=\"1654185647623\" duration=\"2567000\" />\r\n      <workItem from=\"1654189336702\" duration=\"73000\" />\r\n      <workItem from=\"1654190439296\" duration=\"11263000\" />\r\n      <workItem from=\"1654248775912\" duration=\"1219000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -4,13 +4,20 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="" />
++    <list default="true" id="511c7913-59ae-4988-95a9-47aeebb5d264" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="JsbtTreeLayoutManager">
