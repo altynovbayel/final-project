@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/contacts.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/browntooth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/pngegg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/image/tooth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/logo.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Footer/lorem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/final-project.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-    </list>
+    <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
