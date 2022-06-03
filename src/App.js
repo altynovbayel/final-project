@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import Category from "./pages/Category";
 import Register from "./pages/Register";
 import Auth from "./pages/Auth";
+import Footer from "./components/Footer";
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 				<Route path='/contacts' element={<Contacts/>}/>
 				<Route path='*' element={<Navigate to='/'/>}/>
 			</Routes>
+			<Footer/>
 		</>
 	);
 }
