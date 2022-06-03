@@ -8,11 +8,9 @@ import cls from "./NavbarSelect.module.scss";
 const NavbarSelect = () => {
 	const [currentTypeSort, setCurrentTypeSort] = React.useState('all')
 
-	const onChange = (newValue) => {
-		setCurrentTypeSort(newValue.value)
-	}
+	const onChange = (newValue) => setCurrentTypeSort(newValue.value)
 
-	console.log(currentTypeSort)
+		console.log(currentTypeSort)
 
 	const getValue = () => {
 		const options = groupedOptions.reduce((newArr, item) => {
