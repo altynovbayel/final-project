@@ -1,5 +1,5 @@
 import React from 'react';
-import backgroundImage from "./image/pngegg.png";
+import backgroundImage from "../../assets/img/pngegg.png";
 import {GiCakeSlice} from "react-icons/gi";
 
 const Logo = ({csc}) => {
