@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap');
+
+.footer {
+  margin-top: 20px;
+  width: 100%;
+  height: 75vh;
+  position: relative;
+  background: saddlebrown;
+  @media (min-width: 375px) {
+    height: 65vh;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 16px;
+    top: -15px;
+    left: 0;
+    background: url('../image/browntooth.png') repeat-x;
+  }
+
+  .footer_logo {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .footer_logo_container {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      .footer_logo_background {
+        width: 100%;
+        height: 100%;
+      }
+      .footer_logo_logo {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        color: white;
+      }
+    }
+  }
+
+  .swiperModule {
+    width: 100%;
+    height: 20%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    .swiper_container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .link {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        display: none;
+        transition: .3s;
+        &.active {
+          display: block;
+          z-index: 10;
+        }
+      }
+    }
+    .btn_left {
+      width: 40px;
+      height: 40px;
+      color: white;
+      position: absolute;
+      left: 1em;
+    }
+    .btn_right {
+      width: 40px;
+      height: 40px;
+      color: white;
+      position: absolute;
+      right: 1em;
+    }
+  }
+
+  .footer_body {
+    width: 95%;
+    height: 50%;
+    margin: 0 auto;
+    border: 2px solid saddlebrown;
+    padding: 5px;
+    p {
+      font-family: 'Nunito', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: white;
+      text-align: center;
+    }
+  }
+
+  .footer_footer {
+    width: 50%;
+    margin: 0 auto;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .instagram , .whatsapp , .phone{
+      .icons {
+        width: 30px;
+        height: 30px;
+        text-decoration: none;
+        color: white;
+        margin: 0 5px;
+      }
+    }
+  }
+}
