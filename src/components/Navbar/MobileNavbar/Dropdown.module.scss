@@ -8,10 +8,10 @@
   flex-direction: column;
   z-index: 100;
   left: 0;
-  padding: 2rem;
   align-items: center;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.71);
+  padding: 2rem;
 
   .closeDropdown {
     position: absolute;
@@ -79,8 +79,9 @@
   }
 
   &.active {
-    min-height: 90vh;
-    display: flex;
+    min-height: 70vh;
     top: 0;
+    background: #F5F5F5;
+    display: flex;
   }
 }
