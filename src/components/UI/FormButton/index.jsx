@@ -1,10 +1,11 @@
 import React from 'react';
-import "./Button.module.scss";
+import cls from "./Button.module.scss";
 
 
 const FormButton = ({buttonText, isValid}) => {
 	return (
 		<button
+			className={cls.formButton}
 			type='submit'
 			disabled={!isValid}
 		>

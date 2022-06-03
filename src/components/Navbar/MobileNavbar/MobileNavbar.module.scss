@@ -9,16 +9,36 @@
     align-items: center;
     justify-content: space-between;
 
+    @media (max-width: 426px) {
+      width: 100%;
+    }
+
     .logo{
       font-size: 30px;
       font-weight: 700;
       color: #E07153;
+
+      @media (max-width: 426px) {
+        font-size: 25px;
+      }
+
+      @media (max-width: 375px) {
+        display: none;
+      }
     }
 
     .burgerIcon{
-      font-size: 35px;
+      font-size: 33px;
       cursor: pointer;
       transition: .2s;
+
+      @media (max-width: 426px) {
+        font-size: 30px;
+      }
+
+      @media (max-width: 375px) {
+        font-size: 25px;
+      }
 
       &:hover{
         color: #E07153;
@@ -39,32 +59,24 @@
         gap: 1rem;
         position: relative;
 
-        &::before{
-          content: '';
-          height: 50%;
-          position: absolute;
-          width: 1px;
-          border-radius: 6px;
-          top: 50%;
-          transform: translateY(-50%);
-          left: 55%;
-          z-index: 10;
-          background: #c0bdbd;
-        }
-
-
         .sum{
           display: flex;
           align-items: center;
           gap: 5px;
 
           span{
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
+            @media (max-width: 426px) {
+              font-size: 14px;
+            }
           }
 
           svg{
             font-size: 16px;
+            @media (max-width: 426px) {
+              font-size: 12px;
+            }
           }
         }
 
@@ -72,6 +84,10 @@
           font-size: 20px ;
           cursor: pointer;
           transition: .2s;
+
+          @media (max-width: 426px) {
+            font-size: 16px;
+          }
 
           &:hover{
             color: #E07153;
@@ -91,6 +107,10 @@
           font-size: 22px;
           cursor: pointer;
           transition: .2s;
+
+          @media (max-width: 426px) {
+            font-size: 18px;
+          }
 
           &:hover{
             color: #E07153;

@@ -1,0 +1,102 @@
+.container{
+  width: 90%;
+  margin: 20px auto 0;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-between;
+  }
+  .slider{
+    width: 100%;
+    @media (min-width: 768px){
+      width: 50%;
+      .dots{
+        display: none;
+      }
+    }
+    .slider_dots{
+      margin-top: 0;
+    }
+    .slider_img{
+      width: 100%;
+      height: 350px;
+      position: relative;
+      img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+      .images{
+        opacity: 0;
+      }
+      .imagesActive{
+        opacity: 1;
+        transition: .3s;
+      }
+      button{
+        border: none;
+        outline: none;
+        font-size: 30px;
+        cursor: pointer;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: .3s;
+        width: 56px;
+        height: 56px;
+        top: 40%;
+        background-color: rgba(220, 213, 213, 0.3);
+      }
+      .prev{
+        position: absolute;
+        left: .5rem;
+      }
+      .next{
+        position: absolute;
+        right: .5rem;
+      }
+    }
+  }
+  .content{
+    margin-top: 50px;
+    @media (min-width: 768px){
+      width: 40%;
+    }
+    .likedBtn{
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+    }
+    h1{
+      margin-top: 20px;
+    }
+    .counter{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 40px;
+      @media (min-width: 768px){
+        justify-content: space-between;
+      }
+      .count{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+        border: 1px solid #000;
+        width: 120px;
+        height: 50px;
+        border-radius: 20px;
+        overflow: hidden;
+        padding: 0 10px;
+        button{
+          font-size: 24px;
+          background: none;
+        }
+      }
+    }
+  }
+}

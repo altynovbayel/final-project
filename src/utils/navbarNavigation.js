@@ -36,7 +36,7 @@ export const navbarCategories = [
 	{
 		id: 1,
 		route: '/products/bakery',
-		title: 'Хлебобулочные',
+		title: 'Мучное',
 		categoryImg: GiSlicedBread,
 	},
 	{
