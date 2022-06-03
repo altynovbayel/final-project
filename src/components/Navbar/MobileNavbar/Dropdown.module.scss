@@ -4,13 +4,14 @@
   top: -100%;
   width: 100%;
   background: #F5F5F5;
-  height: 0;
-  transition: 0.2s;
+  transition: all 0.3s ease-in-out;
   flex-direction: column;
   z-index: 100;
   left: 0;
   padding: 2rem;
   align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.71);
 
   .closeDropdown {
     position: absolute;
