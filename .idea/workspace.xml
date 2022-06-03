@@ -5,8 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/browntooth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/browntooth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/pngegg.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/pngegg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/tooth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/tooth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/logo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/logo.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +30,9 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/package.json" root0="SKIP_INSPECTION" />
   </component>
   <component name="JsbtTreeLayoutManager">
     <layout place="tools.popupnpm">
@@ -62,8 +75,8 @@
       <recent name="C:\Users\rusla\Desktop\cake\my-app\src\components\Footer\image" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\rusla\Desktop\cake\my-app\src\components\Footer\image" />
       <recent name="C:\Users\rusla\Desktop\cake\my-app\src\assets\img" />
+      <recent name="C:\Users\rusla\Desktop\cake\my-app\src\components\Footer\image" />
     </key>
   </component>
   <component name="RunManager">
@@ -99,6 +112,7 @@
       <workItem from="1654248775912" duration="1219000" />
       <workItem from="1654251344709" duration="1499000" />
       <workItem from="1654253017750" duration="2771000" />
+      <workItem from="1654257437337" duration="296000" />
     </task>
     <servers />
   </component>
