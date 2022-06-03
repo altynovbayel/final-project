@@ -9,7 +9,6 @@ const Category = () => {
 
 	React.useEffect(() => {
 		const base = productList.filter(product => product.category === category)
-
 		setProductBase(base)
 	}, [category])
 
