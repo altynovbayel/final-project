@@ -7,7 +7,7 @@ import cls from "./Navbar.module.scss";
 
 
 const Navbar = () => {
-	const [moneySum, setMoneySum] = React.useState(0)
+	const [moneySum, setMoneySum] = React.useState(12409)
 	const [isDropDown, setIsDropDown] = React.useState(false)
 	const navigate = useNavigate()
 	const isMobileOrTablet = useMediaQuery({query: '(max-width: 768px)'})

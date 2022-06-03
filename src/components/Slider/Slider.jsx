@@ -1,54 +1,42 @@
 import React from 'react';
-import {SliderList} from "../../utils/List";
 import c from './Slider.module.scss'
-import {BsArrowLeftCircle, BsArrowRightCircle} from 'react-icons/bs'
-import {MdOutlineCake, MdCake} from 'react-icons/md'
+import SliderDots from "./sliderDots";
+import {BsArrowLeft, BsArrowRight} from "react-icons/bs";
 
-function Slider() {
+function Slider({list}) {
   const [indexImg, setIndexImg] = React.useState(1)
+  
   const nextSlide = () => {
     setIndexImg(prev => prev + 1)
+    indexImg === list.length && setIndexImg(1)
   }
   const prevSlide = () => {
     setIndexImg(prev => prev - 1)
+    indexImg === 1 && setIndexImg(list.length)
   }
+  
   return (
     <>
       <div className={c.slider}>
         {
-          SliderList.map((url, index) =>
+          list.map((url, index) =>
             <img key={index} className={indexImg === index + 1 ? `${c.images} ${c.imagesActive}` : c.images} src={url} alt={'slider'}
             />)
         }
         <button
           className={c.prev}
           onClick={prevSlide}
-          disabled={indexImg === 1}
         >
-          <BsArrowLeftCircle/>
+          <BsArrowLeft/>
         </button>
         <button
           className={c.next}
           onClick={nextSlide}
-          disabled={indexImg === SliderList.length}
         >
-          <BsArrowRightCircle/>
+          <BsArrowRight/>
         </button>
       </div>
-      <div className={c.dots}>
-        {
-          Array.from({length: SliderList.length}).map((item, i) =>
-            <div
-              onClick={() => setIndexImg(i + 1)}
-              key={i}
-              className={c.dots_item}
-            >
-              {
-                indexImg === i + 1 ? <MdCake/> : <MdOutlineCake/>
-              }
-            </div>)
-        }
-      </div>
+      <SliderDots state={indexImg} setState={setIndexImg} list={list}/>
     </>
   );
 }

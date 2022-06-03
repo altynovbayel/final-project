@@ -24,12 +24,12 @@
         display: flex;
         gap: 3rem;
 
-        a{
-          font-size: 14px;
+        a {
+          font-size: 16px;
           color: #1b1b1b;
           transition: .2s;
 
-          &:hover{
+          &:hover {
             color: #E07153;
           }
         }
@@ -49,11 +49,11 @@
           align-items: center;
 
           svg {
-            font-size: 22px;
+            font-size: 20px;
             color: #1b1b1b;
             transition: .2s;
 
-            &:hover{
+            &:hover {
               color: #E07153;
             }
           }
@@ -68,7 +68,7 @@
               font-weight: 500;
             }
 
-            svg{
+            svg {
               font-size: 14px;
               color: #1b1b1b;
               pointer-events: none;
@@ -86,7 +86,7 @@
             font-size: 22px;
             transition: .2s;
 
-            &:hover{
+            &:hover {
               color: #E07153;
             }
           }
@@ -101,38 +101,89 @@
     background: #F5F5F5;
     padding: 10px 0;
 
-    .wrapperUnder{
-      width: 100%;
+    .wrapperUnder {
+      width: 90%;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      justify-content: space-between;
 
-      a{
+      .searcher {
+        width: 60%;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 5px;
+        gap: 10px;
 
-        &.active svg{
-          color: #E07153;
+        input {
+          width: 100%;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+          outline: none;
+          font-size: 15px;
+          padding: 10px;
+          color: #525151;
         }
 
-        &.active span{
-          color: #E07153;
-        }
+        button {
+          padding: 10px 12px;
+          background: #E07153;
+          border-radius: 6px;
 
-        svg{
-          font-size: 30px;
-          color: #1b1b1b;
+          svg{
+            color: white;
+            font-size: 18px;
+          }
         }
+      }
 
-        span{
-          color: #1b1b1b;
+      .select{
+        width: 35%;
+        flex-direction: row;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        p{
           font-size: 14px;
-          font-weight: 500;
         }
       }
     }
   }
 }
+
+
+//.wrapperUnder{
+//  width: 100%;
+//  margin: 0 auto;
+//  display: flex;
+//  align-items: center;
+//  justify-content: space-around;
+//
+//  a{
+//    display: flex;
+//    flex-direction: column;
+//    align-items: center;
+//    gap: 5px;
+//
+//    &.active svg{
+//      color: #E07153;
+//    }
+//
+//    &.active span{
+//      color: #E07153;
+//    }
+//
+//    svg{
+//      font-size: 30px;
+//      color: #1b1b1b;
+//    }
+//
+//    span{
+//      color: #1b1b1b;
+//      font-size: 14px;
+//      font-weight: 500;
+//    }
+//  }
+//}
+

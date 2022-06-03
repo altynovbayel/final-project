@@ -1,4 +1,4 @@
-export const SliderList = [
+export const sliderList = [
   'https://i.ytimg.com/vi/3aRizz1nd8s/maxresdefault.jpg',
   'https://wallpapercave.com/wp/wp4056209.jpg',
   'https://img-global.cpcdn.com/recipes/1280cafdc26a158c/680x482cq70/domashniaia-samsa-s-kuritsiei-iz-ghotovogho-sloienogho-tiesta-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg',
@@ -20,6 +20,8 @@ export const productList = [
     price: 40,
     description: 'as;fkj',
     type: 'new',
+    count: 1,
+    favorite: false,
   },
   {
     id: 2,
@@ -36,6 +38,8 @@ export const productList = [
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
+    count: 1,
+    favorite: false,
   },
   {
     id: 3,
@@ -52,6 +56,8 @@ export const productList = [
     price: 20,
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
+    count: 1,
+    favorite: false,
   },
   {
     id: 4,
@@ -67,6 +73,8 @@ export const productList = [
     price: 40,
     description: 'as;fkj',
     type: 'new',
+    count: 1,
+    favorite: false,
   },
   {
     id: 5,
@@ -83,6 +91,8 @@ export const productList = [
     price: 20,
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
+    count: 1,
+    favorite: false,
   },
   {
     id: 6,
@@ -99,6 +109,22 @@ export const productList = [
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
+    reviewers: [
+      {
+        id: 0,
+        personName: 'bektur',
+        date: Date.now(),
+        content: ';asdlfk;asdlkfjasd;'
+      },
+      {
+        id: 1,
+        personName: 'Alex',
+        date: Date.now(),
+        content: 'loremfasfasfduiasbilfd'
+      }
+    ],
+    favorite: false,
+    count: 1,
   },
   {
     id: 7,
@@ -115,5 +141,7 @@ export const productList = [
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
+    count: 1,
+    favorite: false,
   },
 ]

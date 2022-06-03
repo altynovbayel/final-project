@@ -1,14 +1,16 @@
 import React from 'react';
 import cls from "./LaptopNavbar.module.scss";
-import {navbarCategories, navbarNavigation} from "../../../utils/navbarNavigation";
+import { navbarNavigation} from "../../../utils/navbarNavigation";
 import {Link, NavLink, useNavigate} from "react-router-dom";
 import {FaShoppingBag} from "react-icons/fa";
 import {RiCopyrightLine} from "react-icons/ri";
-import {BsPersonFill} from "react-icons/bs";
+import {BsPersonFill, BsSearch} from "react-icons/bs";
+import NavbarSelect from "../../UI/NavbarSelect";
 
 
 const LaptopNavbar = ({moneySum}) => {
 	const navigate = useNavigate()
+	const [searchInput, setSearchInput] = React.useState('')
 
 	return (
 		<div className={cls.navbar}>
@@ -44,23 +46,36 @@ const LaptopNavbar = ({moneySum}) => {
 				</div>
 			</div>
 			<div className={cls.navbarUnder}>
-				<ul className={cls.wrapperUnder}>
-					{
-						navbarCategories.map(category => (
-							<NavLink
-								className={({isActive}) => isActive ? cls.active : ''}
-								key={category.id}
-								to={category.route}
-							>
-								<category.categoryImg/>
-								<span>{category.title}</span>
-							</NavLink>
-						))
-					}
-				</ul>
+				<div className={cls.wrapperUnder}>
+					<label className={cls.searcher}>
+						<input
+							type="text"
+							value={searchInput}
+							onChange={e => setSearchInput(e.target.value)}
+							placeholder='Найти товар'
+						/>
+						<button><BsSearch/></button>
+					</label>
+					<label className={cls.select}>
+						<p>Сортировать:</p>
+						<NavbarSelect/>
+					</label>
+				</div>
 			</div>
 		</div>
 	);
 };
 
 export default LaptopNavbar;
+// {
+// 	navbarCategories.map(category => (
+// 		<NavLink
+// 			className={({isActive}) => isActive ? cls.active : ''}
+// 			key={category.id}
+// 			to={category.route}
+// 		>
+// 			<category.categoryImg/>
+// 			<span>{category.title}</span>
+// 		</NavLink>
+// 	))
+// }

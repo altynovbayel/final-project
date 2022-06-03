@@ -1,12 +1,11 @@
-.formButton{
-  padding: 14px 0;
-  width: 100%;
+.button{
+  width: 100px;
+  padding: 10px 0;
   border-radius: 6px;
   background: #E07153;
   color: whitesmoke;
   font-weight: 600;
   font-size: 14px;
-
   &:disabled{
     opacity: 0.5;
     pointer-events: none;

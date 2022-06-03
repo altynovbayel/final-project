@@ -12,7 +12,11 @@ const Dropdown = ({isDropDown, setIsDropDown}) => {
 				<h4>Навигация</h4>
 				{
 					navbarNavigation.map(({id, title, route}) => (
-						<Link key={id} to={route}> {title} </Link>
+						<Link
+							key={id}
+							to={route}
+							onClick={() => setIsDropDown(prev => !prev)}
+						> {title} </Link>
 					))
 				}
 			</div>
@@ -23,6 +27,7 @@ const Dropdown = ({isDropDown, setIsDropDown}) => {
 						<Link
 							key={category.id}
 							to={category.route}
+							onClick={() => setIsDropDown(prev => !prev)}
 						>
 							{<category.categoryImg/>}
 							<span>{category.title}</span>
