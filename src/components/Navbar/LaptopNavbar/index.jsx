@@ -16,7 +16,10 @@ const LaptopNavbar = ({moneySum}) => {
 		<div className={cls.navbar}>
 			<div className={cls.navbarTop}>
 				<div className={cls.wrapperTop}>
-					<div className={cls.logo}>
+					<div
+						className={cls.logo}
+						onClick={() => navigate('/')}
+					>
 						Logo
 					</div>
 					<div className={cls.navigations}>

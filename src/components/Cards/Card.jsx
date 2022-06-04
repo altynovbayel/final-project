@@ -8,11 +8,24 @@ import {useNavigate} from "react-router-dom";
 function Card({productList}) {
   const navigate = useNavigate()
   const [date, setDate] = React.useState(productList)
+  React.useEffect(() => {
+    setDate(productList)
+  }, [productList])
+  
   function  countIncrement(id){
     const arr = date.map(item => {
       return{
         ...item,
         count: item.id === id ?item.count + 1 : item.count
+      }
+    })
+    setDate(arr)
+  }
+  function  counDecrement(id){
+    const arr = date.map(item => {
+      return{
+        ...item,
+        count: item.id === id ? item.count - 1 : item.count
       }
     })
     setDate(arr)
@@ -26,7 +39,6 @@ function Card({productList}) {
     })
     setDate(array)
   }
-  
   return (
     <>
       <div className={c.container}>
@@ -59,7 +71,10 @@ function Card({productList}) {
                 </div>
                 <div className={c.btns}>
                   <div className={c.counter}>
-                    <button>-</button>
+                    <button
+                      onClick={() => counDecrement(id)}
+                      disabled={count === 0}
+                    >-</button>
                     <span>{count}</span>
                     <button onClick={() => countIncrement(id)}>+</button>
                   </div>
