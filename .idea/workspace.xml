@@ -5,7 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a5ceafb-7494-492c-9320-dd80c06f3b41" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/my-app.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Cards/Card.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Cards/Card.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/LaptopFooter.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/LaptopFooter/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/MobileFooter/MobileFooter.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/browntooth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/browntooth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/pngegg.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/pngegg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/image/tooth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/img/tooth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Footer/logo.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer/logo.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/NavbarSelect/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/NavbarSelect/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,6 +110,7 @@
       <workItem from="1654189336702" duration="73000" />
       <workItem from="1654190439296" duration="11263000" />
       <workItem from="1654248775912" duration="1219000" />
+      <workItem from="1654320222490" duration="351000" />
     </task>
     <servers />
   </component>

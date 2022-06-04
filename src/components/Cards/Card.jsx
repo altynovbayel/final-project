@@ -28,7 +28,7 @@ function Card({productList}) {
               </span>
               <div
                 className={c.card_img}
-                onClick={() => navigate(`products/${category}/${id}`)}
+                onClick={() => navigate(`/products/${category}/${id}`)}
               >
                 <img src={productImg[0]} alt="img" />
               </div>
