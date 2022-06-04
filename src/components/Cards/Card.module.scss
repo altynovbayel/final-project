@@ -59,7 +59,9 @@
         }
         .like{
           font-size: 30px;
-          cursor: pointer;
+          svg{
+            cursor: pointer;
+          }
         }
       }
       .btns{
