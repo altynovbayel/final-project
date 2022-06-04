@@ -1,36 +1,41 @@
 import React from 'react';
 import Select from "react-select";
-import {groupedOptions, signsOptions} from "../../../utils/navbarSort";
+import {groupedOptions} from "../../../utils/navbarSort";
 import formatGroupLabel from "./FormatGroupLabel";
-import cls from "./NavbarSelect.module.scss";
+import "./NavbarSelect.scss";
+import {useNavigate} from "react-router-dom";
 
 
 const NavbarSelect = () => {
-	const [currentTypeSort, setCurrentTypeSort] = React.useState('all')
-
-	const onChange = (newValue) => setCurrentTypeSort(newValue.value)
-
-		console.log(currentTypeSort)
-
-	const getValue = () => {
-		const options = groupedOptions.reduce((newArr, item) => {
-			return [
-				...newArr,
-				...item.options
-			]
-		}, [])
-
-
-		return currentTypeSort ? options.find(type => type.value === currentTypeSort) : ''
+	const [currentTypeSort, setCurrentTypeSort] = React.useState({
+		label: 'Все',
+		value: 'all',
+		type: 'signs'
+	})
+	const onChange = (newValue) => setCurrentTypeSort(newValue)
+	const navigate = useNavigate()
+	const handleSort = (type) => {
+		// console.log(type)
 	}
 
+	console.log(currentTypeSort)
+	React.useEffect(() => {
+
+		currentTypeSort.type === 'signs'
+			? handleSort(currentTypeSort.type)
+			: navigate(`/products/${currentTypeSort.value}`)
+
+	}, [currentTypeSort])
+
 	return (
-		<div className={cls.navbarSelect}>
+		<div className='navbarSelect'>
 			<Select
-				value={getValue()}
+				classNamePrefix='customSelect'
+				value={currentTypeSort}
 				onChange={onChange}
 				options={groupedOptions}
 				formatGroupLabel={formatGroupLabel}
+				isSearchable={false}
 			/>
 		</div>
 	);

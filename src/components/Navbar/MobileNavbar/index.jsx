@@ -22,7 +22,10 @@ const MobileNavbar = ({moneySum, setIsDropDown, isDropDown}) => {
 
 				<Dropdown isDropDown={isDropDown} setIsDropDown={setIsDropDown}/>
 
-				<div className={cls.logo}>
+				<div
+					className={cls.logo}
+					onClick={() => navigate('/')}
+				>
 					Logo
 				</div>
 

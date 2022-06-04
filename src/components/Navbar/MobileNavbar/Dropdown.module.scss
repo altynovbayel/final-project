@@ -11,7 +11,7 @@
   align-items: center;
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.71);
-  padding: 2rem;
+  padding: 1rem 0;
 
   .closeDropdown {
     position: absolute;
@@ -41,6 +41,10 @@
       color: #1b1b1b;
       transition: 0.3s;
 
+      &.active{
+        color: #E07153;
+      }
+
       &:hover {
         color: #E07153;
       }
@@ -57,6 +61,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
+
+      &.active{
+        svg, span{
+          color: #E07153;
+        }
+      }
 
       &:hover span{
         color: #E07153;
@@ -79,9 +89,15 @@
   }
 
   &.active {
-    min-height: 70vh;
+    min-height: 80vh;
     top: 0;
     background: #F5F5F5;
     display: flex;
+  }
+
+  .logo{
+    font-size: 30px;
+    color: #E07153;
+    font-weight: 600;
   }
 }
