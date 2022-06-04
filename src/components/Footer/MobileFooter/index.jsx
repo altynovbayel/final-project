@@ -2,7 +2,7 @@ import React from 'react';
 import csc from './MobileFooter.module.scss'
 import {IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import {navbarCategories} from "../../../utils/navbarNavigation";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import Contacts from "../contacts";
 import Lorem from "../lorem";
 import Logo from "../logo";
@@ -19,9 +19,12 @@ const MobileFooter = () => {
         {
           navbarCategories.map((item , index) => (
             <div className={csc.swiper_container} key={item.id}>
-              <Link
+              <NavLink
                 className={state === index + 1 ? `${csc.link} ${csc.active}` : csc.link}
-                to={item.route}>{item.title}</Link>
+                to={item.route}
+              >
+                {item.title}
+              </NavLink>
             </div>
           ))
         }

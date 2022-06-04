@@ -1,11 +1,10 @@
 .footer {
-  margin-top: 150px;
   width: 100%;
-  height: 75vh;
+  height: 600px;
   position: relative;
-  background: saddlebrown;
+  background: black;
   @media (min-width: 375px) {
-    height: 65vh;
+    height: 600px;
   }
   &::after {
     content: '';
@@ -46,7 +45,7 @@
 
   .swiperModule {
     width: 100%;
-    height: 20%;
+    height: 15%;
     position: relative;
     display: flex;
     align-items: center;
@@ -63,9 +62,13 @@
         font-size: 18px;
         display: none;
         transition: .3s;
+        padding: 10px;
+        border: 2px solid white;
+        border-radius: 5px;
         &.active {
           display: block;
           z-index: 10;
+          border-color: red;
         }
       }
     }
@@ -89,8 +92,10 @@
     width: 95%;
     height: 50%;
     margin: 0 auto;
-    border: 2px solid saddlebrown;
     padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     p {
       font-family: 'Nunito', sans-serif;
       font-size: 17px;
@@ -103,7 +108,7 @@
   .footer_footer {
     width: 50%;
     margin: 0 auto;
-    height: 10%;
+    height: 15%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;

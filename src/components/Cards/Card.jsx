@@ -5,45 +5,45 @@ import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import {useNavigate} from "react-router-dom";
 
 
-function Card({productList}) {
+function Card({ productList, dataBaseStart}) {
   const navigate = useNavigate()
-  const [date, setDate] = React.useState(productList)
+  const [data, setData] = React.useState(productList)
   React.useEffect(() => {
-    setDate(productList)
+    setData(productList)
   }, [productList])
   
   function  countIncrement(id){
-    const arr = date.map(item => {
+    const arr = data.map(item => {
       return{
         ...item,
         count: item.id === id ?item.count + 1 : item.count
       }
     })
-    setDate(arr)
+    setData(arr)
   }
   function  counDecrement(id){
-    const arr = date.map(item => {
+    const arr = data.map(item => {
       return{
         ...item,
         count: item.id === id ? item.count - 1 : item.count
       }
     })
-    setDate(arr)
+    setData(arr)
   }
   function setLike(id){
-    const array = date.map(item => {
+    const array = data.map(item => {
       return {
         ...item ,
         favorite: item.id === id ? !item.favorite : item.favorite
       }
     })
-    setDate(array)
+    setData(array)
   }
   return (
     <>
       <div className={c.container}>
         {
-          date.map(({productImg,productName,price,id,count,type,category , favorite}) => (
+          data.map(({productImg,productName,price,id,count,type,category , favorite}) => (
             <div key={id} className={c.card}>
               <span className={c.type}>
                 {type}
@@ -62,10 +62,12 @@ function Card({productList}) {
                   </div>
                   <div
                     className={c.like}
-                    onClick={() => setLike(id)}
-                  >
+                    
+                    >
                     {
-                      !favorite ? <MdFavoriteBorder/> : <MdFavorite/>
+                      !favorite 
+                      ? <MdFavoriteBorder onClick={() => setLike(id)}/> 
+                      : <MdFavorite onClick={() => setLike(id)} />
                     }
                   </div>
                 </div>
