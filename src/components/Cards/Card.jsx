@@ -5,7 +5,7 @@ import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import {useNavigate} from "react-router-dom";
 
 
-function Card({productList}) {
+function Card({productList , dataBaseStart}) {
   const navigate = useNavigate()
   const [date, setDate] = React.useState(productList)
   function cake(id){
@@ -40,7 +40,10 @@ function Card({productList}) {
                   </div>
                   <div
                     className={c.like}
-                    onClick={() => cake(id)}
+                    onClick={() => {
+                      cake(id)
+                      dataBaseStart()
+                    }}
                   >
                     {
                       !favorite ? <MdFavoriteBorder/> : <MdFavorite/>

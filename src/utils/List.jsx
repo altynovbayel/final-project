@@ -21,7 +21,7 @@ export const productList = [
     description: 'as;fkj',
     type: 'new',
     count: 1,
-    favorite: false,
+    favorite: true,
   },
   {
     id: 2,
@@ -39,7 +39,7 @@ export const productList = [
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
     count: 1,
-    favorite: false,
+    favorite: true,
   },
   {
     id: 3,
@@ -57,7 +57,7 @@ export const productList = [
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
     count: 1,
-    favorite: false,
+    favorite: true,
   },
   {
     id: 4,
@@ -74,7 +74,7 @@ export const productList = [
     description: 'as;fkj',
     type: 'new',
     count: 1,
-    favorite: false,
+    favorite: true,
   },
   {
     id: 5,
@@ -92,7 +92,7 @@ export const productList = [
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
     count: 1,
-    favorite: false,
+    favorite: true,
   },
   {
     id: 6,
@@ -123,7 +123,7 @@ export const productList = [
         content: 'loremfasfasfduiasbilfd'
       }
     ],
-    favorite: false,
+    favorite: true,
     count: 1,
   },
   {

@@ -5,7 +5,7 @@ import Logo from "../logo";
 import Contacts from "../contacts";
 import {navbarCategories} from "../../../utils/navbarNavigation";
 import csc from "../MobileFooter/MobileFooter.module.scss";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const LaptopFooter = () => {
   return (
@@ -16,12 +16,13 @@ const LaptopFooter = () => {
       <div className={cs.list}>
         {
           navbarCategories.map((item) => (
-            <Link
-              className={cs.link}
+            <NavLink
+              key={item.id}
+              className={isActive => isActive ? `${cs.link} ${cs.active}` : cs.link}
               to={item.route}
             >
               {item.title}
-            </Link>
+            </NavLink>
           ))
         }
       </div>
