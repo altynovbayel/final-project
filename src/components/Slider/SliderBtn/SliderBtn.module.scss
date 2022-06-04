@@ -1,0 +1,23 @@
+button{
+  border: none;
+  outline: none;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s;
+  width: 56px;
+  height: 56px;
+  top: 40%;
+  background-color: rgba(220, 213, 213, 0.3);
+}
+.prev{
+  position: absolute;
+  left: .5rem;
+}
+.next{
+  position: absolute;
+  right: .5rem;
+}

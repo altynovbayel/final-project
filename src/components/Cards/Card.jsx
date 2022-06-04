@@ -8,7 +8,16 @@ import {useNavigate} from "react-router-dom";
 function Card({productList}) {
   const navigate = useNavigate()
   const [date, setDate] = React.useState(productList)
-  function cake(id){
+  function  countIncrement(id){
+    const arr = date.map(item => {
+      return{
+        ...item,
+        count: item.id === id ?item.count + 1 : item.count
+      }
+    })
+    setDate(arr)
+  }
+  function setLike(id){
     const array = date.map(item => {
       return {
         ...item ,
@@ -17,6 +26,7 @@ function Card({productList}) {
     })
     setDate(array)
   }
+  
   return (
     <>
       <div className={c.container}>
@@ -40,7 +50,7 @@ function Card({productList}) {
                   </div>
                   <div
                     className={c.like}
-                    onClick={() => cake(id)}
+                    onClick={() => setLike(id)}
                   >
                     {
                       !favorite ? <MdFavoriteBorder/> : <MdFavorite/>
@@ -51,7 +61,7 @@ function Card({productList}) {
                   <div className={c.counter}>
                     <button>-</button>
                     <span>{count}</span>
-                    <button>+</button>
+                    <button onClick={() => countIncrement(id)}>+</button>
                   </div>
                   <Button buttonText='В корзину' />
                 </div>
