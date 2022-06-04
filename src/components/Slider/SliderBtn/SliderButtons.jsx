@@ -6,13 +6,13 @@ function SliderButtons({next, prev}) {
   return (
     <>
       <button
-        className={c.prev}
+        className={`${c.buttons} ${c.prev}`}
         onClick={prev}
       >
         <BsArrowLeft/>
       </button>
       <button
-        className={c.next}
+        className={`${c.buttons} ${c.next}`}
         onClick={next}
       >
         <BsArrowRight/>

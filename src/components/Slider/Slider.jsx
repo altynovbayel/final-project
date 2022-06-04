@@ -14,7 +14,6 @@ function Slider({list}) {
     setIndexImg(prev => prev - 1)
     indexImg === 1 && setIndexImg(list.length)
   }
-  
   return (
     <>
       <div className={c.slider}>
