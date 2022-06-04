@@ -4,7 +4,6 @@ import Lorem from "../lorem";
 import Logo from "../logo";
 import Contacts from "../contacts";
 import {navbarCategories} from "../../../utils/navbarNavigation";
-import csc from "../MobileFooter/MobileFooter.module.scss";
 import {NavLink} from "react-router-dom";
 
 const LaptopFooter = () => {
