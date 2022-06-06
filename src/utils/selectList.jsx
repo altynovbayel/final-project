@@ -10,11 +10,6 @@ export const selectList = [
     value: 'statusData',
   },
   {
-    id: 3,
-    title: 'Изменение данных',
-    value: 'changeData',
-  },
-  {
     id: 4,
     title: 'Ваши отзывы',
     value: 'commentData',

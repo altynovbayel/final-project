@@ -1,7 +1,7 @@
 import React from 'react';
 import c from './Slider.module.scss'
 import SliderDots from "./sliderDots";
-import {BsArrowLeft, BsArrowRight} from "react-icons/bs";
+import SliderButtons from "./SliderBtn/SliderButtons";
 
 function Slider({list}) {
   const [indexImg, setIndexImg] = React.useState(1)
@@ -14,7 +14,6 @@ function Slider({list}) {
     setIndexImg(prev => prev - 1)
     indexImg === 1 && setIndexImg(list.length)
   }
-  
   return (
     <>
       <div className={c.slider}>
@@ -23,18 +22,7 @@ function Slider({list}) {
             <img key={index} className={indexImg === index + 1 ? `${c.images} ${c.imagesActive}` : c.images} src={url} alt={'slider'}
             />)
         }
-        <button
-          className={c.prev}
-          onClick={prevSlide}
-        >
-          <BsArrowLeft/>
-        </button>
-        <button
-          className={c.next}
-          onClick={nextSlide}
-        >
-          <BsArrowRight/>
-        </button>
+        <SliderButtons next={nextSlide} prev={prevSlide}/>
       </div>
       <SliderDots state={indexImg} setState={setIndexImg} list={list}/>
     </>

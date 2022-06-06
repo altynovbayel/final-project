@@ -20,7 +20,7 @@ export const productList = [
     price: 40,
     description: 'as;fkj',
     type: 'new',
-    count: 1,
+    count: 0,
     favorite: false,
   },
   {
@@ -38,7 +38,7 @@ export const productList = [
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
-    count: 1,
+    count: 0,
     favorite: false,
   },
   {
@@ -56,7 +56,7 @@ export const productList = [
     price: 20,
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
-    count: 1,
+    count: 0,
     favorite: false,
   },
   {
@@ -73,7 +73,7 @@ export const productList = [
     price: 40,
     description: 'as;fkj',
     type: 'new',
-    count: 1,
+    count: 0,
     favorite: false,
   },
   {
@@ -91,7 +91,7 @@ export const productList = [
     price: 20,
     description: 'Provident quae quidem quos vitae voluptatem.',
     type: 'new',
-    count: 1,
+    count: 0,
     favorite: false,
   },
   {
@@ -124,7 +124,7 @@ export const productList = [
       }
     ],
     favorite: false,
-    count: 1,
+    count: 0,
   },
   {
     id: 7,
@@ -141,7 +141,7 @@ export const productList = [
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
     type: 'top',
-    count: 1,
+    count: 0,
     favorite: false,
   },
 ]

@@ -1,19 +1,23 @@
 export const signsOptions = [
 	{
 		label: 'Все',
-		value: 'all'
+		value: 'all',
+		type: 'signs'
 	},
 	{
 		label: 'Имени',
-		value: 'name'
+		value: 'name',
+		type: 'signs'
 	},
 	{
 		label: 'Цене',
-		value: 'price'
+		value: 'price',
+		type: 'signs'
 	},
 	{
 		label: 'Отзывам',
-		value: 'review'
+		value: 'review',
+		type: 'signs'
 	},
 ]
 
@@ -21,19 +25,23 @@ export const categoryOptions = [
 
 	{
 		label: 'Мучное',
-		value: 'bakery'
+		value: 'bakery',
+		type: 'category'
 	},
 	{
 		label: 'Сладости',
-		value: 'sweets'
+		value: 'sweets',
+		type: 'category'
 	},
 	{
 		label: 'Пироги',
-		value: 'pies'
+		value: 'pies',
+		type: 'category'
 	},
 	{
 		label: 'Торты',
-		value: 'cakes'
+		value: 'cakes',
+		type: 'category'
 	},
 ]
 

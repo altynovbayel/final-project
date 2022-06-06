@@ -2,9 +2,9 @@ import React from 'react';
 import {useParams} from "react-router-dom";
 import {productList} from "../../utils/List";
 import c from './more.module.scss'
-import {BsArrowLeft, BsArrowRight} from "react-icons/bs";
 import {MdOutlineFavoriteBorder} from "react-icons/md";
 import SliderDots from "../../components/Slider/sliderDots";
+import SliderButtons from "../../components/Slider/SliderBtn/SliderButtons";
 
 function More() {
   const {id} = useParams()
@@ -48,18 +48,7 @@ function More() {
                   alt="slider"
                 />)
             }
-            <button
-              className={c.prev}
-              onClick={prevSlide}
-            >
-              <BsArrowLeft/>
-            </button>
-            <button
-              className={c.next}
-              onClick={nextSlide}
-            >
-              <BsArrowRight/>
-            </button>
+            <SliderButtons next={nextSlide} prev={prevSlide}/>
           </div>
           <div className={c.dots}>
             <SliderDots state={indexImg} setState={setIndexImg} list={cardMoreData.productImg}/>

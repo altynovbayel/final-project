@@ -130,21 +130,23 @@
           background: #E07153;
           border-radius: 6px;
 
-          svg{
+          svg {
             color: white;
             font-size: 18px;
           }
         }
       }
 
-      .select{
+      .select {
+        z-index: 100;
         width: 35%;
         flex-direction: row;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
-        p{
+
+        p {
           font-size: 14px;
         }
       }

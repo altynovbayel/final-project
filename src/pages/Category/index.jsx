@@ -5,21 +5,31 @@ import Card from "../../components/Cards/Card";
 
 const Category = () => {
 	const {category} = useParams()
-	const [productBase , setProductBase] = React.useState()
+	const [productBase, setProductBase] = React.useState(null)
+
+	const filterBase  = ()  => {
+		if (!category) {
+			return productList
+		}
+		return productList.filter(product => product.category === category)
+	}
 
 	React.useEffect(() => {
-		const base = productList.filter(product => product.category === category)
-		setProductBase(base)
-	}, [category])
+		setProductBase(productList)
+	}, [])
 
-	if(!productBase) return <h1>Loading</h1>
-	if(productBase?.length === 0) return <h1>No products</h1>
+	const filteredProductList = React.useMemo(filterBase, [category, productBase])
 
+	console.log(filteredProductList)
+
+
+	if (!productBase) return <h1>Loading</h1>
+	if (productBase?.length === 0) return <h1>No products</h1>
 	return (
 		<div>
 
 			{
-				<Card productList={productBase}/>
+				<Card productList={filteredProductList}/>
 			}
 
 		</div>
