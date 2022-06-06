@@ -5,7 +5,7 @@ import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import {useNavigate} from "react-router-dom";
 
 
-function Card({ productList, dataBaseStart}) {
+function Card({ productList}) {
   const navigate = useNavigate()
   const [data, setData] = React.useState(productList)
   React.useEffect(() => {
@@ -21,7 +21,6 @@ function Card({ productList, dataBaseStart}) {
     })
     setData(arr)
   }
-
   function  counDecrement(id){
     const arr = data.map(item => {
       return{
@@ -31,7 +30,6 @@ function Card({ productList, dataBaseStart}) {
     })
     setData(arr)
   }
-
   function setLike(id){
     const array = data.map(item => {
       return {
