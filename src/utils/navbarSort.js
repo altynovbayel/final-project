@@ -1,57 +1,56 @@
 export const signsOptions = [
 	{
-		label: 'Все',
-		value: 'all',
-		type: 'signs'
-	},
-	{
 		label: 'Имени',
-		value: 'name',
-		type: 'signs'
+		value: 'productName',
+		type: 'signs',
 	},
 	{
 		label: 'Цене',
 		value: 'price',
-		type: 'signs'
+		type: 'signs',
 	},
 	{
 		label: 'Отзывам',
-		value: 'review',
-		type: 'signs'
+		value: 'reviewGrade',
+		type: 'signs',
 	},
 ]
 
 export const categoryOptions = [
-
+	{
+		label: 'Все',
+		value: 'all',
+		type: 'category',
+	},
 	{
 		label: 'Мучное',
 		value: 'bakery',
-		type: 'category'
+		type: 'category',
 	},
 	{
 		label: 'Сладости',
 		value: 'sweets',
-		type: 'category'
+		type: 'category',
 	},
 	{
 		label: 'Пироги',
 		value: 'pies',
-		type: 'category'
+		type: 'category',
 	},
 	{
 		label: 'Торты',
 		value: 'cakes',
-		type: 'category'
+		type: 'category',
 	},
 ]
 
 export const groupedOptions = [
 	{
 		label: 'Признаки',
-		options: signsOptions
+		options: signsOptions,
 	},
 	{
 		label: 'Категории',
-		options: categoryOptions
+		options: categoryOptions,
 	},
 ]
