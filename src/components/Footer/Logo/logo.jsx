@@ -1,8 +1,9 @@
 import React from 'react';
-import backgroundImage from "../../assets/img/pngegg.png";
+import backgroundImage from "../../../assets/img/pngegg.png";
 import {GiCakeSlice} from "react-icons/gi";
+import csc from '../Logo/Logo.module.scss'
 
-const Logo = ({csc}) => {
+const Logo = () => {
   return (
     <React.Fragment>
       <div className={csc.footer_logo_container}>
