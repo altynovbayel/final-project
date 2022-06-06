@@ -21,6 +21,7 @@ function Card({ productList, dataBaseStart}) {
     })
     setData(arr)
   }
+
   function  counDecrement(id){
     const arr = data.map(item => {
       return{
@@ -30,6 +31,7 @@ function Card({ productList, dataBaseStart}) {
     })
     setData(arr)
   }
+
   function setLike(id){
     const array = data.map(item => {
       return {
@@ -39,6 +41,7 @@ function Card({ productList, dataBaseStart}) {
     })
     setData(array)
   }
+
   return (
     <>
       <div className={c.container}>
@@ -54,16 +57,16 @@ function Card({ productList, dataBaseStart}) {
               >
                 <img src={productImg[0]} alt="img" />
               </div>
-              <div className={c.card_body}>
+              <div className={c.card_body} >
                 <div className={c.text}>
-                  <div>
+                  <div 
+                    className={c.text_content}
+                    onClick={() => navigate(`/products/${category}/${id}`)}
+                  >
                     <h3>{productName}</h3>
                     <h4>{price} som</h4>
                   </div>
-                  <div
-                    className={c.like}
-                    
-                    >
+                  <div className={c.like} >
                     {
                       !favorite 
                       ? <MdFavoriteBorder onClick={() => setLike(id)}/> 

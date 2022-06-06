@@ -22,26 +22,10 @@
     opacity: 1;
   }
   button{
-    border: none;
-    outline: none;
-    font-size: 30px;
-    cursor: pointer;
-    background: none;
-    border-radius: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: .3s;
-    width: 56px;
-    height: 56px;
     top: 50%;
     transform: translateY(-50%);
     &:hover{
       background-color: #ff9300;
-      color: white;
-    }
-    &:disabled{
-      background-color: black;
       color: white;
     }
   }
