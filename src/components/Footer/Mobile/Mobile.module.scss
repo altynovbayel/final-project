@@ -1,0 +1,116 @@
+.mobile {
+  width: 100%;
+  height: 200px;
+  padding: 10px 0;
+  background-color: black;
+  .logo_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 25%;
+    position: relative;
+    .logo {
+      position: absolute;
+      top: -100%;
+      width: 90px;
+      height: 90px;
+    }
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 50%;
+    .link {
+      position: absolute;
+      display: none;
+      text-decoration: none;
+      color: white;
+      &.activeLink {
+        display: block;
+      }
+      &.activeLink {
+        border-color: #E07153;
+      }
+      @media (min-width: 768px) {
+        position: relative;
+        display: block;
+        margin: 0 20px;
+        padding: 10px 20px;
+        border: 2px solid white;
+        border-radius: 5px;
+      }
+      @media (min-width: 768px) {
+        //&.active {
+        //  border-color: #E07153;
+        //}
+      }
+    }
+    .left {
+      position: absolute;
+      left: 1em;
+      padding: 10px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media (min-width: 425px) {
+        left: 4em;
+      }
+      @media (min-width: 768px) {
+        display: none;
+      }
+      * {
+        width: 18px;
+        height: 18px;
+        color: black;
+      }
+    }
+    .right {
+      position: absolute;
+      padding: 10px;
+      border-radius: 50px;
+      right: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media (min-width: 768px) {
+        display: none;
+      }
+      @media (min-width: 425px) {
+        right: 4em;
+      }
+      * {
+        width: 18px;
+        height: 18px;
+        color: black;
+      }
+    }
+  }
+  .contacts_container {
+    width: 100%;
+    height: 25%;
+    .container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .instagram , .whatsapp , .phone {
+        margin: 0 10px;
+        .icons {
+          text-decoration: none;
+          color: white;
+          width: 30px;
+          height: 30px;
+          transition: .3s;
+          &:hover {
+            color: #E07153;
+          }
+        }
+      }
+    }
+  }
+}

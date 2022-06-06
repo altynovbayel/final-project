@@ -1,0 +1,98 @@
+.footer {
+  width: 100%;
+  padding: 30px 5% 0 5%;
+  background: black;
+  @media (max-width: 1024px) {
+    padding: 30px 1% 0 1%;
+  }
+  .Laptop {
+    display: flex;
+    justify-content: space-around;
+    @media (max-width: 1024px) {
+      justify-content: space-between;
+    }
+    .timeWork {
+      color: white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      h1 {
+        margin-bottom: 5px;
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      h1 {
+        color: white;
+      }
+      .container_contacts {
+        a {
+          display: flex;
+          align-items: center;
+          color: white;
+          margin: 20px 0;
+          &:hover {
+            color: #E07153;
+            .icons {
+              color: #E07153;
+            }
+          }
+          .icons {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            color: white;
+          }
+        }
+      }
+    }
+    .logo {
+      width: 180px;
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media (max-width: 1024px) {
+        width: 130px;
+        height: 130px;
+      }
+    }
+    .container_list {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      h1 {
+        color: white;
+        margin-bottom: 5px;
+      }
+      .list {
+        .link {
+          color: white;
+          font-size: 16px;
+          margin: 5px 0;
+          display: flex;
+          align-items: center;
+          &.active {
+            color: #E07153;
+          }
+          .icons {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+  .text {
+    width: 100%;
+    text-align: center;
+    small {
+      color: white;
+      margin: 0;
+      padding: 20px 0;
+      display: block;
+    }
+  }
+}

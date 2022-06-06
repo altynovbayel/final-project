@@ -12,9 +12,24 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 3.7,
     reviewCount: 135,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'bektur',
+        date: new Date().toLocaleString(),
+        content: ';asdlfk;asdlkfjasd; fsdfsdfgfsvfddffkjzdfkjhs dkfhvzn,vkjh n,kjdbv,mzjdzxvjbzs dvm  jxbvjk bsdbf ayefak jafgkf hahfhfjklakfnahfghfjhjfhjdhfjhfjdhfjdhjffgfgfgfgfgfgmfkgkfjgl.dfhsklughkhgfugnf fgfhgkuhfdghsidrgfds'
+      },
+      {
+        id: 1,
+        personName: 'Alex',
+        date: new Date().toLocaleString(),
+        content: 'loremfasfasfduiasbilfd'
+      }
+    ],
     productImg: [
       'https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFrZXJ5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
-      'https://media.istockphoto.com/photos/fresh-bread-on-shelves-in-bakery-picture-id663898216?k=20&m=663898216&s=612x612&w=0&h=Jtpqalgq_w0XpBzko3WGG_CNQbGOq0BoCHd10bzhb78=', 'https://images.unsplash.com/photo-1579697096985-41fe1430e5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGJha2VyeXxlbnwwfHwwfHw%3D&w=1000&q=80'
+      'https://media.istockphoto.com/photos/fresh-bread-on-shelves-in-bakery-picture-id663898216?k=20&m=663898216&s=612x612&w=0&h=Jtpqalgq_w0XpBzko3WGG_CNQbGOq0BoCHd10bzhb78=', 
+      'https://images.unsplash.com/photo-1579697096985-41fe1430e5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGJha2VyeXxlbnwwfHwwfHw%3D&w=1000&q=80'
     ],
     productName: 'Булочки',
     price: 40,
@@ -29,6 +44,20 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 4.5,
     reviewCount: 200,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'bektur',
+        date: new Date().toLocaleString(),
+        content: ';asdlfk;asdlkfjasd;'
+      },
+      {
+        id: 1,
+        personName: 'Alex',
+        date: new Date().toLocaleString(),
+        content: 'loremfasfasfduiasbilfd'
+      }
+    ],
     productImg: [
       'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80',
       'https://st2.depositphotos.com/2951763/5970/i/600/depositphotos_59707031-stock-photo-black-forest-cake-decorated-with.jpg',
@@ -47,6 +76,20 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 3.5,
     reviewCount: 105,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'Erlan',
+        date: new Date().toLocaleString(),
+        content: ';asdlfk;asdlkfjasd;'
+      },
+      {
+        id: 1,
+        personName: 'Nolan',
+        date: new Date().toLocaleString(),
+        content: 'loremfasfasfduiasbilfdfadfuahdufaf'
+      }
+    ],
     productImg: [
       'https://st2.depositphotos.com/1006075/6368/i/950/depositphotos_63683795-stock-photo-colorful-cupcakes.jpg',
       'https://svetofor.info/images/detailed/207/keksy-shokoladnye-05-kg.jpg',
@@ -65,6 +108,14 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 3.7,
     reviewCount: 135,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'bektur',
+        date: new Date().toLocaleString(),
+        content: ';asdlfk;asdlkfjasdvsdfvdsfvsd;'
+      },
+    ],
     productImg: [
       'https://images.unsplash.com/photo-1555507036-ab1f4038808a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFrZXJ5fGVufDB8fDB8fA%3D%3D&w=1000&q=80',
       'https://media.istockphoto.com/photos/fresh-bread-on-shelves-in-bakery-picture-id663898216?k=20&m=663898216&s=612x612&w=0&h=Jtpqalgq_w0XpBzko3WGG_CNQbGOq0BoCHd10bzhb78=', 'https://images.unsplash.com/photo-1579697096985-41fe1430e5df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fGJha2VyeXxlbnwwfHwwfHw%3D&w=1000&q=80'
@@ -82,6 +133,26 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 3.5,
     reviewCount: 105,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'Guliza',
+        date: new Date().toLocaleString(),
+        content: '431241bkljbvsdfvfdvdfv'
+      },
+      {
+        id: 1,
+        personName: 'Ruslan',
+        date: new Date().toLocaleString(),
+        content: 'loremfasfasfduiasbilfd'
+      },
+      {
+        id: 3,
+        personName: 'Timur',
+        date: new Date().toLocaleString(),
+        content: 'loremfvsdfgsdfv'
+      }
+    ],
     productImg: [
       'https://st2.depositphotos.com/1006075/6368/i/950/depositphotos_63683795-stock-photo-colorful-cupcakes.jpg',
       'https://svetofor.info/images/detailed/207/keksy-shokoladnye-05-kg.jpg',
@@ -89,7 +160,7 @@ export const productList = [
     ],
     productName: 'Кексы',
     price: 20,
-    description: 'Provident quae quidem quos vitae voluptatem.',
+    description: 'Provident quae quidem quos vitae voluptatem.Provident quae quidem quos vitae voluptatem.Provident quae quidem quos vitae voluptatem.Provident quae quidem quos vitae voluptatem.',
     type: 'new',
     count: 0,
     favorite: false,
@@ -100,6 +171,20 @@ export const productList = [
     categoryTitle: 'Хлебобулочное',
     reviewGrade: 4.5,
     reviewCount: 200,
+    reviewers: [
+      {
+        id: 0,
+        personName: 'bektur',
+        date: new Date().toLocaleString(),
+        content: ';asdlfk;asdlkfjasd;'
+      },
+      {
+        id: 1,
+        personName: 'Alex',
+        date: new Date().toLocaleString(),
+        content: 'loremfasfasfduiasbilfd'
+      }
+    ],
     productImg: [
       'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NHx8fGVufDB8fHx8&w=1000&q=80',
       'https://st2.depositphotos.com/2951763/5970/i/600/depositphotos_59707031-stock-photo-black-forest-cake-decorated-with.jpg',
@@ -107,22 +192,8 @@ export const productList = [
     ],
     productName: 'Торты',
     price: 100,
-    description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
+    description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis',
     type: 'top',
-    reviewers: [
-      {
-        id: 0,
-        personName: 'bektur',
-        date: Date.now(),
-        content: ';asdlfk;asdlkfjasd;'
-      },
-      {
-        id: 1,
-        personName: 'Alex',
-        date: Date.now(),
-        content: 'loremfasfasfduiasbilfd'
-      }
-    ],
     favorite: false,
     count: 0,
   },
@@ -140,7 +211,7 @@ export const productList = [
     productName: 'Торты',
     price: 100,
     description: ' Lorem ipsum dolor sit amet, consectetur adipisicing elit. A cumque fuga laudantium optio perferendis ',
-    type: 'top',
+    type: 'new',
     count: 0,
     favorite: false,
   },

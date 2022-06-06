@@ -4,7 +4,7 @@ import Button from '../UI/Button'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-function Card({ productList, dataBaseStart }) {
+function Card({ productList }) {
 	const navigate = useNavigate()
 	const [data, setData] = React.useState(productList)
 	React.useEffect(() => {
@@ -38,6 +38,7 @@ function Card({ productList, dataBaseStart }) {
 		})
 		setData(array)
 	}
+
 	return (
 		<>
 			<div className={c.container}>
@@ -62,7 +63,10 @@ function Card({ productList, dataBaseStart }) {
 							</div>
 							<div className={c.card_body}>
 								<div className={c.text}>
-									<div>
+									<div
+										className={c.text_content}
+										onClick={() => navigate(`/products/${category}/${id}`)}
+									>
 										<h3>{productName}</h3>
 										<h4>{price} som</h4>
 									</div>

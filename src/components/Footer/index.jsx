@@ -1,17 +1,18 @@
 import React from 'react';
 import {useMediaQuery} from "react-responsive";
-import MobileFooter from "./MobileFooter";
-import LaptopFooter from "./LaptopFooter";
+import MobileFooter from "./Mobile";
+import LaptopFooter from "./Laptop";
+import cs from './index.module.scss'
 
 const Footer = () => {
-  const isMobileFooter = useMediaQuery({query: '(max-width: 767px)'})
-  const isLaptopFooter = useMediaQuery({query: '(min-width: 768px)'})
+  const isMobileFooter = useMediaQuery({query: '(max-width: 768px)'})
+  const isLaptopFooter = useMediaQuery({query: '(min-width: 769px)'})
 
   return (
-    <React.Fragment>
+    <div className={cs.like}>
       {isLaptopFooter && <LaptopFooter/>}
       {isMobileFooter && <MobileFooter/>}
-    </React.Fragment>
+    </div>
   );
 };
 
