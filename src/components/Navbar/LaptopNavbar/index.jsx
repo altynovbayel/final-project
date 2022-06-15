@@ -1,5 +1,6 @@
 import React from 'react'
 import cls from './LaptopNavbar.module.scss'
+import logoImg from "../../../assets/img/LogoDayar.jpg";
 import { navbarNavigation } from '../../../utils/navbarNavigation'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
@@ -16,7 +17,7 @@ const LaptopNavbar = ({ moneySum }) => {
 			<div className={cls.navbarTop}>
 				<div className={cls.wrapperTop}>
 					<div className={cls.logo} onClick={() => navigate('/')}>
-						Logo
+						<img src={logoImg} alt="logo"/>
 					</div>
 					<div className={cls.navigations}>
 						{navbarNavigation.map(({ id, route, title }) => (

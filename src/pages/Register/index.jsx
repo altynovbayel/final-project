@@ -8,7 +8,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { auth } from '../../services/firebase/firebase'
 import {updateProfile} from "firebase/auth";
-import {updatePhoneNumber} from "firebase/auth";
 
 
 const Register = () => {
@@ -30,7 +29,9 @@ const Register = () => {
 				auth,
 				data.email,
 				data.password
-			)
+			).then(r => {
+				console.log(r)
+			})
 			await updateProfile(res.user, {
 				displayName: data.username || 'Пользователь',
 			})
