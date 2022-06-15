@@ -23,7 +23,7 @@ function App() {
 					<Route path='/cart' element={<ShoppingCart />} />
 					<Route path='/favorites' element={<Favorites />} />
 					<Route path='/profile' element={<PersonProfile />} />
-					<Route path='*' element={<Navigate to='/' />} />
+					{/* <Route path='*' element={<Navigate to='/' />} /> */}
 				</Route>
 				<Route path='/' element={<Main />} />
 				<Route path='/user/register' element={<Register />} />
@@ -33,7 +33,7 @@ function App() {
 				<Route path='/promotions' element={<Promotions />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/contacts' element={<Contacts />} />
-				<Route path='*' element={<Navigate to='/' />} />
+				{/* <Route path='*' element={<Navigate to='/' />} /> */}
 			</Routes>
 			<Footer />
 		</>
