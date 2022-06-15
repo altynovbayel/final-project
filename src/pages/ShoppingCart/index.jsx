@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
+import useIsLogin from "../../hooks/useIsLogin";
 
-function ShoppingCart(props) {
+function ShoppingCart() {
+
   return (
     <div>
       <h1>

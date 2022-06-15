@@ -5,6 +5,24 @@ export const sliderList = [
   'https://searchthisweb.com/wallpaper/thumb1000/main1000_muffins_3840x2160_8vsnp.jpg',
 ]
 
+export const infoList = [
+  {
+    id:1,
+    title: 'Call Us',
+    content: '+996-700-11-00-11',
+  },
+  {
+    id: 2,
+    title: 'Support',
+    content: 'helpme@gmail.com',
+  },
+  {
+    id:3,
+    title: 'Adress',
+    content: 'Kyrgyzstan, Osh, str. Mamyrova',
+  },
+]
+
 export const productList = [
   {
     id: 1,

@@ -1,6 +1,8 @@
-// const baseURL = ''
-import { productList } from '../utils/List'
+const { default: axios } = require("axios")
 
-export const GET = () => {
-	return productList
-}
+const baseURL = 'https://finalproject-6dca2-default-rtdb.asia-southeast1.firebasedatabase.app/'
+
+
+const instance = axios.create({baseURL})
+
+export default instance
