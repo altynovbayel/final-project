@@ -1,9 +1,12 @@
 import React from 'react';
 import c from './Btn.module.scss'
 
-function Button({buttonText}) {
+function Button({buttonText, onClick}) {
   return (
-    <button className={c.button}>
+    <button
+      className={c.button}
+      onClick={onClick}
+    >
       {buttonText}
     </button>
   );

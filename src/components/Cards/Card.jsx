@@ -3,12 +3,22 @@ import c from './Card.module.scss'
 import Button from '../UI/Button'
 import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import {useNavigate} from 'react-router-dom'
-
+import useIsLogin from "../../hooks/useIsLogin";
+import {addToCart} from "../../configs";
 
 
 function Card({productList, setProductList}) {
 	const navigate = useNavigate()
+	const {isAuth} = useIsLogin()
+	const [cartButton, setCartButton] = React.useState(false)
 
+	const handleGoToShoppingCart = (id) => {
+		const cart = productList.find(product => product.id === id)
+		cart && setCartButton(true)
+		addToCart(cart, isAuth.uid).then(r => {
+			console.log(r)
+		})
+	}
 
 	function countIncrement(id) {
 		const arr = productList.map((item) => {
@@ -90,7 +100,23 @@ function Card({productList, setProductList}) {
 										<span>{count}</span>
 										<button onClick={() => countIncrement(id)}>+</button>
 									</div>
-									<Button buttonText='В корзину'/>
+									{/*{*/}
+									{/*	!cartButton ? (*/}
+									{/*		<Button*/}
+									{/*			buttonText='В корзину'*/}
+									{/*			onClick={() => handleGoToShoppingCart(id)}*/}
+									{/*		/>*/}
+									{/*	) : (*/}
+									{/*		<Button*/}
+									{/*			buttonText='В корзине'*/}
+									{/*			onClick={() => navigate('/cart')}*/}
+									{/*		/>*/}
+									{/*	)*/}
+									{/*}*/}
+									<Button
+										buttonText='В корзину'
+										onClick={() => handleGoToShoppingCart(id)}
+									/>
 								</div>
 							</div>
 						</div>
