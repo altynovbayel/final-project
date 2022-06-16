@@ -21,11 +21,12 @@ function App() {
 			<Routes>
 				<Route element={<PrivateRoutes />}>
 					<Route path='/cart' element={<ShoppingCart />} />
-					<Route path='/favorites' element={<Favorites />} />
+					{/*<Route path='/favorites' element={<Favorites />} />*/}
 					<Route path='/profile' element={<PersonProfile />} />
-					<Route path='*' element={<Navigate to='/' />} />
+					{/* <Route path='*' element={<Navigate to='/' />} /> */}
 				</Route>
 				<Route path='/' element={<Main />} />
+				<Route path='/favorites' element={<Favorites />} />
 				<Route path='/user/register' element={<Register />} />
 				<Route path='/user/auth' element={<Auth />} />
 				<Route path='/products/:category' element={<Category />} />
@@ -33,7 +34,7 @@ function App() {
 				<Route path='/promotions' element={<Promotions />} />
 				<Route path='/about' element={<About />} />
 				<Route path='/contacts' element={<Contacts />} />
-				<Route path='*' element={<Navigate to='/' />} />
+				{/* <Route path='*' element={<Navigate to='/' />} /> */}
 			</Routes>
 			<Footer />
 		</>

@@ -1,49 +1,60 @@
-import React from 'react';
-import {useForm} from "react-hook-form";
-import cls from "./Auth.module.scss";
-import FormInput from "../../components/UI/FormInput";
-import FormButton from "../../components/UI/FormButton";
-import {IoMdClose} from "react-icons/io";
-import {Link, useNavigate} from "react-router-dom";
-
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import cls from './Auth.module.scss'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../../services/firebase/firebase'
+import FormInput from '../../components/UI/FormInput'
+import FormButton from '../../components/UI/FormButton'
+import { IoMdClose } from 'react-icons/io'
+import { Link, useNavigate } from 'react-router-dom'
+import useIsLogin from "../../hooks/useIsLogin";
+import Loader from "../Favorites/Loader/Loader";
 
 const Auth = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: {
-			errors, isValid
-		},
-		reset
+		formState: { errors, isValid },
+		reset,
 	} = useForm({
-		mode: 'onChange'
+		mode: 'onChange',
 	})
 
 	const navigate = useNavigate()
+	const {isAuth, loading} = useIsLogin()
+	React.useEffect(() => {
+		isAuth && navigate('/profile')
+	}, [isAuth, navigate])
 
-	const handleFormSubmit = (data) => {
-		console.log(data)
-		reset()
+	const handleFormSubmit = async (data) => {
+		try {
+			const user = await signInWithEmailAndPassword(
+				auth,
+				data.email,
+				data.password
+			)
+			user && navigate('/profile')
+		} catch (error) {
+			console.log(error)
+		} finally {
+			reset()
+		}
 	}
-
+	if (loading) return <div className={cls.loading}><Loader/></div>
 	return (
 		<div className={cls.container}>
 			<form onSubmit={handleSubmit(handleFormSubmit)}>
-				<IoMdClose
-					className={cls.closeForm}
-					onClick={() => navigate('/')}
-				/>
+				<IoMdClose className={cls.closeForm} onClick={() => navigate('/')} />
 				<div className={cls.formHeader}>
 					<h3>Вход в кабинет</h3>
 				</div>
 				<div className={cls.formBody}>
-
 					<FormInput
 						inputType='text'
-						placeholder='Ваше имя'
-						registerName='username'
+						placeholder='Ваш email адресс'
+						registerName='email'
 						register={register}
-						errors={errors.username?.message}
+						errors={errors.email?.message}
 					/>
 					<FormInput
 						inputType='password'
@@ -54,15 +65,12 @@ const Auth = () => {
 					/>
 				</div>
 				<div className={cls.formFooter}>
-					<FormButton
-						isValid={isValid}
-						buttonText='Войти'
-					/>
+					<FormButton isValid={isValid} buttonText='Войти' />
 					<Link to='/user/register'>Еще нет аккаунта</Link>
 				</div>
 			</form>
 		</div>
-	);
-};
+	)
+}
 
-export default Auth;
+export default Auth
