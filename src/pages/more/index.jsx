@@ -7,26 +7,91 @@ import SliderButtons from "../../components/Slider/SliderBtn/SliderButtons";
 import MoreDesc from './Description/MoreDesc';
 import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer';
-import {getAllProducts} from "../../configs";
+import {addReview, getAllProducts, getUser, putAddedReview, updateProfile} from "../../configs";
 import useCards from "../../hooks/useCards";
 import useIsLogin from "../../hooks/useIsLogin";
 import Loader from "../Favorites/Loader/Loader";
+import {GoStar} from "react-icons/go";
+
 
 function More() {
 	const {id} = useParams()
 	const {isAuth} = useIsLogin()
+	const {actions} = useCards()
 	const navigate = useNavigate()
 	const [moreData, setMoreData] = React.useState(null)
-	const {actions} = useCards()
-
 	const [indexImg, setIndexImg] = React.useState(1)
 	const [count, setCount] = React.useState(1)
 	const [price, setPrice] = React.useState(null)
 	const [totalPrice, setTotalPrice] = React.useState(null)
+	const [reviewContent, setReviewContent] = React.useState('')
+	const [reviewersData, setReviewersData] = React.useState(null)
+	const [currentStarValue, setCurrentStarValue] = React.useState(0)
+	const [hoverValue, setHoverValue] = React.useState(undefined)
+
+	const handleClick = value => {
+		setCurrentStarValue(value)
+	}
+
+	const handleMouseOver = value => {
+		setHoverValue(value)
+	}
+
+	const handleMouseLeave = () => {
+		setHoverValue(undefined)
+	}
+
+	const addReviewHandle = () => {
+		const data = {
+			date: new Date().toLocaleString(),
+			content: reviewContent,
+			reviewGrade: currentStarValue,
+			user: {
+				username: isAuth.displayName,
+				email: isAuth.email
+			}
+		}
+		console.log(data)
+		addReview(data, id).then(r => {
+			if (r.data) {
+				const personReviewData = {
+					reviewContent: data.content,
+					reviewGrade: currentStarValue,
+					date: data.date,
+					productName: moreData.productName,
+					productId: id,
+					productCategory: moreData.category,
+					images: moreData.images
+				}
+				console.log(personReviewData)
+				putAddedReview(personReviewData, isAuth.uid).then(r => {
+					console.log(r)
+				})
+			}
+		})
+	}
 
 	React.useEffect(() => {
 		actions.getSingle(id).then(({data}) => {
-			setMoreData(data)
+			data.reviewers && (
+				setReviewersData(() => {
+					return Object.entries(data?.reviewers).map(([id, item]) => {
+						return {
+							id,
+							...item
+						}
+					})
+				})
+			)
+			setMoreData(() => {
+				return {
+					...data,
+					reviewersData
+				}
+			})
+			// setMoreData(data)
+			console.log(moreData)
+			// setCount(data.count)
 			setPrice(data.price)
 			setTotalPrice(data.price)
 		})
@@ -92,7 +157,7 @@ function More() {
 								-
 							</button>
 							<span>{count}</span>
-							<button onClick={handleIncrement}> +</button>
+							<button onClick={handleIncrement}>+</button>
 						</div>
 						<div>
 							<h2>{totalPrice} сом</h2>
@@ -110,13 +175,43 @@ function More() {
 					</div>
 				</div>
 			</div>
-
+			<div className={c.addReview}>
+				<div className={c.stars}>
+					<span>Оставьте отзыв: </span>
+					<div>
+						{
+							Array(5).fill(0).map((_, i) => {
+								return <GoStar
+									key={i}
+									className={c.starIcon}
+									color={(hoverValue || currentStarValue) > i ? '#ffba5a' : '#a9a9a9'}
+									onClick={() => handleClick(i + 1)}
+									onMouseOver={() => handleMouseOver(i + 1)}
+									onMouseLeave={() => handleMouseLeave()}
+								/>
+							})
+						}
+					</div>
+				</div>
+				<div className={c.reviewContent}>
+					<textarea
+						value={reviewContent}
+						placeholder={'Напишите что-нибудь...'}
+						onChange={e => setReviewContent(e.target.value)}
+						type="text"
+					/>
+					<button onClick={addReviewHandle}>
+						Отправить
+					</button>
+				</div>
+			</div>
 			<div className={c.reviewers}>
 				{
-					moreData.reviewers ? moreData.reviewers.map((item, index) => (
+					reviewersData ? reviewersData.reverse().map((item, index) => (
 						<Reviewer
 							key={index}
-							name={item.personName}
+							reviewGrade={item.reviewGrade}
+							name={item.user.username || item.user.email}
 							date={item.date}
 							content={item.content}/>
 					)) : (<h1>no reviews</h1>)
