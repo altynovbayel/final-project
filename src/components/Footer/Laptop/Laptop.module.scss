@@ -2,6 +2,11 @@
   width: 100%;
   padding: 30px 5% 0 5%;
   background: black;
+  h1 {
+    @media (max-width: 1024px) {
+      font-size: 28px;
+    }
+  }
   @media (max-width: 1024px) {
     padding: 30px 1% 0 1%;
   }
@@ -24,7 +29,7 @@
     .list {
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       h1 {
         color: white;
       }
@@ -56,8 +61,8 @@
       justify-content: center;
       align-items: center;
       @media (max-width: 1024px) {
-        width: 130px;
-        height: 130px;
+        width: 100px;
+        height: 100px;
       }
     }
     .container_list {

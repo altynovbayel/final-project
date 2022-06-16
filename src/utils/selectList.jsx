@@ -6,11 +6,6 @@ export const selectList = [
   },
   {
     id: 2,
-    title: 'Статус заказа',
-    value: 'statusData',
-  },
-  {
-    id: 4,
     title: 'Ваши отзывы',
     value: 'commentData',
   },

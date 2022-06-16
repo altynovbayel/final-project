@@ -1,11 +1,10 @@
 import React from 'react';
+import MobileProfile from "./MobileProfil";
 
 const Index = () => {
   return (
-    <div>
-      
-    </div>
-  );
+    <MobileProfile/>
+  )
 };
 
 export default Index;
