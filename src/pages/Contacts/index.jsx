@@ -1,10 +1,13 @@
 import React from 'react';
 import Map from "./map";
+import Info from "./infoBlock";
+import Title from "../../components/UI/TitleText";
 
 const Contacts = () => {
 	return (
 		<React.Fragment>
-			<h2 style={{textAlign: 'center', color:'#555555'}}>Our contacts</h2>
+			<Title text={'Наши контакты'}/>
+      <Info/>
       <Map/>
 		</React.Fragment>
 	);

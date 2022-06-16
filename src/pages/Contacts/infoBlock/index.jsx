@@ -8,16 +8,14 @@ function Info() {
       <div className={c.container}>
         <div className={c.row}>
           {
-            infoList.map(item => {
-              return <div className={c.card} key={item.id}>
-                <span>
-                  {item.title}
-                </span>
-                <h2>
-                  {item.content}
-                </h2>
+            infoList.map(item => (
+              <div className={c.card} key={item.id}>
+                <div>
+                  <span>{ item.title }</span>
+                  <p>{ item.content }</p>
+                </div>
               </div>
-            })
+            ))
           }
         </div>
       </div>
