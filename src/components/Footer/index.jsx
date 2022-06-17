@@ -5,8 +5,8 @@ import LaptopFooter from "./Laptop";
 import cs from './index.module.scss'
 
 const Footer = () => {
-  const isMobileFooter = useMediaQuery({query: '(max-width: 768px)'})
-  const isLaptopFooter = useMediaQuery({query: '(min-width: 769px)'})
+  const isMobileFooter = useMediaQuery({query: '(max-width: 767px)'})
+  const isLaptopFooter = useMediaQuery({query: '(min-width: 768px)'})
 
   return (
     <div className={cs.like}>

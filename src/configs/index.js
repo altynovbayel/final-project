@@ -16,4 +16,8 @@ export const putAddedReview = (data, userId) => instance.post(`/users/${userId}/
 
 export const addToFavorites = (data,  userId) => instance.post(`/users/${userId}/favorites/.json`, data)
 
+export const getUser = (userId) => instance.get(`/users/${userId}/.json`)
+
+export const updatePrfile = (userId , data) => instance.patch(`/users/${userId}/.json` , data)
+
 export const getFromCart = (id) => instance.get(`/users/${id}/cart/.json`)

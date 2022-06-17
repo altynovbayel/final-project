@@ -1,29 +1,18 @@
 import React from 'react'
 import cs from './PersonProfile.module.scss'
-import { signOut } from 'firebase/auth'
-// import {useMediaQuery} from "react-responsive";
-import MobileProfile from './MobileProfil'
-import { auth } from '../../services/firebase/firebase'
-import { useNavigate } from 'react-router-dom'
-import useIsLogin from "../../hooks/useIsLogin";
+import {useMediaQuery} from "react-responsive";
+import SelectDropDown from "./SelectDropDown";
+import Comment from "./Comment/Comment";
+import MobileProfile from './MobileProfil';
 
 const PersonProfile = () => {
-	const navigate = useNavigate()
-	// const isMobile = useMediaQuery({query: '(max-width)'})
+	const isMobile = useMediaQuery({query: '(max-width: 767px)'})
+	const isLaptop = useMediaQuery({query: '(min-width: 768px)'})
 
 	return (
 		<div className={cs.root}>
-			{<MobileProfile />}
-
-			<button
-				onClick={() => {
-					signOut(auth).then(() => {
-						navigate('/')
-					})
-				}}
-			>
-				signOut
-			</button>
+			{isMobile && <SelectDropDown />}
+			{isLaptop && (<><MobileProfile/> <Comment/></>)}
 		</div>
 	)
 }

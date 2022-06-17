@@ -14,7 +14,7 @@ function App() {
 			<Routes>
 				<Route element={<PrivateRoutes />}>
 					<Route path='/cart' element={<ShoppingCart />} />
-					<Route path='/favorites' element={<Favorites />} />
+					{/*<Route path='/favorites' element={<Favorites />} />*/}
 					<Route path='/profile' element={<PersonProfile />} />
 					<Route path='*' element={<Navigate to='/' />} />
 				</Route>

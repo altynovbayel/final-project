@@ -26,7 +26,7 @@ function ShoppingCart() {
   if(!base) return <div className={cls.loading}><Loader/></div>
   return (
     <React.Fragment>
-      <Title text={"Ваша карзина"}/>
+      <Title text={"Ваша корзина"}/>
       {
         <CartCard productList={base} setProductList={setBase}/>
       }
