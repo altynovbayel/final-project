@@ -22,7 +22,7 @@ const Comment = () => {
       setDataBase(base)
     })
   }, [])
-  console.log(dataBase);
+  
   if(!dataBase) return <h1></h1>
 
   return (
