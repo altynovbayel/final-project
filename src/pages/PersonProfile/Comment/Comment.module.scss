@@ -1,5 +1,6 @@
 .logo {
   text-align: center;
+  margin: 20px 0;
 }
 
 .container {
@@ -14,19 +15,32 @@
   }
   .cards {
     width: 310px;
-    height: 400px;
+    height: 450px;
     overflow: hidden;
     background: lightblue;
     margin-bottom: 35px;
     border-radius: 10px;
     padding: 10px;
+    @media (min-width: 768px) {
+      width: 400px;
+    }
     .cards_header {
       width: 100%;
       height: 60%;
+      position: relative;
       img {
         width: 100%;
         height: 100%;
         border-radius: 10px;
+      }
+      .date {
+        font-size: 13px;
+        font-weight: 700;
+        position: absolute;
+        bottom: 0.5em;
+        right: 0.5em;
+        z-index: 10;
+        color: #E07153;
       }
     }
     .cards_body {
@@ -39,15 +53,40 @@
       }
       .cards_body_header {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        justify-content: space-between;        
         color: white;
         padding: 10px 0;
-        height: 20%;
+        height: 30%;
+        .title {
+          font-size: 25px;
+          text-transform: capitalize;
+          @media (max-width: 768px) {
+            font-size: 22px;
+          }
+        }
+        .star {
+          color: gold;
+          width: 15px;
+          height: 15px;
+          @media (max-width: 768px) {
+            width: 20px;
+            height: 20px; 
+          }
+        }
       }
       .text {
         color: white;
         height: 40%;
         width: 100%;
+        p {
+          font-size: 16px;
+          width: 100%;
+          word-wrap: break-word;
+          @media (max-width: 768px) {
+            font-size: 16px;
+          }
+        }
       }
       .cards_body_footer {
         width: 100%;
@@ -56,7 +95,7 @@
           padding: 10px 20px;
           width: 100%;
           border-radius: 5px;
-          background: lightblue;
+          background: #ff9f84;
           .link {
             color: white;
             font-size: 18px;
