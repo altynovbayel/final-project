@@ -1,5 +1,7 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
+import Loader from '../Favorites/Loader/Loader'
+import cls from "../Main/main.module.scss";
 
 import Card from '../../components/Cards/Card'
 import UnderNavbar from '../../components/Navbar/LaptopNavbar/UnderNavbar'
@@ -29,7 +31,7 @@ const Category = () => {
 	console.log(productBase)
 
 
-	if (!productBase) return <h1>Loading</h1>
+  if (!productBase) return <div className={cls.loading}><Loader /></div>
 	if (productBase?.length === 0) return <h1>No products</h1>
 	return (
 		<div>

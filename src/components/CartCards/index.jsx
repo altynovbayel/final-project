@@ -66,7 +66,7 @@ function CartCard({productList, setProductList, getCard}) {
                     ? `${productName.split('').slice(0, 16).join('')}...`
                     : productName
                   }
-                  <div>
+                  <div className={c.del}>
                     <AiTwotoneDelete onClick={() => handleRemoveCard(id)}/>
                   </div>
                 </div>
