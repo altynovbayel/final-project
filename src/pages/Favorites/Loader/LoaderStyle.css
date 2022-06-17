@@ -84,8 +84,8 @@
   --fg: hsl(var(--hue),10%,90%);
 }
 .tally {
-  width: 10em;
-  height: 10em;
+  width: 3em;
+  height: 3em;
 }
 .tally__line,
 .tally__path {

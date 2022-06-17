@@ -12,7 +12,12 @@ function ShoppingCart() {
   const {isAuth} = useIsLogin()
   React.useEffect(() => {
     getFromCart(isAuth.uid).then(res => {
-      const arr = res.data ? Object.values(res.data) : false
+      const arr = res.data ? Object.entries(res.data).map(([id, item]) => {
+        return{
+          id,
+          ...item
+        }
+      }) : false
       setBase(arr)
     })
   }, [])
@@ -29,4 +34,4 @@ function ShoppingCart() {
   );
 }
 
-export default ShoppingCart;
+export default ShoppingCart

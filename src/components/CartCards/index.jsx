@@ -10,9 +10,9 @@ import {AiOutlineStar} from 'react-icons/ai'
 function CartCard({productList, setProductList}) {
   const navigate = useNavigate()
   const {isAuth} = useIsLogin()
-  const [count, setCount] = React.useState(1)
-  const [price, setPrice] = React.useState(null)
-  const [totalPrice, setTotalPrice] = React.useState(null)
+  // const [count, setCount] = React.useState(1)
+  // const [price, setPrice] = React.useState(null)
+  // const [totalPrice, setTotalPrice] = React.useState(null)
   
   function countIncrement(id) {
     const arr = productList.map((item) => {
