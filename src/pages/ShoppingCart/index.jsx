@@ -3,8 +3,8 @@ import {getFromCart} from "../../configs";
 import useIsLogin from "../../hooks/useIsLogin";
 import cls from "../Main/main.module.scss";
 import Loader from "../Favorites/Loader/Loader";
-import Card from "../../components/Cards/Card";
 import Title from "../../components/UI/TitleText";
+import CartCard from "../../components/CartCards";
 
 
 function ShoppingCart() {
@@ -12,18 +12,18 @@ function ShoppingCart() {
   const {isAuth} = useIsLogin()
   React.useEffect(() => {
     getFromCart(isAuth.uid).then(res => {
-      const arr = Object.values(res.data)
+      const arr = res.data ? Object.values(res.data) : false
       setBase(arr)
     })
   }, [])
   
-  
+  if (base === false) return <Title text={'ваша карзина пустая'}/>
   if(!base) return <div className={cls.loading}><Loader/></div>
   return (
     <React.Fragment>
       <Title text={"Ваша карзина"}/>
       {
-        <Card productList={base} setProductList={setBase}/>
+        <CartCard productList={base} setProductList={setBase}/>
       }
     </React.Fragment>
   );

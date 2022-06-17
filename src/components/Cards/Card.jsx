@@ -14,9 +14,7 @@ function Card({productList, setProductList}) {
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find(product => product.id === id)
 		cart && setCartButton(true)
-		addToCart(cart, isAuth.uid).then(r => {
-			console.log(r)
-		})
+		addToCart(cart, isAuth.uid)
 	}
 
 	function countIncrement(id) {

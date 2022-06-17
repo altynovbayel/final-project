@@ -51,7 +51,7 @@ function More() {
 				email: isAuth.email
 			}
 		}
-		console.log(data)
+		// console.log(data)
 		addReview(data, id).then(r => {
 			if (r.data) {
 				const personReviewData = {
@@ -63,9 +63,9 @@ function More() {
 					productCategory: moreData.category,
 					images: moreData.images
 				}
-				console.log(personReviewData)
+				// console.log(personReviewData)
 				putAddedReview(personReviewData, isAuth.uid).then(r => {
-					console.log(r)
+					// console.log(r)
 				})
 			}
 		})
@@ -90,7 +90,7 @@ function More() {
 				}
 			})
 			// setMoreData(data)
-			console.log(moreData)
+			// console.log(moreData)
 			// setCount(data.count)
 			setPrice(data.price)
 			setTotalPrice(data.price)
