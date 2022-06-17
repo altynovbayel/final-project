@@ -2,14 +2,17 @@ import React from 'react';
 import cs from './Profil.module.scss'
 import {getUser, updatePrfile} from "../../../configs";
 import useIsLogin from "../../../hooks/useIsLogin";
-import {BsFillPencilFill} from "react-icons/bs";
+import {BsFillPencilFill , BsEyeSlash} from "react-icons/bs";
+import {AiFillEye} from 'react-icons/ai'
 import {signOut} from "firebase/auth";
 import {auth} from "../../../services/firebase/firebase";
 import {useNavigate} from "react-router-dom";
+
 const MobileProfile = () => {
   const navigate = useNavigate()
   const {isAuth} = useIsLogin()
   const [data , setData] = React.useState(null)
+  const [password , setPassword] = React.useState(false)
 
   React.useEffect(() => {
     getUser(isAuth.uid).then(res => {
@@ -43,10 +46,11 @@ const MobileProfile = () => {
           <label>
             <input
               onChange={e => setData({...data , password: e.target.value})}
-              type="password"
+              type={password ? 'password' : 'text'}
               placeholder='password'
             />
-            <BsFillPencilFill className={cs.icons}/>
+            {password ? <BsEyeSlash onClick={() => setPassword(items => !items)}className={cs.icons}/>
+                      : <AiFillEye onClick={() => setPassword(items => !items)}className={cs.icons}/>}
           </label>
           <label>
             <input
