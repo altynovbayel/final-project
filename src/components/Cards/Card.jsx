@@ -1,18 +1,18 @@
 import React from 'react'
 import c from './Card.module.scss'
 import Button from '../UI/Button'
-import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
-import {useNavigate} from 'react-router-dom'
-import useIsLogin from "../../hooks/useIsLogin";
-import {addToCart} from "../../configs";
+import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
+import useIsLogin from '../../hooks/useIsLogin'
+import { addToCart, addToFavorites } from '../../configs'
 
-function Card({productList, setProductList}) {
+function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	const {isAuth} = useIsLogin()
+	const { isAuth } = useIsLogin()
 	const [cartButton, setCartButton] = React.useState(false)
 
 	const handleGoToShoppingCart = (id) => {
-		const cart = productList.find(product => product.id === id)
+		const cart = productList.find((product) => product.id === id)
 		cart && setCartButton(true)
 		addToCart(cart, isAuth.uid)
 	}
@@ -47,27 +47,35 @@ function Card({productList, setProductList}) {
 		setProductList(array)
 	}
 
+	const addToFavoriteHandle = () => {
+		const favoriteProduct = productList.find((item) => item.favorite)
+		console.log(favoriteProduct)
+		addToFavorites(favoriteProduct, isAuth.uid).then((r) => {
+			console.log(r)
+		})
+	}
+
 	return (
 		<>
 			<div className={c.container}>
 				{productList.map(
 					({
-						 images,
-						 productName,
-						 price,
-						 id,
-						 count,
-						 type,
-						 category,
-						 favorite,
-					 }) => (
+						images,
+						productName,
+						price,
+						id,
+						count,
+						type,
+						category,
+						favorite,
+					}) => (
 						<div key={id} className={c.card}>
 							<span className={c.type}>{type}</span>
 							<div
 								className={c.card_img}
 								onClick={() => navigate(`/products/${category}/${id}`)}
 							>
-								<img src={images[0]} alt='img'/>
+								<img src={images[0]} alt='img' />
 							</div>
 							<div className={c.card_body}>
 								<div className={c.text}>
@@ -80,9 +88,14 @@ function Card({productList, setProductList}) {
 									</div>
 									<div className={c.like}>
 										{!favorite ? (
-											<MdFavoriteBorder onClick={() => setLike(id)}/>
+											<MdFavoriteBorder
+												onClick={() => {
+													setLike(id)
+													addToFavoriteHandle()
+												}}
+											/>
 										) : (
-											<MdFavorite onClick={() => setLike(id)}/>
+											<MdFavorite onClick={() => setLike(id)} />
 										)}
 									</div>
 								</div>

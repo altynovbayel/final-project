@@ -1,68 +1,68 @@
-import React from 'react';
+import React from 'react'
 import cs from './Comment.module.scss'
-import { useNavigate } from "react-router-dom";
-import {getUser} from '../../../configs';
-import useIsLogin from "../../../hooks/useIsLogin";
+import { useNavigate } from 'react-router-dom'
+import { getUser } from '../../../configs'
+import useIsLogin from '../../../hooks/useIsLogin'
+import Loader from '../../Favorites/Loader/Loader'
 
 const Comment = () => {
-  const {isAuth} = useIsLogin()
-  const navigate = useNavigate()
-  const [dataBase , setDataBase] = React.useState(null)
+	const { isAuth } = useIsLogin()
+	const navigate = useNavigate()
+	const [dataBase, setDataBase] = React.useState(null)
 
-  React.useEffect(() => {
-    getUser(isAuth.uid).then(res => {
-      // const base = Object.entries(res.data.reviews).map(([id , items]) => {
-      //   return {
-      //     id ,
-      //     ...items
-      //   }
-      // })
-      // setDataBase(base)
-    })
-  }, [])
+	React.useEffect(() => {
+		getUser(isAuth.uid).then((res) => {
+			const base = Object.entries(res.data.reviews).map(([id, items]) => {
+				return {
+					id,
+					...items,
+				}
+			})
+			setDataBase(base)
+		})
+	}, [])
 
-  if(dataBase) return <h1></h1>
+	if (!dataBase) return <Loader />
 
-  return (
-    <>
-      <h1 className={cs.logo}>Ваши комментарии</h1>
-      <div className={cs.container}>
-      {
-      dataBase.map(item => (
-        <div className={cs.cards} key={item.id}>
-          <div className={cs.cards_header}>
-            <img src={item.images[0]} alt=""/>
-          </div>
-          <div className={cs.cards_body}>
-            <div className={cs.cards_body_header}>
-              <p>{item.productName}</p>
-              {/*<p>{item.date}</p>*/}
-            </div>
-            <div className={cs.text}>
-              <p>
-                {
-                  item.text ? item.text.length > 70
-                    ? `${item.text.split('').slice(0 , 70).join('')}...`
-                    : item.text
-                    : 'нету'
-                }
-              </p>
-            </div>
-            <div className={cs.cards_body_footer}>
-              <button onClick={() => navigate(`products/:category/:productId`)}>
-                <p className={cs.link}>more</p>
-              </button>
-            </div>
-          </div>
-        </div>
-        ))
-      }
-    </div>
-    </>
-  );
-};
+	return (
+		<>
+			<h1 className={cs.logo}>Ваши комментарии</h1>
+			<div className={cs.container}>
+				{dataBase.map((item) => (
+					<div className={cs.cards} key={item.id}>
+						<div className={cs.cards_header}>
+							<img src={item.images[0]} alt='' />
+						</div>
+						<div className={cs.cards_body}>
+							<div className={cs.cards_body_header}>
+								<p>{item.productName}</p>
+								{/*<p>{item.date}</p>*/}
+							</div>
+							<div className={cs.text}>
+								<p>
+									{item.text
+										? item.text.length > 70
+											? `${item.text.split('').slice(0, 70).join('')}...`
+											: item.text
+										: 'нету'}
+								</p>
+							</div>
+							<div className={cs.cards_body_footer}>
+								<button
+									onClick={() => navigate(`products/:category/:productId`)}
+								>
+									<p className={cs.link}>more</p>
+								</button>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</>
+	)
+}
 
-export default Comment;
+export default Comment
 
 //navigate() - изменить
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import c from './more.module.scss'
-import { MdOutlineFavoriteBorder } from 'react-icons/md'
+import {MdCopyright, MdOutlineFavoriteBorder} from 'react-icons/md'
 import SliderDots from '../../components/Slider/sliderDots'
 import SliderButtons from '../../components/Slider/SliderBtn/SliderButtons'
 import MoreDesc from './Description/MoreDesc'
@@ -9,7 +9,7 @@ import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer'
 import {
 	addReview,
-	getAllProducts,
+	getAllProducts, getSingleProduct,
 	getUser,
 	putAddedReview,
 	updateProfile,
@@ -22,14 +22,15 @@ import { GoStar } from 'react-icons/go'
 function More() {
 	const { id } = useParams()
 	const { isAuth } = useIsLogin()
-	const { actions, moreData } = useCards(id)
+	const { actions} = useCards()
 	const navigate = useNavigate()
-	// const [moreData, setMoreData] = React.useState(null)
+	const [moreData, setMoreData] = React.useState(null)
+	const [reviewersData, setReviewersData] = React.useState(null)
 	const [indexImg, setIndexImg] = React.useState(1)
 	const [count, setCount] = React.useState(1)
 	const [price, setPrice] = React.useState(null)
+	const [totalPrice, setTotalPrice] = React.useState(0)
 	const [reviewContent, setReviewContent] = React.useState('')
-	// const [reviewersData, setReviewersData] = React.useState(null)
 	const [currentStarValue, setCurrentStarValue] = React.useState(0)
 	const [hoverValue, setHoverValue] = React.useState(undefined)
 
@@ -59,6 +60,7 @@ function More() {
 					images: moreData.images,
 				}
 				putAddedReview(personReviewData, isAuth.uid).then(() => {
+					getProduct()
 					setCurrentStarValue(0)
 					setHoverValue(undefined)
 					setReviewContent('')
@@ -66,13 +68,37 @@ function More() {
 			}
 		})
 	}
+	
+	const getProduct = () => {
+		getSingleProduct(id).then(r => {
+			if (r) {
+				setMoreData(r.data)
+				r.data.reviewers && (
+					setReviewersData(() => {
+						return Object.entries(r.data.reviewers).map(([id, item]) => {
+							return {
+								id,
+								...item
+							}
+						})
+					})
+				)
+			}
+		})
+	}
 
 	React.useEffect(() => {
-		setPrice(moreData?.price)
-	}, [moreData?.price])
+		getProduct()
+	}, [ id])
 
 	const handleIncrement = () => {
-		setCount((prev) => prev + 1)
+		setCount(prev => prev + 1)
+		setTotalPrice(() => count * price)
+		const newData = {
+			...moreData,
+			count
+		}
+		setMoreData(newData)
 	}
 
 	const handleDecrement = () => {
@@ -89,7 +115,8 @@ function More() {
 		indexImg === 1 && setIndexImg(moreData.productImg.length)
 	}
 
-	const handleOrderProduct = () => {}
+	const handleOrderProduct = () => {
+	}
 
 	if (!moreData)
 		return (
@@ -97,6 +124,7 @@ function More() {
 				<Loader />
 			</div>
 		)
+
 	return (
 		<React.Fragment>
 			<div className={c.container}>
@@ -134,8 +162,8 @@ function More() {
 							<span>{count}</span>
 							<button onClick={handleIncrement}>+</button>
 						</div>
-						<div>
-							<h2>{moreData.price} сом</h2>
+						<div className={c.priceContainer}>
+							<h2 className={c.price}>{moreData.price} сом</h2>
 						</div>
 					</div>
 					<div className={c.btn}>
@@ -144,7 +172,11 @@ function More() {
 							<h4> {moreData.reviewGrade}</h4>
 						</span>
 						<Button buttonText={'Заказать'} onClick={handleOrderProduct} />
+
 					</div>
+					<label>
+						<span className={c.total}>Сумма: {totalPrice}</span>
+					</label>
 					<div className={c.description}>
 						<MoreDesc text={moreData.description} />
 					</div>
@@ -185,9 +217,8 @@ function More() {
 				</div>
 			</div>
 			<div className={c.reviewers}>
-				{moreData.reviewersData ? (
-					moreData.reviewersData
-						.reverse()
+				{reviewersData ? (
+					reviewersData
 						.map((item, index) => (
 							<Reviewer
 								key={index}
