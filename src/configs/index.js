@@ -21,3 +21,5 @@ export const getUser = (userId) => instance.get(`/users/${userId}/.json`)
 export const updatePrfile = (userId , data) => instance.patch(`/users/${userId}/.json` , data)
 
 export const getFromCart = (id) => instance.get(`/users/${id}/cart/.json`)
+
+export const removeCart = (userId, productId) => instance.delete(`/users/${userId}/cart/${productId}/.json`)

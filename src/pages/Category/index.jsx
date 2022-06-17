@@ -7,7 +7,6 @@ import UnderNavbar from '../../components/Navbar/LaptopNavbar/UnderNavbar'
 const Category = () => {
 	const { category } = useParams()
 	const [productBase, setProductBase] = React.useState(null)
-
 	
 	React.useEffect(() => {
  

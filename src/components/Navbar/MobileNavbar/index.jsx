@@ -6,6 +6,7 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import { GoThreeBars } from 'react-icons/go'
 import Dropdown from './Dropdown/Dropdown'
+import logo from '../../../assets/img/pngDayarLogo.png'
 
 const MobileNavbar = ({ moneySum, setIsDropDown, isDropDown }) => {
 	const navigate = useNavigate()
@@ -21,7 +22,7 @@ const MobileNavbar = ({ moneySum, setIsDropDown, isDropDown }) => {
 				<Dropdown isDropDown={isDropDown} setIsDropDown={setIsDropDown} />
 
 				<div className={cls.logo} onClick={() => navigate('/')}>
-					Logo
+          <img src={logo} alt="logo" />
 				</div>
 
 				<div className={cls.personsContainer}>

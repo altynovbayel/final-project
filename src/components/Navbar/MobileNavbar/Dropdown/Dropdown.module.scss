@@ -96,8 +96,9 @@
   }
 
   .logo{
-    font-size: 30px;
-    color: #E07153;
-    font-weight: 600;
+    width: 100px;
+    img{
+      width: 100%;
+    }
   }
 }

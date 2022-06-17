@@ -6,6 +6,7 @@ import {
 import { NavLink, useNavigate } from 'react-router-dom'
 import { MdArrowBackIosNew } from 'react-icons/md'
 import cls from './Dropdown.module.scss'
+import logo from  '../../../../assets/img/pngDayarLogo.png'
 
 const Dropdown = ({ isDropDown, setIsDropDown }) => {
 	const navigate = useNavigate()
@@ -54,7 +55,7 @@ const Dropdown = ({ isDropDown, setIsDropDown }) => {
 					setIsDropDown((prev) => !prev)
 				}}
 			>
-				Logo
+        <img src={logo} alt="logo" />
 			</div>
 		</nav>
 	)

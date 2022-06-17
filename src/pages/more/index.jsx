@@ -14,6 +14,7 @@ import {
 	putAddedReview,
 	updateProfile,
 } from '../../configs'
+
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
 import Loader from '../Favorites/Loader/Loader'
@@ -47,7 +48,6 @@ function More() {
 				email: isAuth.email,
 			},
 		}
-		console.log(data)
 		addReview(data, id).then((r) => {
 			if (r.data) {
 				const personReviewData = {
@@ -59,7 +59,6 @@ function More() {
 					productCategory: moreData.category,
 					images: moreData.images,
 				}
-				console.log(personReviewData)
 				putAddedReview(personReviewData, isAuth.uid).then(() => {
 					setCurrentStarValue(0)
 					setHoverValue(undefined)
@@ -82,18 +81,8 @@ function More() {
 		setCount((prev) => prev - 1)
 	}
 
-	const nextSlide = () => {
-		setIndexImg((prev) => prev + 1)
-		indexImg === moreData.productImg.length && setIndexImg(1)
-	}
-
-	const prevSlide = () => {
-		setIndexImg((prev) => prev - 1)
-		indexImg === 1 && setIndexImg(moreData.productImg.length)
-	}
-
 	const handleOrderProduct = () => {
-
+ 
 	}
 
 	if (!moreData)
@@ -102,28 +91,16 @@ function More() {
 				<Loader />
 			</div>
 		)
-	console.log(moreData)
 	return (
 		<React.Fragment>
 			<div className={c.container}>
 				<div className={c.slider}>
 					<div className={c.slider_img}>
-						{moreData.images.map((url, i) => (
-							<img
-								className={indexImg === i + 1 ? c.imagesActive : c.images}
-								key={i}
-								src={url}
-								alt='slider'
-							/>
-						))}
-						<SliderButtons next={nextSlide} prev={prevSlide} />
-					</div>
-					<div className={c.dots}>
-						<SliderDots
-							state={indexImg}
-							setState={setIndexImg}
-							list={moreData.images}
-						/>
+            <img
+              className={c.imagesActive}
+              src={moreData.images}
+              alt='slider'
+            />
 					</div>
 				</div>
 				<div className={c.content}>
@@ -134,14 +111,17 @@ function More() {
 					<h1>{moreData.productName}</h1>
 					<div className={c.counter}>
 						<div className={c.count}>
-							<button onClick={handleDecrement} disabled={count === 0}>
+							<button
+                onClick={handleDecrement}
+                disabled={count === 0}
+              >
 								-
 							</button>
 							<span>{count}</span>
-							<button onClick={handleIncrement}>+</button>
+							<button onClick={handleIncrement}> + </button>
 						</div>
 						<div>
-							<h2>{moreData.price} сом</h2>
+							<h2>{moreData.price * count} сом</h2>
 						</div>
 					</div>
 					<div className={c.btn}>

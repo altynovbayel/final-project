@@ -10,16 +10,20 @@ import CartCard from "../../components/CartCards";
 function ShoppingCart() {
   const [base, setBase] = React.useState(null)
   const {isAuth} = useIsLogin()
-  React.useEffect(() => {
+  function getCard (){
     getFromCart(isAuth.uid).then(res => {
       const arr = res.data ? Object.entries(res.data).map(([id, item]) => {
         return{
+          ...item,
           id,
-          ...item
         }
       }) : false
       setBase(arr)
     })
+  }
+  
+  React.useEffect(() => {
+    getCard()
   }, [])
   
   if (base === false) return <Title text={'ваша карзина пустая'}/>
@@ -28,7 +32,7 @@ function ShoppingCart() {
     <React.Fragment>
       <Title text={"Ваша корзина"}/>
       {
-        <CartCard productList={base} setProductList={setBase}/>
+        <CartCard productList={base} setProductList={setBase} getCard={getCard} />
       }
     </React.Fragment>
   );
