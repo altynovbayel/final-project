@@ -47,7 +47,6 @@ function More() {
 				email: isAuth.email,
 			},
 		}
-		console.log(data)
 		addReview(data, id).then((r) => {
 			if (r.data) {
 				const personReviewData = {
@@ -59,7 +58,6 @@ function More() {
 					productCategory: moreData.category,
 					images: moreData.images,
 				}
-				console.log(personReviewData)
 				putAddedReview(personReviewData, isAuth.uid).then(() => {
 					setCurrentStarValue(0)
 					setHoverValue(undefined)
@@ -72,7 +70,6 @@ function More() {
 	React.useEffect(() => {
 		setPrice(moreData?.price)
 	}, [moreData?.price])
-
 
 	const handleIncrement = () => {
 		setCount((prev) => prev + 1)
@@ -92,9 +89,7 @@ function More() {
 		indexImg === 1 && setIndexImg(moreData.productImg.length)
 	}
 
-	const handleOrderProduct = () => {
-
-	}
+	const handleOrderProduct = () => {}
 
 	if (!moreData)
 		return (
@@ -102,7 +97,6 @@ function More() {
 				<Loader />
 			</div>
 		)
-	console.log(moreData)
 	return (
 		<React.Fragment>
 			<div className={c.container}>
@@ -149,10 +143,7 @@ function More() {
 							средняя оценка:
 							<h4> {moreData.reviewGrade}</h4>
 						</span>
-						<Button
-							buttonText={'Заказать'}
-							onClick={handleOrderProduct}
-						/>
+						<Button buttonText={'Заказать'} onClick={handleOrderProduct} />
 					</div>
 					<div className={c.description}>
 						<MoreDesc text={moreData.description} />
@@ -215,7 +206,6 @@ function More() {
 }
 
 export default More
-
 
 // const getData = React.useCallback(() => {
 // 	actions.getSingle(id).then(({ data }) => {
