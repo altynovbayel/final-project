@@ -61,6 +61,7 @@ function More() {
 					images: moreData.images,
 				}
 				putAddedReview(personReviewData, isAuth.uid).then(() => {
+					getProduct()
 					setCurrentStarValue(0)
 					setHoverValue(undefined)
 					setReviewContent('')
@@ -68,8 +69,8 @@ function More() {
 			}
 		})
 	}
-
-	React.useEffect(() => {
+	
+	const getProduct = () => {
 		getSingleProduct(id).then(r => {
 			if (r) {
 				setMoreData(r.data)
@@ -85,7 +86,11 @@ function More() {
 				)
 			}
 		})
-	}, [id])
+	}
+
+	React.useEffect(() => {
+		getProduct()
+	}, [ id])
 
 	const handleIncrement = () => {
 		setCount(prev => prev + 1)
@@ -95,7 +100,6 @@ function More() {
 			count
 		}
 		setMoreData(newData)
-		console.log(moreData)
 	}
 
 	const handleDecrement = () => {
@@ -103,10 +107,8 @@ function More() {
 	}
 
 	const handleOrderProduct = () => {
-		console.log(moreData)
 	}
 
-	console.log(moreData)
 	if (!moreData)
 		return (
 			<div className={c.loading}>
