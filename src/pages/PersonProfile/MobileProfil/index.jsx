@@ -1,47 +1,105 @@
 import React from 'react';
-import cs from './MobileProfil.module.scss'
-import {selectList} from "../../../utils/selectList";
-import Profil from "../Profil/Profil";
-import Status from "../Status/Status";
-import Comment from "../Comment/Comment";
-
+import cs from './Profil.module.scss'
+import {getUser, updatePrfile} from "../../../configs";
+import useIsLogin from "../../../hooks/useIsLogin";
+import {BsFillPencilFill} from "react-icons/bs";
+import {signOut} from "firebase/auth";
+import {auth} from "../../../services/firebase/firebase";
+import {useNavigate} from "react-router-dom";
 const MobileProfile = () => {
-  
-  const listComponents = [
-    <Profil/>,
-    <Status/>,
-    <Comment/>,
-  ]
+  const navigate = useNavigate()
+  const {isAuth} = useIsLogin()
+  const [data , setData] = React.useState(null)
 
-  function change(value){
-    if(value === 'personalData') setActiveComponents(listComponents[0])
-    if(value === 'statusData') setActiveComponents(listComponents[1])
-    if(value === 'commentData') setActiveComponents(listComponents[2])
+  React.useEffect(() => {
+    getUser(isAuth.uid).then(res => {
+      setData(res.data)
+    })
+  } , [])
+  function postUpdate(){
+    updatePrfile(isAuth.uid , data)
   }
 
-
-  const [activeComponents , setActiveComponents] = React.useState(listComponents[0])
+  if(!data) return <h1></h1>
 
   return (
-    <div className={cs.root}>
-      <div className={cs.dropDown}>
-        <fieldset>
-          <legend>Выберите:</legend>
-          <select onChange={e => change(e.target.value)}>
-            {
-              selectList.map((item) =>
-                <option
-                  key={item.id}
-                  value={item.value}
-                >
-                  {item.title}
-                </option>)
-            }
-          </select>
-        </fieldset>
-      </div>
-      <div className={cs.container_components}>
-        {activeComponents}
+    <div className={cs.Profile}>
+      <div className={cs.cards}>
+        <div className={cs.cards_header}>
+          <div className={cs.headers_image}>
+            <img src={data.photo} alt=""/>
+          </div>
+        </div>
+        <div className={cs.cards_body}>
+          <label>
+            <input
+              onChange={e => setData({...data , email: e.target.value})}
+              defaultValue={data.email}
+              type="email"
+              placeholder='email'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , password: e.target.value})}
+              type="password"
+              placeholder='password'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , photo: e.target.value})}
+              type="text"
+              placeholder='URL на картинку'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , username: e.target.value})}
+              type="text"
+              defaultValue={data.username}
+              placeholder='Names'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , phoneNumber: e.target.value})}
+              type="text"
+              defaultValue={data.phoneNumber}
+              placeholder='Number'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , years: e.target.value})}
+              defaultValue={data.years}
+              type="date"
+            />
+          </label>
+          <div className={cs.btn_container}>
+            <button
+              className={cs.btn}
+              onClick={() => postUpdate()}
+            >
+              Изменить
+            </button>
+            <button
+              className={cs.btnSignOut}
+              onClick={() => {
+                signOut(auth).then(() => {
+                  navigate('/')
+                })
+              }}
+            >
+              Выход
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

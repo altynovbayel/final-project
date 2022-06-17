@@ -1,0 +1,44 @@
+.container{
+  width: 90%;
+  margin: 50px auto;
+  .row{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .card{
+      width: 100%;
+      min-height: 100px;
+      background-color: rgba(224, 113, 83, 0.78);
+      border-radius: 15px;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+      @media (min-width: 768px){
+        width: 315px;
+      }
+      div{
+        padding: 20px 0 20px 40px;
+        @media (min-width: 768px){
+          padding-left: 10px;
+        }
+        @media (min-width: 860px){
+          padding-left: 40px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: baseline;
+        }
+        span{
+          font-size: 16px;
+        }
+        p{
+          font-size: 21px;
+          margin-top: 11px;
+        }
+      }
+    }
+  }
+}

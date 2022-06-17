@@ -1,10 +1,15 @@
 import React from 'react';
+import Map from "./map";
+import Info from "./infoBlock";
+import Title from "../../components/UI/TitleText";
 
 const Contacts = () => {
 	return (
-		<div>
-			contacts
-		</div>
+		<React.Fragment>
+			<Title text={'Наши контакты'}/>
+      <Info/>
+      <Map/>
+		</React.Fragment>
 	);
 };
 

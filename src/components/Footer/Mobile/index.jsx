@@ -25,6 +25,7 @@ function Mobile() {
               onClick={() => setActiveLink(index + 1)}
               className={activeLink === index + 1 ? `${cs.link} ${cs.activeLink}` : cs.link}
             >
+              {<item.categoryImg className={cs.link_icons}/>}
               {item.title}
             </NavLink>
           ))
