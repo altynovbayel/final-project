@@ -6,6 +6,7 @@ import { sliderList } from '../../utils/List'
 import UnderNavbar from '../../components/Navbar/LaptopNavbar/UnderNavbar'
 import Loader from "../Favorites/Loader/Loader";
 import useCards from "../../hooks/useCards";
+import Anchor from "../../components/Anchor/Anchor";
 
 function Main() {
 	const [productBase, setProductBase] = React.useState(null)
@@ -30,6 +31,7 @@ function Main() {
 			<UnderNavbar page='Main' />
 			<Slider list={sliderList} />
 			<Card productList={productBase} setProductList={setProductBase} />
+			<Anchor/>
 		</div>
 	)
 }

@@ -104,6 +104,12 @@
           background: none;
         }
       }
+
+      .priceContainer{
+        .price{
+          font-size: 20px;
+        }
+      }
     }
     .description{
       margin: 50px 0;
@@ -121,6 +127,18 @@
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
+      }
+    }
+
+    label{
+      width: 100%;
+      display: flex;
+      margin-top: 1rem;
+      justify-content: flex-end;
+      align-items: center;
+      span{
+        font-size: 16px;
+        font-weight: 500;
       }
     }
   }
