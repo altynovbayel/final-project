@@ -19,6 +19,9 @@
   }
   .slider{
     width: 100%;
+    .dots{
+      margin-top: 1rem;
+    }
     @media (min-width: 768px){
       width: 50%;
       .dots{

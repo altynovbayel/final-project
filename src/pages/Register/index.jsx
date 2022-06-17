@@ -1,15 +1,14 @@
 import React from 'react'
-import {IoMdClose} from 'react-icons/io'
+import { IoMdClose } from 'react-icons/io'
 import cls from '../Auth/Auth.module.scss'
-import {createUserWithEmailAndPassword} from 'firebase/auth'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 import FormInput from '../../components/UI/FormInput'
 import FormButton from '../../components/UI/FormButton'
-import {Link, useNavigate} from 'react-router-dom'
-import {useForm} from 'react-hook-form'
-import {auth} from '../../services/firebase/firebase'
-import {updateProfile} from "firebase/auth";
-import {createNewUser} from "../../configs";
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { auth } from '../../services/firebase/firebase'
+import { updateProfile } from 'firebase/auth'
+import { createNewUser } from '../../configs'
 
 const Register = () => {
 	const navigate = useNavigate()
@@ -18,18 +17,22 @@ const Register = () => {
 	const {
 		register,
 		handleSubmit,
-		formState: {errors, isValid},
+		formState: { errors, isValid },
 		reset,
 	} = useForm({
 		mode: 'onChange',
 	})
 
 	const handleNewUser = (data, userId) => {
-		createNewUser({
-			...data,
-			phoneNumber: '',
-			photo: '',
-		}, userId).then(() => navigate('/profile'))
+		createNewUser(
+			{
+				...data,
+				phoneNumber: '',
+				photo:
+					'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar',
+			},
+			userId
+		).then(() => navigate('/profile'))
 	}
 
 	const handleFormSubmit = async (data) => {
@@ -53,7 +56,7 @@ const Register = () => {
 	return (
 		<div className={cls.container}>
 			<form onSubmit={handleSubmit(handleFormSubmit)}>
-				<IoMdClose className={cls.closeForm} onClick={() => navigate('/')}/>
+				<IoMdClose className={cls.closeForm} onClick={() => navigate('/')} />
 				<div className={cls.formHeader}>
 					<h3>Регистрация</h3>
 				</div>
@@ -82,7 +85,7 @@ const Register = () => {
 					/>
 				</div>
 				<div className={cls.formFooter}>
-					<FormButton isValid={isValid} buttonText='Создать'/>
+					<FormButton isValid={isValid} buttonText='Создать' />
 					<Link to='/user/auth'>Уже есть аккаунт</Link>
 				</div>
 			</form>
