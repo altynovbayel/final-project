@@ -2,12 +2,12 @@ import React from 'react';
 import cs from "./dropDown.module.scss";
 import {selectList} from "../../../utils/selectList";
 import Comment from "../Comment/Comment";
-import Profile from "../Profil";
+import MobileProdil from "../MobileProfil";
 
 const DropDown = () => {
 
   const listComponents = {
-    personalData: <Profile/>,
+    personalData: <MobileProdil/>,
     commentData: <Comment/>,
   }
 

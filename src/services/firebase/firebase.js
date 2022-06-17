@@ -2,15 +2,15 @@ import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDzeNPcAR5iK7jjNJ6QPDU1t8bEVozXAa8',
-	authDomain: 'finalproject-6dca2.firebaseapp.com',
-	databaseURL:
-		'https://finalproject-6dca2-default-rtdb.asia-southeast1.firebasedatabase.app',
-	projectId: 'finalproject-6dca2',
-	storageBucket: 'finalproject-6dca2.appspot.com',
-	messagingSenderId: '499206053303',
-	appId: '1:499206053303:web:ffa276cf7bc699e9861c32',
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket:process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId:process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
 }
+
 
 const app = initializeApp(firebaseConfig)
 

@@ -1,40 +1,23 @@
 import React from 'react';
 import cs from './Profil.module.scss'
-import {getUser, updatePrfile} from "../../../../configs";
-import useIsLogin from "../../../../hooks/useIsLogin";
+import {getUser, updatePrfile} from "../../../configs";
+import useIsLogin from "../../../hooks/useIsLogin";
 import {BsFillPencilFill} from "react-icons/bs";
 import {signOut} from "firebase/auth";
-import {auth} from "../../../../services/firebase/firebase";
+import {auth} from "../../../services/firebase/firebase";
 import {useNavigate} from "react-router-dom";
 const MobileProfile = () => {
   const navigate = useNavigate()
+  const {isAuth} = useIsLogin()
+  const [data , setData] = React.useState(null)
 
   React.useEffect(() => {
     getUser(isAuth.uid).then(res => {
-      if(!res.data){
-        updateKeysFireBase()
-      }else {
-        setData(res.data)
-      }
+      setData(res.data)
     })
-  }, [])
-
-  const {isAuth} = useIsLogin()
-
-  const [data , setData] = React.useState(null)
-  console.log(data)
-
+  } , [])
   function postUpdate(){
     updatePrfile(isAuth.uid , data)
-  }
-
-  function updateKeysFireBase(){
-    updatePrfile(isAuth.uid , {
-      usernames: '',
-      years: '',
-      numbers: '',
-      urlDefults:'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar'
-    })
   }
 
   if(!data) return <h1></h1>
@@ -44,13 +27,30 @@ const MobileProfile = () => {
       <div className={cs.cards}>
         <div className={cs.cards_header}>
           <div className={cs.headers_image}>
-            <img src={data.url ? data.url : data.urlDefults} alt=""/>
+            <img src={data.photo} alt=""/>
           </div>
         </div>
         <div className={cs.cards_body}>
           <label>
             <input
-              onChange={e => setData({...data , url: e.target.value})}
+              onChange={e => setData({...data , email: e.target.value})}
+              defaultValue={data.email}
+              type="email"
+              placeholder='email'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , password: e.target.value})}
+              type="password"
+              placeholder='password'
+            />
+            <BsFillPencilFill className={cs.icons}/>
+          </label>
+          <label>
+            <input
+              onChange={e => setData({...data , photo: e.target.value})}
               type="text"
               placeholder='URL на картинку'
             />
@@ -58,18 +58,18 @@ const MobileProfile = () => {
           </label>
           <label>
             <input
-              onChange={e => setData({...data , usernames: e.target.value})}
+              onChange={e => setData({...data , username: e.target.value})}
               type="text"
-              defaultValue={data.usernames}
+              defaultValue={data.username}
               placeholder='Names'
             />
             <BsFillPencilFill className={cs.icons}/>
           </label>
           <label>
             <input
-              onChange={e => setData({...data , numbers: e.target.value})}
+              onChange={e => setData({...data , phoneNumber: e.target.value})}
               type="text"
-              defaultValue={data.numbers}
+              defaultValue={data.phoneNumber}
               placeholder='Number'
             />
             <BsFillPencilFill className={cs.icons}/>
