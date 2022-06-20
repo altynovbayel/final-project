@@ -6,7 +6,7 @@ const Anchor = () => {
 	const scroll = () => {
 		window.scroll({
 			left: 0,
-			top: 620,
+			top: 0,
 			behavior: 'smooth',
 		})
 	}

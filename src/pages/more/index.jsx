@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import c from './more.module.scss'
 import {MdCopyright, MdOutlineFavoriteBorder} from 'react-icons/md'
 import SliderDots from '../../components/Slider/sliderDots'
@@ -18,14 +18,17 @@ import {
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
 import Loader from '../Favorites/Loader/Loader'
-import { GoStar } from 'react-icons/go'
+import {GoStar} from 'react-icons/go'
+import {ImFileEmpty} from "react-icons/im";
+import EmptyData from "../../components/UI/EmptyData/EmptyData";
 
 function More() {
-	const { id } = useParams()
-	const { isAuth } = useIsLogin()
-	const { actions} = useCards()
+	const {id} = useParams()
+	const {isAuth} = useIsLogin()
+	const {actions} = useCards()
 	const navigate = useNavigate()
 	const [moreData, setMoreData] = React.useState(null)
+	const [userData, setUserData] = React.useState(null)
 	const [reviewersData, setReviewersData] = React.useState(null)
 	const [indexImg, setIndexImg] = React.useState(1)
 	const [count, setCount] = React.useState(1)
@@ -40,36 +43,43 @@ function More() {
 	const handleMouseLeave = () => setHoverValue(undefined)
 
 	const addReviewHandle = () => {
-		const data = {
-			date: new Date().toLocaleString(),
-			content: reviewContent,
-			reviewGrade: currentStarValue,
-			user: {
-				username: isAuth.displayName,
-				email: isAuth.email,
-			},
-		}
-		addReview(data, id).then((r) => {
-			if (r.data) {
-				const personReviewData = {
-					reviewContent: data.content,
-					reviewGrade: currentStarValue,
-					date: data.date,
-					productName: moreData.productName,
-					productId: id,
-					productCategory: moreData.category,
-					images: moreData.images,
-				}
-				putAddedReview(personReviewData, isAuth.uid).then(() => {
-					getProduct()
-					setCurrentStarValue(0)
-					setHoverValue(undefined)
-					setReviewContent('')
-				})
-			}
+		getUser(isAuth.uid).then(r => {
+			setUserData(r.data)
 		})
+			.then(() => {
+				const data = {
+					date: new Date().toLocaleString(),
+					content: reviewContent,
+					reviewGrade: currentStarValue,
+					user: {
+						profileImg: userData?.photo,
+						username: isAuth.displayName,
+						email: isAuth.email,
+					},
+				}
+
+				addReview(data, id).then((r) => {
+					if (r.data) {
+						const personReviewData = {
+							reviewContent: data.content,
+							reviewGrade: currentStarValue,
+							date: data.date,
+							productName: moreData.productName,
+							productId: id,
+							productCategory: moreData.category,
+							images: moreData.images,
+						}
+						putAddedReview(personReviewData, isAuth.uid).then(() => {
+							getProduct()
+							setCurrentStarValue(0)
+							setHoverValue(undefined)
+							setReviewContent('')
+						})
+					}
+				})
+			})
 	}
-	
+	console.log(reviewersData)
 	const getProduct = () => {
 		getSingleProduct(id).then(r => {
 			if (r) {
@@ -90,7 +100,7 @@ function More() {
 
 	React.useEffect(() => {
 		getProduct()
-	}, [ id])
+	}, [id])
 
 	const handleIncrement = () => {
 		setCount(prev => prev + 1)
@@ -112,7 +122,7 @@ function More() {
 	if (!moreData)
 		return (
 			<div className={c.loading}>
-				<Loader />
+				<Loader/>
 			</div>
 		)
 	return (
@@ -120,29 +130,29 @@ function More() {
 			<div className={c.container}>
 				<div className={c.slider}>
 					<div className={c.slider_img}>
-            <img
-              className={c.imagesActive}
-              src={moreData.images}
-              alt='slider'
-            />
+						<img
+							className={c.imagesActive}
+							src={moreData.images}
+							alt='slider'
+						/>
 					</div>
 				</div>
 				<div className={c.content}>
 					<div className={c.likedBtn}>
-						<MdOutlineFavoriteBorder />
+						<MdOutlineFavoriteBorder/>
 						<p>Add to favorites</p>
 					</div>
 					<h1>{moreData.productName}</h1>
 					<div className={c.counter}>
 						<div className={c.count}>
 							<button
-                onClick={handleDecrement}
-                disabled={count === 0}
-              >
+								onClick={handleDecrement}
+								disabled={count === 0}
+							>
 								-
 							</button>
 							<span>{count}</span>
-							<button onClick={handleIncrement}> + </button>
+							<button onClick={handleIncrement}> +</button>
 						</div>
 						<div className={c.priceContainer}>
 							<h2 className={c.price}>{moreData.price} сом</h2>
@@ -153,14 +163,14 @@ function More() {
 							средняя оценка:
 							<h4> {moreData.reviewGrade}</h4>
 						</span>
-						<Button buttonText={'Заказать'} onClick={handleOrderProduct} />
+						<Button buttonText={'Заказать'} onClick={handleOrderProduct}/>
 
 					</div>
 					<label>
 						<span className={c.total}>Сумма: {count * price}</span>
 					</label>
 					<div className={c.description}>
-						<MoreDesc text={moreData.description} />
+						<MoreDesc text={moreData.description}/>
 					</div>
 				</div>
 			</div>
@@ -204,15 +214,14 @@ function More() {
 						.map((item, index) => (
 							<Reviewer
 								key={index}
+								reviewerImg={item.user.profileImg}
 								reviewGrade={item.reviewGrade}
 								name={item.user.username}
 								date={item.date}
 								content={item.content}
 							/>
 						))
-				) : (
-					<h1>no reviews</h1>
-				)}
+				) : <EmptyData/>}
 			</div>
 		</React.Fragment>
 	)
