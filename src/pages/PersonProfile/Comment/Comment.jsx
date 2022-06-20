@@ -5,6 +5,8 @@ import {getUser} from '../../../configs';
 import useIsLogin from "../../../hooks/useIsLogin";
 import Start from './Start';
 import { useMediaQuery } from 'react-responsive';
+import c from "../../more/more.module.scss";
+import Loader from "../../Favorites/Loader/Loader";
 
 const Comment = () => {
 	const { isAuth } = useIsLogin()
@@ -23,8 +25,7 @@ const Comment = () => {
     })
   }, [])
   
-  if(!dataBase) return <h1></h1>
-
+  if(!dataBase) return<div className={c.loading}><Loader /></div>
   return (
     <>
       <h1 className={cs.logo}>Ваши комментарии</h1>

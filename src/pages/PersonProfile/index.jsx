@@ -8,7 +8,7 @@ import MobileProfile from './MobileProfil';
 const PersonProfile = () => {
 	const isMobile = useMediaQuery({query: '(max-width: 767px)'})
 	const isLaptop = useMediaQuery({query: '(min-width: 768px)'})
-
+ 
 	return (
 		<div className={cs.root}>
 			{isMobile && <SelectDropDown />}
