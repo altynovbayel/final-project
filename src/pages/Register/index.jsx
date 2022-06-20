@@ -44,6 +44,7 @@ const Register = () => {
 			)
 			await updateProfile(res.user, {
 				displayName: data.username || 'Пользователь',
+
 			})
 			res && handleNewUser(data, res.user.uid)
 		} catch (error) {

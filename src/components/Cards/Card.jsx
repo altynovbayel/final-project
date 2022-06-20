@@ -14,7 +14,9 @@ function Card({ productList, setProductList }) {
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
 		cart && setCartButton(true)
-		addToCart(cart, isAuth.uid)
+		addToCart(cart, isAuth.uid).then(r => {
+			console.log(r)
+		})
 	}
 
 	function countIncrement(id) {
@@ -110,23 +112,19 @@ function Card({ productList, setProductList }) {
 										<span>{count}</span>
 										<button onClick={() => countIncrement(id)}>+</button>
 									</div>
-									{/*{*/}
-									{/*	!cartButton ? (*/}
-									{/*		<Button*/}
-									{/*			buttonText='В корзину'*/}
-									{/*			onClick={() => handleGoToShoppingCart(id)}*/}
-									{/*		/>*/}
-									{/*	) : (*/}
-									{/*		<Button*/}
-									{/*			buttonText='В корзине'*/}
-									{/*			onClick={() => navigate('/cart')}*/}
-									{/*		/>*/}
-									{/*	)*/}
-									{/*}*/}
-									<Button
-										buttonText='В корзину'
-										onClick={() => handleGoToShoppingCart(id)}
-									/>
+									{
+										!cartButton ? (
+											<Button
+												buttonText='В корзину'
+												onClick={() => handleGoToShoppingCart(id)}
+											/>
+										) : (
+											<Button
+												buttonText='В корзине'
+												onClick={() => navigate('/cart')}
+											/>
+										)
+									}
 								</div>
 							</div>
 						</div>
