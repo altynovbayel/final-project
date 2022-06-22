@@ -5,6 +5,7 @@ import cls from "../Main/main.module.scss";
 import Loader from "../Favorites/Loader/Loader";
 import Title from "../../components/UI/TitleText";
 import CartCard from "../../components/CartCards";
+import EmptyData from "../../components/UI/EmptyData/EmptyData";
 
 
 function ShoppingCart() {
@@ -26,7 +27,7 @@ function ShoppingCart() {
     getCard()
   }, [])
   
-  if (base === false) return <Title text={'ваша карзина пустая'}/>
+  if (base === false) return <EmptyData text={'Ваша корзина пуста'}/>
   if(!base) return <div className={cls.loading}><Loader/></div>
   return (
     <React.Fragment>

@@ -6,11 +6,13 @@ import {useNavigate} from 'react-router-dom'
 import useIsLogin from "../../hooks/useIsLogin";
 import {AiOutlineStar, AiTwotoneDelete} from 'react-icons/ai'
 import {removeCart} from "../../configs";
+import useAlert from "../../hooks/useAlert";
 
 
 function CartCard({productList, setProductList, getCard}) {
   const navigate = useNavigate()
   const {isAuth} = useIsLogin()
+  const {actions} = useAlert()
   const [count, setCount] = React.useState(1)
   const [totalPrice, setTotalPrice] = React.useState(null)
   
@@ -36,9 +38,10 @@ function CartCard({productList, setProductList, getCard}) {
   }
   
   function handleRemoveCard(id){
+    actions.sweetAlert('Удалено из корзины')
     removeCart(isAuth.uid, id).then(r => r && getCard())
   }
-  
+
   return (
     <>
       <div className={c.container}>

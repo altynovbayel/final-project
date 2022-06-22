@@ -5,33 +5,25 @@ import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import MoreDesc from './Description/MoreDesc'
 import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer'
-import {
-	addReview,
-	getAllProducts, getSingleProduct,
-	getUser,
-	putAddedReview,
-	updateProfile,
-} from '../../configs'
+import {addReview, addToCart, getSingleProduct, putAddedReview,} from '../../configs'
 
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
 import Loader from '../Favorites/Loader/Loader'
 import {GoStar} from 'react-icons/go'
-import {ImFileEmpty} from "react-icons/im";
 import EmptyData from "../../components/UI/EmptyData/EmptyData";
+import useAlert from "../../hooks/useAlert";
 
 function More() {
 	const {id} = useParams()
 	const {isAuth} = useIsLogin()
 	const {actions} = useCards()
+	const {actions: alertActions} = useAlert()
 	const navigate = useNavigate()
 	const [moreData, setMoreData] = React.useState(null)
-	const [userData, setUserData] = React.useState(null)
 	const [reviewersData, setReviewersData] = React.useState(null)
 	const [indexImg, setIndexImg] = React.useState(1)
-	const [count, setCount] = React.useState(1)
-	const [price, setPrice] = React.useState(null)
-	const [totalPrice, setTotalPrice] = React.useState(0)
+	const [quantity, setQuantity] = React.useState(1)
 	const [reviewContent, setReviewContent] = React.useState('')
 	const [currentStarValue, setCurrentStarValue] = React.useState(0)
 	const [hoverValue, setHoverValue] = React.useState(undefined)
@@ -41,43 +33,37 @@ function More() {
 	const handleMouseLeave = () => setHoverValue(undefined)
 
 	const addReviewHandle = () => {
-		getUser(isAuth.uid).then(r => {
-			setUserData(r.data)
-		})
-			.then(() => {
-				const data = {
-					date: new Date().toLocaleString(),
-					content: reviewContent,
-					reviewGrade: currentStarValue,
-					user: {
-						profileImg: userData?.photo,
-						username: isAuth.displayName,
-						email: isAuth.email,
-					},
-				}
+		const data = {
+			date: new Date().toLocaleString(),
+			content: reviewContent,
+			reviewGrade: currentStarValue,
+			user: {
+				profileImg: isAuth.photoURL,
+				username: isAuth.displayName,
+				email: isAuth.email,
+			},
+		}
 
-				addReview(data, id).then((r) => {
-					if (r.data) {
-						const personReviewData = {
-							reviewContent: data.content,
-							reviewGrade: currentStarValue,
-							date: data.date,
-							productName: moreData.productName,
-							productId: id,
-							productCategory: moreData.category,
-							images: moreData.images,
-						}
-						putAddedReview(personReviewData, isAuth.uid).then(() => {
-							getProduct()
-							setCurrentStarValue(0)
-							setHoverValue(undefined)
-							setReviewContent('')
-						})
-					}
+		addReview(data, id).then((r) => {
+			if (r.data) {
+				const personReviewData = {
+					reviewContent: data.content,
+					reviewGrade: currentStarValue,
+					date: data.date,
+					productName: moreData.productName,
+					productId: id,
+					productCategory: moreData.category,
+					images: moreData.images,
+				}
+				putAddedReview(personReviewData, isAuth.uid).then(() => {
+					getProduct()
+					setCurrentStarValue(0)
+					setHoverValue(undefined)
+					setReviewContent('')
 				})
-			})
+			}
+		})
 	}
-	console.log(reviewersData)
 	const getProduct = () => {
 		getSingleProduct(id).then(r => {
 			if (r) {
@@ -101,20 +87,35 @@ function More() {
 	}, [id])
 
 	const handleIncrement = () => {
-		setCount(prev => prev + 1)
-		setTotalPrice(() => count * price)
-		const newData = {
-			...moreData,
-			count
-		}
-		setMoreData(newData)
+		setQuantity(prev => prev + 1)
+		setMoreData(prev => {
+			return{
+				...prev,
+				count: ++prev.count
+			}
+		})
 	}
 
 	const handleDecrement = () => {
-		setCount((prev) => prev - 1)
-	}
+		setQuantity((prev) => prev - 1)
+		setMoreData(prev => {
+			return{
+				...prev,
+				count: --prev.count
+			}
+		})
 
+	}
 	const handleOrderProduct = () => {
+		alertActions.sweetAlert('Добавлено в корзину')
+		addToCart(moreData, isAuth.uid).then(() => {
+			setMoreData(prev => {
+				return {
+					...prev,
+					inCart: !prev.inCart
+				}
+			})
+		})
 	}
 
 	if (!moreData)
@@ -145,11 +146,11 @@ function More() {
 						<div className={c.count}>
 							<button
 								onClick={handleDecrement}
-								disabled={count === 0}
+								disabled={quantity === 1}
 							>
 								-
 							</button>
-							<span>{count}</span>
+							<span>{quantity}</span>
 							<button onClick={handleIncrement}> +</button>
 						</div>
 						<div className={c.priceContainer}>
@@ -161,11 +162,28 @@ function More() {
 							средняя оценка:
 							<h4> {moreData.reviewGrade}</h4>
 						</span>
-						<Button buttonText={'Заказать'} onClick={handleOrderProduct}/>
-
+						{
+							!moreData.inCart ? (
+								<Button
+									buttonText='В корзину'
+									onClick={() => {
+										isAuth
+											?
+											handleOrderProduct(id)
+											:
+											navigate('/user/auth')
+									}}
+								/>
+							) : (
+								<Button
+									buttonText='Добавлено'
+									onClick={() => navigate('/cart')}
+								/>
+							)
+						}
 					</div>
-					<label>
-						<span className={c.total}>Сумма: {count * price}</span>
+					<label className={c.total}>
+						<span>Сумма: {quantity * moreData.price}</span>
 					</label>
 					<div className={c.description}>
 						<MoreDesc text={moreData.description}/>
@@ -203,7 +221,9 @@ function More() {
 						onChange={(e) => setReviewContent(e.target.value)}
 						type='text'
 					/>
-					<button onClick={addReviewHandle}>Отправить</button>
+					<button onClick={() => {
+						isAuth ? addReviewHandle() : navigate('/user/auth')
+					}}>Отправить</button>
 				</div>
 			</div>
 			<div className={c.reviewers}>
@@ -219,7 +239,7 @@ function More() {
 								content={item.content}
 							/>
 						))
-				) : <EmptyData/>}
+				) : <EmptyData text={'Пока нет отзывов'}/>}
 			</div>
 		</React.Fragment>
 	)
@@ -227,30 +247,3 @@ function More() {
 
 export default More
 
-// const getData = React.useCallback(() => {
-// 	actions.getSingle(id).then(({ data }) => {
-// 		data.reviewers &&
-// 			setReviewersData(() => {
-// 				return Object.entries(data.reviewers).map(([id, item]) => {
-// 					return {
-// 						id,
-// 						...item,
-// 					}
-// 				})
-// 			})
-// 		setMoreData(() => {
-// 			return {
-// 				...data,
-// 				reviewersData,
-// 			}
-// 		})
-// 	})
-// }, [actions, id, reviewersData])
-
-// React.useEffect(() => {
-// 	getData()
-// 	console.log(moreData)
-// 	// setCount(data.count)
-// 	// setPrice(data.price)
-// 	// setTotalPrice(data.price)
-// }, [])

@@ -63,8 +63,6 @@
     }
   }
   .content{
-
-
     margin-top: 50px;
     @media (min-width: 768px){
       width: 40%;
@@ -130,7 +128,7 @@
       }
     }
 
-    label{
+    .total{
       width: 100%;
       display: flex;
       margin-top: 1rem;

@@ -1,15 +1,17 @@
 import React from 'react'
 import cls from './LaptopNavbar.module.scss'
 import logoImg from "../../../assets/img/pngDayarLogo.png";
-import { navbarNavigation } from '../../../utils/navbarNavigation'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { FaShoppingBag } from 'react-icons/fa'
-import { RiCopyrightLine } from 'react-icons/ri'
-import { BsPersonFill, BsSearch } from 'react-icons/bs'
-import NavbarSelect from '../../UI/NavbarSelect'
+import {navbarNavigation} from '../../../utils/navbarNavigation'
+import {Link, useNavigate} from 'react-router-dom'
+import {FaShoppingBag} from 'react-icons/fa'
+import {RiCopyrightLine} from 'react-icons/ri'
+import {BsPersonFill, BsSearch} from 'react-icons/bs'
+import useIsLogin from "../../../hooks/useIsLogin";
+import ProfileImg from "../../ProfileImg/ProfileImg";
 
-const LaptopNavbar = ({ moneySum }) => {
+const LaptopNavbar = ({moneySum}) => {
 	const navigate = useNavigate()
+	const {isAuth} = useIsLogin()
 	const [searchInput, setSearchInput] = React.useState('')
 
 	return (
@@ -20,7 +22,7 @@ const LaptopNavbar = ({ moneySum }) => {
 						<img src={logoImg} alt="logo"/>
 					</div>
 					<div className={cls.navigations}>
-						{navbarNavigation.map(({ id, route, title }) => (
+						{navbarNavigation.map(({id, route, title}) => (
 							<Link key={id} to={route}>
 								{title}
 							</Link>
@@ -30,13 +32,11 @@ const LaptopNavbar = ({ moneySum }) => {
 						<div className={cls.cart}>
 							<span>
 								<span>{moneySum}</span>
-								<RiCopyrightLine />
+								<RiCopyrightLine/>
 							</span>
-							<FaShoppingBag onClick={() => navigate('/cart')} />
+							<FaShoppingBag onClick={() => navigate('/cart')}/>
 						</div>
-						<div className={cls.profile}>
-							<BsPersonFill onClick={() => navigate('/profile')} />
-						</div>
+						<ProfileImg/>
 					</div>
 				</div>
 			</div>
@@ -56,4 +56,11 @@ export default LaptopNavbar
 // 			<span>{category.title}</span>
 // 		</NavLink>
 // 	))
+// }
+
+// {
+// 	isAuth ? (
+//
+// 	) : (
+// 	)
 // }

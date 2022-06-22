@@ -7,7 +7,6 @@ import UnderNavbar from '../../components/Navbar/LaptopNavbar/UnderNavbar'
 import Loader from "../Favorites/Loader/Loader";
 import useCards from "../../hooks/useCards";
 import Anchor from "../../components/Anchor/Anchor";
-import Footer from "../../components/Footer";
 
 function Main() {
 	const [productBase, setProductBase] = React.useState(null)

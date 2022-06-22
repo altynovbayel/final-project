@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { GoThreeBars } from 'react-icons/go'
 import Dropdown from './Dropdown/Dropdown'
 import logo from '../../../assets/img/pngDayarLogo.png'
+import ProfileImg from "../../ProfileImg/ProfileImg";
 
 const MobileNavbar = ({ moneySum, setIsDropDown, isDropDown }) => {
 	const navigate = useNavigate()
@@ -35,9 +36,7 @@ const MobileNavbar = ({ moneySum, setIsDropDown, isDropDown }) => {
 							<FaShoppingBag onClick={() => navigate('/cart')} />
 						</span>
 					</div>
-					<div className={cls.profile}>
-						<BsFillPersonFill onClick={() => navigate('/profile')} />
-					</div>
+					<ProfileImg/>
 				</div>
 			</div>
 		</div>

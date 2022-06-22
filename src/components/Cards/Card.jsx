@@ -5,17 +5,29 @@ import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
 import { addToCart, addToFavorites } from '../../configs'
+import useAlert from "../../hooks/useAlert";
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
 	const { isAuth } = useIsLogin()
-	const [cartButton, setCartButton] = React.useState(false)
+	const {actions} = useAlert()
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
-		cart && setCartButton(true)
-		addToCart(cart, isAuth.uid).then(r => {
-			console.log(r)
+		cart && actions.sweetAlert('Добавлено в корзину')
+		addToCart(cart, isAuth.uid)
+			.then(() => {
+			const newData = productList.map(item => {
+				if (item.id === id){
+					return{
+						...item,
+						inCart: !item.inCart
+					}
+				}
+				return item
+			})
+
+			setProductList(newData)
 		})
 	}
 
@@ -65,6 +77,7 @@ function Card({ productList, setProductList }) {
 						images,
 						productName,
 						price,
+						inCart,
 						id,
 						count,
 						type,
@@ -72,7 +85,6 @@ function Card({ productList, setProductList }) {
 						favorite,
 					}) => (
 						<div key={id} className={c.card}>
-							<span className={c.type}>{type}</span>
 							<div
 								className={c.card_img}
 								onClick={() => navigate(`/products/${category}/${id}`)}
@@ -113,14 +125,20 @@ function Card({ productList, setProductList }) {
 										<button onClick={() => countIncrement(id)}>+</button>
 									</div>
 									{
-										!cartButton ? (
+										!inCart ? (
 											<Button
 												buttonText='В корзину'
-												onClick={() => handleGoToShoppingCart(id)}
+												onClick={() => {
+													isAuth
+														?
+														handleGoToShoppingCart(id)
+														:
+														navigate('/user/auth')
+												}}
 											/>
 										) : (
 											<Button
-												buttonText='В корзине'
+												buttonText='Добавлено'
 												onClick={() => navigate('/cart')}
 											/>
 										)
