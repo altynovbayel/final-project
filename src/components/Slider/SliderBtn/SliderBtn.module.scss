@@ -8,15 +8,20 @@
   justify-content: center;
   align-items: center;
   transition: .3s;
-  width: 56px;
-  height: 56px;
-  background-color: rgba(220, 213, 213, 0.3);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(220, 213, 213, 0.5);
+  
+  @media (min-width: 768px) {
+    width: 50px;
+    height: 50px;
+  }
 }
 .prev{
   position: absolute;
-  left: .5rem;
+  left: 1rem;
 }
 .next{
   position: absolute;
-  right: .5rem;
+  right: 1rem;
 }
