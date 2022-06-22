@@ -2,7 +2,7 @@ import React from 'react';
 import cs from './Sort.module.scss'
 import {categoryOptions} from "../../utils/navbarSort";
 
-const Sort = ({data , setData , productBase, setProductBase , dataMain , setDataMain , listPlaceholder}) => {
+const Sort = ({data , setData , productBase, setProductBase , dataMain , setDataMain , listPlaceholder , page, setPage}) => {
   const [input , setInput] = React.useState('')
   const [dropDown , setDropDown] = React.useState(null)
 
@@ -21,6 +21,7 @@ const Sort = ({data , setData , productBase, setProductBase , dataMain , setData
 
   React.useEffect(() => {
     const base = data.filter(item => item.productName.toLowerCase().includes(input.toLowerCase()))
+    setPage(1)
     setDataMain(base)
   }, [input])
 

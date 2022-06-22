@@ -12,7 +12,7 @@ const Comment = () => {
 
   React.useEffect(() => {
     getUser(isAuth.uid).then(res => {
-      const base = Object.entries(res.data.reviews).map(([id , items]) => {
+      const base = Object.entries(res.data?.reviews).map(([id , items]) => {
         return {
           id ,
           ...items

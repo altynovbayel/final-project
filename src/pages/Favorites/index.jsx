@@ -10,41 +10,35 @@ const Favorites = () => {
 	const {isAuth} = useIsLogin()
 
 	React.useEffect(() => {
-		getUser(isAuth)
+		getUser(isAuth?.uid)
+			.then(res => res.data.favorites)
 			.then(res => {
-				console.log(res)
-				// const base = Object.entries(res.data).map(([id , items]) => {
-				// 	return {
-				// 		id ,
-				// 		...items
-				// 	}
-				// })
-				// setDataBase(base)
+				const base = Object.entries(res).map(([id , item]) => {
+					return {
+						id ,
+						...item
+					}
+				})
+				setDataBase(base)
 			})
 
-		// const base = dataBase.map(item => item).filter((item) => item.favorite)
-	} , [])
+	} , [isAuth?.uid])
 
-	// React.useEffect(() => {
-	// 	console.log(dataBase)
-	// 	console.log(base)
-	// }, [dataBase])
-
-	// if (!product)
-	// 	return (
-	// 		<>
-	// 			<h1 className={cs.favorites_text}>Пусто</h1>
-	// 			<div className={cs.container}>
-	// 				<Loader />
-	// 			</div>
-	// 		</>
-	// 	)
+	if (!dataBase)
+		return (
+			<>
+				<h1 className={cs.favorites_text}>Пусто</h1>
+				<div className={cs.container}>
+					<Loader />
+				</div>
+			</>
+		)
 
 	return (
 		<React.Fragment>
 			<h1 className={cs.favorites_text}>Избранное</h1>
 			<div className={cs.favorites}>
-				{/*{product && <Card productList={product} />}*/}
+				{dataBase && <Card productList={dataBase} />}
 			</div>
 		</React.Fragment>
 	)

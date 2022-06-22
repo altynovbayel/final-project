@@ -12,6 +12,7 @@ const Main = () => {
   const [productBase, setProductBase] = React.useState(null)
   const [data, setData] = React.useState(null)
   const [dataMain , setDataMain] = React.useState(null)
+  const [page , setPage] = React.useState(1)
   const {actions} = useCards()
 
   React.useEffect(() => {
@@ -40,8 +41,10 @@ const Main = () => {
         setData={setData}
         dataMain={dataMain}
         setDataMain={setDataMain}
+        page={page}
+        setPage={setPage}
       />
-      {dataMain && <MainBlock dataMain={dataMain} setDataMain={setDataMain}/>}
+      {dataMain && <MainBlock page={page} setPage={setPage} dataMain={dataMain} setDataMain={setDataMain}/>}
     </>
   );
 };

@@ -3,8 +3,7 @@ import Card from '../../../components/Cards/Card'
 import Anchor from "../../../components/Anchor/Anchor";
 import Pagination from './Pagination';
 
-function MainBlock({dataMain , setDataMain}) {
-	const [page , setPage] = React.useState(1)
+function MainBlock({dataMain , setDataMain , page , setPage}) {
 	const PAGE_SIZE = 9
 	const TOTAL_PAGE = Math.ceil(dataMain?.length / PAGE_SIZE)
 
