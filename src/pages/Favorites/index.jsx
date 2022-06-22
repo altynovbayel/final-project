@@ -2,7 +2,7 @@ import React from 'react'
 import cs from './Favorites.module.scss'
 import Card from '../../components/Cards/Card'
 import Loader from './Loader/Loader'
-import {getAllProducts} from "../../configs";
+import {getAllProducts, getUser} from "../../configs";
 import useIsLogin from "../../hooks/useIsLogin";
 
 const Favorites = () => {
@@ -10,19 +10,19 @@ const Favorites = () => {
 	const {isAuth} = useIsLogin()
 
 	React.useEffect(() => {
-		getAllProducts(isAuth)
+		getUser(isAuth)
 			.then(res => {
-				const base = Object.entries(res.data).map(([id , items]) => {
-					return {
-						id ,
-						...items
-					}
-				})
-				setDataBase(base)
+				console.log(res)
+				// const base = Object.entries(res.data).map(([id , items]) => {
+				// 	return {
+				// 		id ,
+				// 		...items
+				// 	}
+				// })
+				// setDataBase(base)
 			})
 
-		const base = dataBase.map(item => item).filter((item) => item.favorite)
-		console.log(base)
+		// const base = dataBase.map(item => item).filter((item) => item.favorite)
 	} , [])
 
 	// React.useEffect(() => {

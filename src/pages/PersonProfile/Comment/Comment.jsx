@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import {getUser} from '../../../configs';
 import useIsLogin from "../../../hooks/useIsLogin";
 import Start from './Start';
-import { useMediaQuery } from 'react-responsive';
 
 const Comment = () => {
 	const { isAuth } = useIsLogin()
@@ -22,8 +21,8 @@ const Comment = () => {
       setDataBase(base)
     })
   }, [])
-  
-  if(!dataBase) return <h1></h1>
+
+  if(!dataBase) return <h1 style={{textAlign:'center', margin:'10px 0'}}>Нету комментарии</h1>
 
   return (
     <>

@@ -14,10 +14,11 @@ function App() {
 			<Routes>
 				<Route element={<PrivateRoutes />}>
 					<Route path='/cart' element={<ShoppingCart />} />
-					<Route path='/favorites' element={<Favorites />} />
+					{/*<Route path='/favorites' element={<Favorites />} />*/}
 					<Route path='/profile' element={<PersonProfile />} />
 					<Route path='*' element={<Navigate to='/' />} />
 				</Route>
+				<Route path='/favorites' element={<Favorites />} />
         {
           routesList.map(item => {
             return <Route key={item.id} path={item.route} element={item.element}/>

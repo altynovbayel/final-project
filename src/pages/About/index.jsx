@@ -1,15 +1,16 @@
 import React from 'react';
 import {useMediaQuery} from "react-responsive";
-import AboutMobile from "./AboutMobile";
+// import AboutMobile from "./AboutMobile";
 import Laptop from "./Laptop";
 
 const Index = () => {
-  const isMobile = useMediaQuery({query: '(max-width: 767px)'})
-  const isLaptop = useMediaQuery({query: '(min-width: 768px)'})
+  // const isMobile = useMediaQuery({query: '(max-width: 425px)'})
+  // const isLaptop = useMediaQuery({query: '(min-width: 426px)'})
   return (
     <>
-      {isMobile && <AboutMobile/>}
-      {isLaptop && <Laptop/>}
+      <Laptop/>
+      {/*{isMobile && <AboutMobile/>}*/}
+      {/*{isLaptop && <Laptop/>}*/}
     </>
   );
 };
