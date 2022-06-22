@@ -23,6 +23,11 @@ export const navbarNavigation = [
 		route: '/contacts',
 		title: 'Контакты',
 	},
+  {
+    id: 4,
+    route: '/favorites',
+    title: 'Понравившиеся',
+  },
 ]
 
 export const navbarCategories = [

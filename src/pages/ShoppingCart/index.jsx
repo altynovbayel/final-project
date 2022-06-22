@@ -26,7 +26,7 @@ function ShoppingCart() {
     getCard()
   }, [])
   
-  if (base === false) return <Title text={'ваша карзина пустая'}/>
+  if (base === false) return <Title text={'Ваша корзина пустая'}/>
   if(!base) return <div className={cls.loading}><Loader/></div>
   return (
     <React.Fragment>

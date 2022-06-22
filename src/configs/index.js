@@ -14,7 +14,11 @@ export const addReview = (data, productId) => instance.post(`/products/${product
 
 export const putAddedReview = (data, userId) => instance.post(`/users/${userId}/reviews/.json`, data)
 
-export const addToFavorites = (data,  userId) => instance.post(`/users/${userId}/favorites/.json`, data)
+export const addToFavorites = (data,  userId, productId) => instance.put(`/users/${userId}/favorites/${productId}/.json`, data)
+
+export const removeToFavorites = (userId, productId) => instance.delete(`/users/${userId}/favorites/${productId}/.json`)
+
+// export const getFavorites = (userId) => instance.get(`/users/${userId}/favorites/.json`)
 
 export const getUser = (userId) => instance.get(`/users/${userId}/.json`)
 
@@ -23,3 +27,4 @@ export const updatePrfile = (userId , data) => instance.patch(`/users/${userId}/
 export const getFromCart = (id) => instance.get(`/users/${id}/cart/.json`)
 
 export const removeCart = (userId, productId) => instance.delete(`/users/${userId}/cart/${productId}/.json`)
+

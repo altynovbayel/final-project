@@ -27,6 +27,7 @@ const Register = () => {
 		createNewUser(
 			{
 				...data,
+        totalPrice: 0,
 				phoneNumber: '',
 				photo:
 					'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar',

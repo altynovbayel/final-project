@@ -4,12 +4,12 @@ import Button from '../UI/Button'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import { addToCart, addToFavorites } from '../../configs'
+import {addToCart, addToFavorites, removeToFavorites} from '../../configs'
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	const { isAuth } = useIsLogin()
 	const [cartButton, setCartButton] = React.useState(false)
+  const {isAuth} = useIsLogin()
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
@@ -20,12 +20,10 @@ function Card({ productList, setProductList }) {
 	}
 
 	function countIncrement(id) {
-		const arr = productList.map((item) => {
-			return {
-				...item,
-				count: item.id === id ? item.count + 1 : item.count,
-			}
-		})
+		const arr = productList.map((item) => ({
+      ...item,
+      count: item.id === id ? item.count + 1 : item.count,
+    }))
 		setProductList(arr)
 	}
 
@@ -48,15 +46,17 @@ function Card({ productList, setProductList }) {
 		})
 		setProductList(array)
 	}
-
-	const addToFavoriteHandle = () => {
-		const favoriteProduct = productList.find((item) => item.favorite)
-		console.log(favoriteProduct)
-		addToFavorites(favoriteProduct, isAuth.uid).then((r) => {
-			console.log(r)
-		})
+  
+	const addToFavoriteHandle = (id) => {
+    !isAuth && navigate('/user/auth')
+		const favoriteProduct = productList.find((item) => item.id === id)
+		addToFavorites(favoriteProduct, isAuth?.uid, id).then()
 	}
-
+  
+  const removeFromFavorites = (id) => {
+    removeToFavorites(isAuth?.uid, id).then()
+  }
+  
 	return (
 		<>
 			<div className={c.container}>
@@ -70,8 +70,8 @@ function Card({ productList, setProductList }) {
 						type,
 						category,
 						favorite,
-					}) => (
-						<div key={id} className={c.card}>
+					}, index) => (
+						<div key={index} className={c.card}>
 							<span className={c.type}>{type}</span>
 							<div
 								className={c.card_img}
@@ -85,19 +85,25 @@ function Card({ productList, setProductList }) {
 										className={c.text_content}
 										onClick={() => navigate(`/products/${category}/${id}`)}
 									>
-										<h3 className={c.productName}>{productName}</h3>
+										<h3>{productName}</h3>
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>
-										{!favorite ? (
+										{
+                      !favorite ? (
 											<MdFavoriteBorder
 												onClick={() => {
-													setLike(id)
-													addToFavoriteHandle()
+                          addToFavoriteHandle(id)
+                          setLike(id)
 												}}
 											/>
 										) : (
-											<MdFavorite onClick={() => setLike(id)} />
+											<MdFavorite
+                        onClick={() => {
+                          removeFromFavorites(id)
+                          setLike(id)
+                        }}
+                      />
 										)}
 									</div>
 								</div>

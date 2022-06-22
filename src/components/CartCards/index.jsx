@@ -5,14 +5,19 @@ import {MdFavoriteBorder, MdFavorite} from 'react-icons/md'
 import {useNavigate} from 'react-router-dom'
 import useIsLogin from "../../hooks/useIsLogin";
 import {AiOutlineStar, AiTwotoneDelete} from 'react-icons/ai'
-import {removeCart} from "../../configs";
+import {getUser, removeCart} from "../../configs";
+import {updateProfile} from "firebase/auth";
 
 
 function CartCard({productList, setProductList, getCard}) {
   const navigate = useNavigate()
   const {isAuth} = useIsLogin()
-  const [count, setCount] = React.useState(1)
-  const [totalPrice, setTotalPrice] = React.useState(null)
+  const [user, setUser] = React.useState(null)
+  
+  React.useEffect(() => {
+    getUser(isAuth?.uid).then(r => setUser(r))
+  }, [isAuth?.uid])
+  
   
   function countIncrement(id) {
     const arr = productList.map((item) => {
@@ -21,7 +26,9 @@ function CartCard({productList, setProductList, getCard}) {
         count: item.id === id ? item.count + 1 : item.count,
       }
     })
+    const singleProduct = productList.find(item => item.id === id)
     
+    updateProfile(isAuth.uid).then(r => console.log(r))
     setProductList(arr)
   }
 

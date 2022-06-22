@@ -2,15 +2,13 @@ import React from 'react'
 import cls from './LaptopNavbar.module.scss'
 import logoImg from "../../../assets/img/pngDayarLogo.png";
 import { navbarNavigation } from '../../../utils/navbarNavigation'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
 import { RiCopyrightLine } from 'react-icons/ri'
-import { BsPersonFill, BsSearch } from 'react-icons/bs'
-import NavbarSelect from '../../UI/NavbarSelect'
+import { BsPersonFill } from 'react-icons/bs'
 
 const LaptopNavbar = ({ moneySum }) => {
 	const navigate = useNavigate()
-	const [searchInput, setSearchInput] = React.useState('')
 
 	return (
 		<div className={cls.navbar}>
