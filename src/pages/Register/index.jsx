@@ -27,8 +27,8 @@ const Register = () => {
 		createNewUser(
 			{
 				...data,
-				phoneNumber: '',
 				totalPrice: 0,
+				phoneNumber: '',
 			},
 			userId
 		).then(() => navigate('/profile'))
@@ -43,7 +43,8 @@ const Register = () => {
 			)
 			await updateProfile(res.user, {
 				displayName: data.username || 'Пользователь',
-				photoURL: 'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar'
+				photoURL:
+					'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar',
 			})
 			res && handleNewUser(data, res.user.uid)
 		} catch (error) {
