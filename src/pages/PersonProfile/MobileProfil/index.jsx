@@ -19,8 +19,9 @@ const MobileProfile = () => {
       setData(res.data)
     })
   } , [])
+
   function postUpdate(){
-    updatePrfile(isAuth.uid , data)
+    updatePrfile(isAuth.uid , data).then()
   }
 
   if(!data) return <h1></h1>
@@ -30,7 +31,7 @@ const MobileProfile = () => {
       <div className={cs.cards}>
         <div className={cs.cards_header}>
           <div className={cs.headers_image}>
-            <img src={data.photo} alt=""/>
+            <img src={isAuth.photoURL} alt=""/>
           </div>
         </div>
         <div className={cs.cards_body}>
@@ -49,8 +50,8 @@ const MobileProfile = () => {
               type={password ? 'password' : 'text'}
               placeholder='password'
             />
-            {password ? <BsEyeSlash onClick={() => setPassword(items => !items)}className={cs.icons}/>
-                      : <AiFillEye onClick={() => setPassword(items => !items)}className={cs.icons}/>}
+            {password ? <BsEyeSlash onClick={() => setPassword(items => !items)} className={cs.icons}/>
+                      : <AiFillEye onClick={() => setPassword(items => !items)} className={cs.icons}/>}
           </label>
           <label>
             <input

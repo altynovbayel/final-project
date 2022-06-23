@@ -7,20 +7,28 @@
     font-family: 'Inter', sans-serif;
 }
 
+html,
 body{
   background-color: #FCFCFC;
+  height: 100%;
+
+}
+#root{
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 button{
-    border: none;
-    outline: none;
-    cursor: pointer;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
