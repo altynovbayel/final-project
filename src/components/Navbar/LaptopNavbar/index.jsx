@@ -1,21 +1,25 @@
 import React from 'react'
 import cls from './LaptopNavbar.module.scss'
-import logoImg from "../../../assets/img/pngDayarLogo.png";
+import logoImg from '../../../assets/img/pngDayarLogo.png'
 import { navbarNavigation } from '../../../utils/navbarNavigation'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaShoppingBag } from 'react-icons/fa'
 import { RiCopyrightLine } from 'react-icons/ri'
-import { BsPersonFill } from 'react-icons/bs'
+import { BsPersonFill, BsSearch } from 'react-icons/bs'
+import useIsLogin from '../../../hooks/useIsLogin'
+import ProfileImg from '../../ProfileImg/ProfileImg'
 
 const LaptopNavbar = ({ moneySum }) => {
 	const navigate = useNavigate()
+	const { isAuth } = useIsLogin()
+	const [searchInput, setSearchInput] = React.useState('')
 
 	return (
 		<div className={cls.navbar}>
 			<div className={cls.navbarTop}>
 				<div className={cls.wrapperTop}>
 					<div className={cls.logo} onClick={() => navigate('/')}>
-						<img src={logoImg} alt="logo"/>
+						<img src={logoImg} alt='logo' />
 					</div>
 					<div className={cls.navigations}>
 						{navbarNavigation.map(({ id, route, title }) => (
@@ -32,9 +36,7 @@ const LaptopNavbar = ({ moneySum }) => {
 							</span>
 							<FaShoppingBag onClick={() => navigate('/cart')} />
 						</div>
-						<div className={cls.profile}>
-							<BsPersonFill onClick={() => navigate('/profile')} />
-						</div>
+						<ProfileImg />
 					</div>
 				</div>
 			</div>
@@ -54,4 +56,11 @@ export default LaptopNavbar
 // 			<span>{category.title}</span>
 // 		</NavLink>
 // 	))
+// }
+
+// {
+// 	isAuth ? (
+//
+// 	) : (
+// 	)
 // }

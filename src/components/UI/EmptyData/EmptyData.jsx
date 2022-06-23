@@ -3,11 +3,11 @@ import {ImFileEmpty} from "react-icons/im";
 import c from "./EmptyData.module.scss";
 
 
-const EmptyData = () => {
+const EmptyData = ({text}) => {
 	return (
 		<div className={c.empty}>
 			<ImFileEmpty/>
-			<span>Пока нет отзывов</span>
+			<span>{text}</span>
 		</div>
 	);
 };

@@ -1,0 +1,25 @@
+.profile {
+  background: #F5F5F5;
+  padding: 10px;
+  border-radius: 6px;
+
+  svg {
+    font-size: 22px;
+    transition: .2s;
+
+    &:hover {
+      color: #E07153;
+    }
+  }
+}
+
+.profileImg{
+
+  img{
+    width: 30px;
+    border-radius: 50%;
+    height: 30px;
+    object-fit: cover;
+    cursor: pointer;
+  }
+}

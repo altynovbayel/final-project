@@ -4,26 +4,38 @@ import Button from '../UI/Button'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import {addToCart, addToFavorites, removeToFavorites} from '../../configs'
+import { addToCart, addToFavorites, removeToFavorites } from '../../configs'
+import useAlert from '../../hooks/useAlert'
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	const [cartButton, setCartButton] = React.useState(false)
-  const {isAuth} = useIsLogin()
+	// const [cartButton, setCartButton] = React.useState(false)
+	const { isAuth } = useIsLogin()
+	const { actions } = useAlert()
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
-		cart && setCartButton(true)
-		addToCart(cart, isAuth.uid).then(r => {
-			console.log(r)
+		cart && actions.sweetAlert('Добавлено в корзину')
+		addToCart(cart, isAuth.uid).then(() => {
+			const newData = productList.map((item) => {
+				if (item.id === id) {
+					return {
+						...item,
+						inCart: !item.inCart,
+					}
+				}
+				return item
+			})
+
+			setProductList(newData)
 		})
 	}
 
 	function countIncrement(id) {
 		const arr = productList.map((item) => ({
-      ...item,
-      count: item.id === id ? item.count + 1 : item.count,
-    }))
+			...item,
+			count: item.id === id ? item.count + 1 : item.count,
+		}))
 		setProductList(arr)
 	}
 
@@ -46,17 +58,17 @@ function Card({ productList, setProductList }) {
 		})
 		setProductList(array)
 	}
-  
+
 	const addToFavoriteHandle = (id) => {
-    !isAuth && navigate('/user/auth')
+		!isAuth && navigate('/user/auth')
 		const favoriteProduct = productList.find((item) => item.id === id)
 		addToFavorites(favoriteProduct, isAuth?.uid, id).then()
 	}
-  
-  const removeFromFavorites = (id) => {
-    removeToFavorites(isAuth?.uid, id).then()
-  }
-  
+
+	const removeFromFavorites = (id) => {
+		removeToFavorites(isAuth?.uid, id).then()
+	}
+
 	return (
 		<>
 			<div className={c.container}>
@@ -65,14 +77,13 @@ function Card({ productList, setProductList }) {
 						images,
 						productName,
 						price,
+						inCart,
 						id,
 						count,
-						type,
 						category,
 						favorite,
-					}, index) => (
-						<div key={index} className={c.card}>
-							<span className={c.type}>{type}</span>
+					}) => (
+						<div key={id} className={c.card}>
 							<div
 								className={c.card_img}
 								onClick={() => navigate(`/products/${category}/${id}`)}
@@ -89,21 +100,20 @@ function Card({ productList, setProductList }) {
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>
-										{
-                      !favorite ? (
+										{!favorite ? (
 											<MdFavoriteBorder
 												onClick={() => {
-                          addToFavoriteHandle(id)
-                          setLike(id)
+													addToFavoriteHandle(id)
+													setLike(id)
 												}}
 											/>
 										) : (
 											<MdFavorite
-                        onClick={() => {
-                          removeFromFavorites(id)
-                          setLike(id)
-                        }}
-                      />
+												onClick={() => {
+													removeFromFavorites(id)
+													setLike(id)
+												}}
+											/>
 										)}
 									</div>
 								</div>
@@ -118,19 +128,21 @@ function Card({ productList, setProductList }) {
 										<span>{count}</span>
 										<button onClick={() => countIncrement(id)}>+</button>
 									</div>
-									{
-										!cartButton ? (
-											<Button
-												buttonText='В корзину'
-												onClick={() => handleGoToShoppingCart(id)}
-											/>
-										) : (
-											<Button
-												buttonText='В корзине'
-												onClick={() => navigate('/cart')}
-											/>
-										)
-									}
+									{!inCart ? (
+										<Button
+											buttonText='В корзину'
+											onClick={() => {
+												isAuth
+													? handleGoToShoppingCart(id)
+													: navigate('/user/auth')
+											}}
+										/>
+									) : (
+										<Button
+											buttonText='Добавлено'
+											onClick={() => navigate('/cart')}
+										/>
+									)}
 								</div>
 							</div>
 						</div>
