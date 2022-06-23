@@ -1,0 +1,58 @@
+.sort {
+  margin-top: 20px;
+  width: 100%;
+  background: #F5F5F5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
+  @media (min-width: 375px) {
+    padding: 10px 10%;
+  }
+  @media (min-width: 425px) {
+    padding: 10px 15%;
+  }
+  @media (min-width: 768px) {
+    padding: 10px 7%;
+  }
+  @media (min-width: 1024px) {
+    padding: 10px 6%;
+  }
+  .inputData {
+    width: 70%;
+    height: 40px;
+    position: relative;
+    input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-bottom: 2px solid silver;
+      font-size: 17px;
+      transition: .3s;
+      outline: none !important;
+      padding: 0 10px;
+    }
+    input:focus ~ label {
+      transform: translateY(-20px);
+      color: #E07153;
+    }
+    label {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: gray;
+      pointer-events: none;
+      transition: .3s;
+    }
+  }
+  .select {
+    width: 25%;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 17px;
+    * {
+      padding: 10px 20px;
+    }
+  }
+}

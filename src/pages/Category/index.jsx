@@ -4,7 +4,6 @@ import Loader from '../Favorites/Loader/Loader'
 import cls from "../Main/main.module.scss";
 
 import Card from '../../components/Cards/Card'
-import UnderNavbar from '../../components/Navbar/LaptopNavbar/UnderNavbar'
 import {getAllProducts} from "../../configs";
 
 const Category = () => {
@@ -35,7 +34,6 @@ const Category = () => {
 	if (productBase?.length === 0) return <h1>No products</h1>
 	return (
 		<div>
-			<UnderNavbar page='Category' />
 			<Card productList={productBase} setProductList={setProductBase}/>
 		</div>
 	)

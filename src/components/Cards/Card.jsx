@@ -9,7 +9,7 @@ import useAlert from '../../hooks/useAlert'
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	const [cartButton, setCartButton] = React.useState(false)
+	// const [cartButton, setCartButton] = React.useState(false)
 	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
 
