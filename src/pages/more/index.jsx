@@ -5,8 +5,7 @@ import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import MoreDesc from './Description/MoreDesc'
 import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer'
-import {addReview, addToCart, getSingleProduct, putAddedReview,} from '../../configs'
-
+import {addReview, addToCart, getSingleProduct, postReviewProduct, putAddedReview,} from '../../configs'
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
 import Loader from '../Favorites/Loader/Loader'
@@ -32,7 +31,7 @@ function More() {
 	const handleMouseOver = (value) => setHoverValue(value)
 	const handleMouseLeave = () => setHoverValue(undefined)
 
-	const addReviewHandle = () => {
+		const addReviewHandle = () => {
 		const data = {
 			date: new Date().toLocaleString(),
 			content: reviewContent,
@@ -55,7 +54,14 @@ function More() {
 					productCategory: moreData.category,
 					images: moreData.images,
 				}
-				putAddedReview(personReviewData, isAuth.uid).then(() => {
+				putAddedReview(personReviewData, isAuth.uid)
+					.then(() => {
+						const middleReview = reviewersData.reduce((total, item) => total + item.reviewGrade, 0) / reviewersData.length
+						postReviewProduct(id, {reviewGrade : middleReview.toFixed(1)} ).then(() => {
+							getProduct()
+						})
+					})
+					.then(() => {
 					getProduct()
 					setCurrentStarValue(0)
 					setHoverValue(undefined)

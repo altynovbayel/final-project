@@ -4,19 +4,23 @@ import Button from '../UI/Button'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import { addToCart, addToFavorites, removeToFavorites } from '../../configs'
+import {addToCart, addToFavorites, getAllProducts, getSingleFromCart, removeToFavorites} from '../../configs'
 import useAlert from '../../hooks/useAlert'
+import CardButton from "../CardButton/CardButton";
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	// const [cartButton, setCartButton] = React.useState(false)
+	const [isInCart, setIsInCart] = React.useState(false)
 	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
+
+	React.useEffect(() => {
+	}, [])
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
 		cart && actions.sweetAlert('Добавлено в корзину')
-		addToCart(cart, isAuth.uid).then(() => {
+		addToCart(cart, isAuth.uid, id).then(() => {
 			const newData = productList.map((item) => {
 				if (item.id === id) {
 					return {
@@ -26,9 +30,20 @@ function Card({ productList, setProductList }) {
 				}
 				return item
 			})
-
 			setProductList(newData)
 		})
+			.then(() => {
+				getAllProducts().then(r => {
+					const newData = Object.entries(r.data).map(([id, item]) => {
+						return {
+							id,
+							...item
+						}
+					})
+					setProductList(newData)
+					console.log(productList)
+				})
+			})
 	}
 
 	function countIncrement(id) {
@@ -77,7 +92,6 @@ function Card({ productList, setProductList }) {
 						images,
 						productName,
 						price,
-						inCart,
 						id,
 						count,
 						category,
@@ -128,21 +142,11 @@ function Card({ productList, setProductList }) {
 										<span>{count}</span>
 										<button onClick={() => countIncrement(id)}>+</button>
 									</div>
-									{!inCart ? (
-										<Button
-											buttonText='В корзину'
-											onClick={() => {
-												isAuth
-													? handleGoToShoppingCart(id)
-													: navigate('/user/auth')
-											}}
-										/>
-									) : (
-										<Button
-											buttonText='Добавлено'
-											onClick={() => navigate('/cart')}
-										/>
-									)}
+									<CardButton
+										productBase={productList}
+										handleGoToShoppingCart={handleGoToShoppingCart}
+										productId={id}
+									/>
 								</div>
 							</div>
 						</div>
