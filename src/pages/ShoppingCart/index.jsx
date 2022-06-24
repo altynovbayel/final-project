@@ -18,12 +18,7 @@ function ShoppingCart() {
 	function getCard() {
 		getFromCart(isAuth.uid).then((res) => {
 			const arr = res.data
-				? Object.entries(res.data).map(([id, item]) => {
-						return {
-							...item,
-							id,
-						}
-				  })
+				? Object.values(res.data)
 				: false
 			setBase(arr)
 		})
