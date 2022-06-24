@@ -22,7 +22,7 @@ const Favorites = () => {
 				setDataBase(base)
 			})
 	}, [isAuth?.uid])
-	console.log(dataBase)
+	// console.log(dataBase)
 
 	if (!dataBase)
 		return (

@@ -28,3 +28,6 @@ export const getFromCart = (id) => instance.get(`/users/${id}/cart/.json`)
 
 export const removeCart = (userId, productId) => instance.delete(`/users/${userId}/cart/${productId}/.json`)
 
+export const removeAllCart = (userId) => instance.delete(`/users/${userId}/cart/.json`)
+
+

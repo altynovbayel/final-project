@@ -12,9 +12,10 @@ const Navbar = () => {
 	const isLaptopOrMonitor = useMediaQuery({ query: '(min-width: 768px)' })
 
 	const { isAuth } = useIsLogin()
-	// React.useEffect(() => {
-	// 	getUser(isAuth?.uid).then((r) => setMoneySum(r.data.totalPrice))
-	// })
+
+	React.useEffect(() => {
+    getUser(isAuth?.uid).then((r) => setMoneySum(r.data.totalPrice))
+  }, [isAuth?.uid])
 
 	return (
 		<>

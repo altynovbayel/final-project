@@ -1,0 +1,15 @@
+.btn{
+  width: 95%;
+  display: flex;
+  justify-content: end;
+  button{
+    width: 100px;
+    background-color: #E07153;
+    color: white;
+    padding: 5px 8px;
+    font-size: 13px;
+    text-transform: capitalize;
+    border-radius: 5px;
+    padding: 5px 0;
+  }
+}
