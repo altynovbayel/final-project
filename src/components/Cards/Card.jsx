@@ -7,7 +7,7 @@ import useIsLogin from '../../hooks/useIsLogin'
 import { addToCart, addToFavorites, removeToFavorites } from '../../configs'
 import useAlert from '../../hooks/useAlert'
 
-function Card({ productList, setProductList }) {
+function Card({ productList, setProductList}) {
 	const navigate = useNavigate()
 	const [cartButton, setCartButton] = React.useState(false)
 	const { isAuth } = useIsLogin()
@@ -96,7 +96,9 @@ function Card({ productList, setProductList }) {
 										className={c.text_content}
 										onClick={() => navigate(`/products/${category}/${id}`)}
 									>
-										<h3>{productName}</h3>
+										<h3>{
+											productName.length >= 20 ? `${productName.slice(0 , 17)}...` : productName
+										}</h3>
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>

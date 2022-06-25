@@ -25,11 +25,11 @@ const Sort = ({data , setData , productBase, setProductBase , dataMain , setData
     setDataMain(base)
   }, [input])
 
-
   return (
     <div className={cs.sort}>
       <div className={cs.inputData}>
         <input
+          className={input.length > 0 ? `${cs.input} ${cs.active}` : cs.input}
           type="text"
           required
           value={input}
@@ -43,9 +43,7 @@ const Sort = ({data , setData , productBase, setProductBase , dataMain , setData
       <select
         className={cs.select}
         onChange={event => setDropDown(event.target.value)}
-        defaultValue='Select'
       >
-        <option value="Select" disabled>Select....</option>
         {
           categoryOptions.map(item => <option key={item.value} value={item.value}>{item.label}</option>)
         }

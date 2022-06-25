@@ -12,17 +12,21 @@ const Comment = () => {
 
   React.useEffect(() => {
     getUser(isAuth.uid).then(res => {
-      const base = Object.entries(res.data?.reviews).map(([id , items]) => {
-        return {
-          id ,
-          ...items
-        }
-      })
-      setDataBase(base)
+      if(res.data.reviews){
+        const base = Object.entries(res.data?.reviews).map(([id , items]) => {
+          return {
+            id ,
+            ...items
+          }
+        })
+        setDataBase(base)
+      }else {
+        setDataBase(null)
+      }
     })
   }, [])
 
-  if(!dataBase) return <h1 style={{textAlign:'center', margin:'10px 0'}}>Нету комментарии</h1>
+  if(!dataBase) return <h1 style={{textAlign:'center', margin:'10px 0'}}>Нет комментарии</h1>
 
   return (
     <>

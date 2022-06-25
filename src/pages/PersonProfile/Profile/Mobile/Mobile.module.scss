@@ -1,0 +1,28 @@
+.Mobile {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  .cards {
+    width: 310px;
+    height: 380px;
+    .cards_header {
+      width: 100%;
+      height: 30%;
+    }
+    .cards_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      height: 50%;
+      .container_input {
+        width: 80%;
+      }
+    }
+    .cards_footer {
+      width: 100%;
+      height: 20%;
+    }
+  }
+}
