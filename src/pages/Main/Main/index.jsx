@@ -5,22 +5,25 @@ import Pagination from './Pagination';
 import EmtyData from '../../../components/UI/EmptyData/EmptyData'
 
 function MainBlock({dataMain , setDataMain , page , setPage}) {
+	const [data , setData] = React.useState(dataMain)
 	const PAGE_SIZE = 12
-	const TOTAL_PAGE = Math.ceil(dataMain?.length / PAGE_SIZE)
+	const TOTAL_PAGE = Math.ceil(data?.length / PAGE_SIZE)
 	const [base , setBase] = React.useState(null)
 
+	React.useEffect(() => {setData(dataMain)}, [dataMain])
+
 	React.useEffect(() => {update()} , [])
-	React.useEffect(() => {update()} , [page])
+	React.useEffect(() => {update()} , [page , data])
 	
 	function update(){
-		const base = dataMain?.slice(
+		const base = data?.slice(
 			(page - 1) * PAGE_SIZE,
 			(page - 1) * PAGE_SIZE + PAGE_SIZE
 		)
 		setBase(base)
 	}
-	
-	if(dataMain.length === 0) return <EmtyData text={'Товар не найден'}/>
+
+	if(data.length === 0) return <EmtyData text={'Товар не найден'}/>
 
 	return (
 		<div>
