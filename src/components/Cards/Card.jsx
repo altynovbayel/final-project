@@ -1,37 +1,21 @@
 import React from 'react'
 import c from './Card.module.scss'
-import Button from '../UI/Button'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import {addToCart, addToFavorites, getAllProducts, getSingleFromCart, removeToFavorites} from '../../configs'
+import {addToCart, addToFavorites, getAllProducts, removeToFavorites} from '../../configs'
 import useAlert from '../../hooks/useAlert'
 import CardButton from "../CardButton/CardButton";
+import CardLikeButton from "../CardLikeButton/CardLikeButton";
 
 function Card({ productList, setProductList }) {
 	const navigate = useNavigate()
-	const [isInCart, setIsInCart] = React.useState(false)
 	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
-
-	React.useEffect(() => {
-	}, [])
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
 		cart && actions.sweetAlert('Добавлено в корзину')
-		addToCart(cart, isAuth.uid, id).then(() => {
-			const newData = productList.map((item) => {
-				if (item.id === id) {
-					return {
-						...item,
-						inCart: !item.inCart,
-					}
-				}
-				return item
-			})
-			setProductList(newData)
-		})
+		addToCart(cart, isAuth.uid, id)
 			.then(() => {
 				getAllProducts().then(r => {
 					const newData = Object.entries(r.data).map(([id, item]) => {
@@ -41,7 +25,6 @@ function Card({ productList, setProductList }) {
 						}
 					})
 					setProductList(newData)
-					console.log(productList)
 				})
 			})
 	}
@@ -65,23 +48,45 @@ function Card({ productList, setProductList }) {
 	}
 
 	function setLike(id) {
-		const array = productList.map((item) => {
+		const array = productList.map(item => {
 			return {
 				...item,
 				favorite: item.id === id ? !item.favorite : item.favorite,
 			}
 		})
+
 		setProductList(array)
 	}
 
 	const addToFavoriteHandle = (id) => {
-		!isAuth && navigate('/user/auth')
-		const favoriteProduct = productList.find((item) => item.id === id)
-		addToFavorites(favoriteProduct, isAuth?.uid, id).then()
+		!isAuth ? navigate('/user/auth') : actions.sweetAlert('Добавлено в избранное')
+		const favoriteProduct = productList.find(item => item.id === id)
+		addToFavorites(favoriteProduct, isAuth?.uid, id).then(() => {
+			getAllProducts().then((res) => {
+				const newData = Object.entries(res.data).map(([id, item]) => {
+					return {
+						id,
+						...item
+					}
+				})
+				setProductList(newData)
+			})
+		})
 	}
 
 	const removeFromFavorites = (id) => {
-		removeToFavorites(isAuth?.uid, id).then()
+		removeToFavorites(isAuth?.uid, id).then(() => {
+			getAllProducts().then(r => {
+				const newData = Object.entries(r.data).map(([id, item]) => {
+					return {
+						id,
+						...item
+					}
+				})
+
+				setProductList(newData)
+			})
+		})
 	}
 
 	return (
@@ -95,7 +100,6 @@ function Card({ productList, setProductList }) {
 						id,
 						count,
 						category,
-						favorite,
 					}) => (
 						<div key={id} className={c.card}>
 							<div
@@ -114,21 +118,13 @@ function Card({ productList, setProductList }) {
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>
-										{!favorite ? (
-											<MdFavoriteBorder
-												onClick={() => {
-													addToFavoriteHandle(id)
-													setLike(id)
-												}}
-											/>
-										) : (
-											<MdFavorite
-												onClick={() => {
-													removeFromFavorites(id)
-													setLike(id)
-												}}
-											/>
-										)}
+										<CardLikeButton
+											setLike={setLike}
+											productId={id}
+											removeFromFavorites={removeFromFavorites}
+											addToFavoriteHandle={addToFavoriteHandle}
+											productList={productList}
+										/>
 									</div>
 								</div>
 								<div className={c.btns}>
@@ -158,3 +154,17 @@ function Card({ productList, setProductList }) {
 }
 
 export default Card
+
+	//
+	// .then(() => {
+	// 	const newData = productList.map((item) => {
+	// 		if (item.id === id) {
+	// 			return {
+	// 				...item,
+	// 				inCart: !item.inCart,
+	// 			}
+	// 		}
+	// 		return item
+	// 	})
+	// 	setProductList(newData)
+	// })

@@ -20,6 +20,8 @@ export const addToFavorites = (data,  userId, productId) => instance.put(`/users
 
 export const removeToFavorites = (userId, productId) => instance.delete(`/users/${userId}/favorites/${productId}/.json`)
 
+export const getSingleFavorite = (userId, productId) => instance.get(`/users/${userId}/favorites/${productId}/.json`)
+
 // export const getFavorites = (userId) => instance.get(`/users/${userId}/favorites/.json`)
 
 export const getUser = (userId) => instance.get(`/users/${userId}/.json`)

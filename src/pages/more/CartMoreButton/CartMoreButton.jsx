@@ -1,38 +1,36 @@
 import React from 'react';
-import Button from "../UI/Button";
+import Button from "../../../components/UI/Button";
+import useIsLogin from "../../../hooks/useIsLogin";
 import {useNavigate} from "react-router-dom";
-import useIsLogin from "../../hooks/useIsLogin";
-import {getSingleFromCart} from "../../configs";
+import {getSingleFromCart} from "../../../configs";
 
-const CardButton = ({handleGoToShoppingCart, productId, productBase}) => {
+const CartMoreButton = ({productId, handleOrderProduct, productData}) => {
 	const [isInCart, setIsInCart] = React.useState(false)
-	const navigate = useNavigate()
 	const {isAuth} = useIsLogin()
+	const navigate = useNavigate()
 	React.useEffect(() => {
 		getSingleFromCart(productId, isAuth?.uid).then(r => {
 			r.data && setIsInCart(true)
 		})
-	}, [isAuth?.uid, productId, productBase])
+	}, [isAuth?.uid, productId, productData])
 
-	return <>
+	return  <>
 		{!isInCart ? (
 			<Button
 				buttonText='В корзину'
 				onClick={() => {
 					isAuth
-						? handleGoToShoppingCart(productId)
+						? handleOrderProduct()
 						: navigate('/user/auth')
 				}}
 			/>
 		) : (
 			<Button
 				buttonText='Добавлено'
-				style={{background: '#E77B3AEA'}}
 				onClick={() => navigate('/cart')}
 			/>
 		)}
 	</>
-
 };
 
-export default CardButton;
+export default CartMoreButton;

@@ -2,7 +2,7 @@ import React from 'react';
 import Swal from "sweetalert2";
 
 const useAlert = () => {
-	const sweetAlert = React.useCallback((alertText) => {
+	const sweetAlert = React.useCallback(alertText => {
 		return Swal.fire({
 			position: 'top-end',
 			showClass: {

@@ -1,9 +1,9 @@
-export const sliderList = [
-  'https://abrakadabra.fun/uploads/posts/2022-03/1647243030_1-abrakadabra-fun-p-fon-s-vipechkoi-1.jpg',
-  'https://abrakadabra.fun/uploads/posts/2022-03/1647243012_22-abrakadabra-fun-p-fon-s-vipechkoi-26.jpg',
-  'https://abrakadabra.fun/uploads/posts/2022-03/1647242998_40-abrakadabra-fun-p-fon-s-vipechkoi-52.png',
-  'https://abrakadabra.fun/uploads/posts/2022-03/1647243025_48-abrakadabra-fun-p-fon-s-vipechkoi-63.jpg',
-]
+import banner1 from '../assets/img/sliderImg1.jpg'
+import banner2 from '../assets/img/sliderImg2.jpg'
+import banner3 from '../assets/img/sliderImg3.png'
+import banner4 from '../assets/img/sliderImg4.jpg'
+
+export const sliderList = [ banner1, banner2, banner3, banner4]
 
 export const infoList = [
   {

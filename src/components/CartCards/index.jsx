@@ -93,8 +93,8 @@ function CartCard({ productList, setProductList, getCard }) {
 									<button onClick={() => countIncrement(id)}>+</button>
 								</div>
 								<div className={c.priceBlock}>
-									<div className={c.price}>price: {price}</div>
-									<div>total: {price * count}</div>
+									<div className={c.price}>Цена: {price}</div>
+									<div>Сумма: {price * count}</div>
 								</div>
 							</div>
 						</div>

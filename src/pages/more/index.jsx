@@ -3,7 +3,6 @@ import {useNavigate, useParams} from 'react-router-dom'
 import c from './more.module.scss'
 import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import MoreDesc from './Description/MoreDesc'
-import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer'
 import {addReview, addToCart, getSingleProduct, postReviewProduct, putAddedReview,} from '../../configs'
 import useCards from '../../hooks/useCards'
@@ -12,6 +11,8 @@ import Loader from '../Favorites/Loader/Loader'
 import {GoStar} from 'react-icons/go'
 import EmptyData from "../../components/UI/EmptyData/EmptyData";
 import useAlert from "../../hooks/useAlert";
+import CartMoreButton from "./CartMoreButton/CartMoreButton";
+import LikeMoreButton from "./LikeMoreButton/LikeMoreButton";
 
 function More() {
 	const {id} = useParams()
@@ -19,9 +20,9 @@ function More() {
 	const {actions} = useCards()
 	const {actions: alertActions} = useAlert()
 	const navigate = useNavigate()
+	const [loading, setLoading] = React.useState(false)
 	const [moreData, setMoreData] = React.useState(null)
 	const [reviewersData, setReviewersData] = React.useState(null)
-	const [indexImg, setIndexImg] = React.useState(1)
 	const [quantity, setQuantity] = React.useState(1)
 	const [reviewContent, setReviewContent] = React.useState('')
 	const [currentStarValue, setCurrentStarValue] = React.useState(0)
@@ -31,7 +32,28 @@ function More() {
 	const handleMouseOver = (value) => setHoverValue(value)
 	const handleMouseLeave = () => setHoverValue(undefined)
 
-		const addReviewHandle = () => {
+	const getProduct = () => {
+		getSingleProduct(id).then(r => {
+			if (r) {
+				setMoreData(r.data)
+				r.data.reviewers && (
+					setReviewersData(() => {
+						return Object.entries(r.data.reviewers).map(([id, item]) => {
+							return {
+								id,
+								...item
+							}
+						})
+					})
+				)
+				console.log('work')
+
+			}
+		})
+	}
+
+	const addReviewHandle = () => {
+		setLoading(true)
 		const data = {
 			date: new Date().toLocaleString(),
 			content: reviewContent,
@@ -56,37 +78,26 @@ function More() {
 				}
 				putAddedReview(personReviewData, isAuth.uid)
 					.then(() => {
-						const middleReview = reviewersData.reduce((total, item) => total + item.reviewGrade, 0) / reviewersData.length
-						postReviewProduct(id, {reviewGrade : middleReview.toFixed(1)} ).then(() => {
-							getProduct()
-						})
+						getProduct()
+						setCurrentStarValue(0)
+						setHoverValue(undefined)
+						setReviewContent('')
+						setLoading(false)
 					})
-					.then(() => {
-					getProduct()
-					setCurrentStarValue(0)
-					setHoverValue(undefined)
-					setReviewContent('')
-				})
 			}
 		})
-	}
-	const getProduct = () => {
-		getSingleProduct(id).then(r => {
-			if (r) {
-				setMoreData(r.data)
-				r.data.reviewers && (
-					setReviewersData(() => {
-						return Object.entries(r.data.reviewers).map(([id, item]) => {
-							return {
-								id,
-								...item
-							}
-						})
+			.then(() => {
+				if (reviewersData) {
+					const middleReview = reviewersData.reduce((total, item) => total + item.reviewGrade, 0) / reviewersData.length
+					postReviewProduct(id, {reviewGrade: middleReview.toFixed(1)}).then(() => getProduct())
+				} else {
+					postReviewProduct(id, {reviewGrade: currentStarValue}).then(() => {
+						getProduct()
 					})
-				)
-			}
-		})
+				}
+			})
 	}
+
 
 	React.useEffect(() => {
 		getProduct()
@@ -95,7 +106,7 @@ function More() {
 	const handleIncrement = () => {
 		setQuantity(prev => prev + 1)
 		setMoreData(prev => {
-			return{
+			return {
 				...prev,
 				count: ++prev.count
 			}
@@ -105,7 +116,7 @@ function More() {
 	const handleDecrement = () => {
 		setQuantity((prev) => prev - 1)
 		setMoreData(prev => {
-			return{
+			return {
 				...prev,
 				count: --prev.count
 			}
@@ -114,7 +125,7 @@ function More() {
 	}
 	const handleOrderProduct = () => {
 		alertActions.sweetAlert('Добавлено в корзину')
-		addToCart(moreData, isAuth.uid).then(() => {
+		addToCart(moreData, isAuth.uid, id).then(() => {
 			setMoreData(prev => {
 				return {
 					...prev,
@@ -143,10 +154,12 @@ function More() {
 					</div>
 				</div>
 				<div className={c.content}>
-					<div className={c.likedBtn}>
-						<MdOutlineFavoriteBorder/>
-						<p>Add to favorites</p>
-					</div>
+					<LikeMoreButton
+						productId={id}
+						productBase={moreData}
+						getProductBase={getProduct}
+						setProductBase={setMoreData}
+					/>
 					<h1>{moreData.productName}</h1>
 					<div className={c.counter}>
 						<div className={c.count}>
@@ -164,29 +177,21 @@ function More() {
 						</div>
 					</div>
 					<div className={c.btn}>
-						<span>
-							средняя оценка:
-							<h4> {moreData.reviewGrade}</h4>
-						</span>
 						{
-							!moreData.inCart ? (
-								<Button
-									buttonText='В корзину'
-									onClick={() => {
-										isAuth
-											?
-											handleOrderProduct(id)
-											:
-											navigate('/user/auth')
-									}}
-								/>
+							moreData.reviewGrade === 'null' ? (
+								<span></span>
 							) : (
-								<Button
-									buttonText='Добавлено'
-									onClick={() => navigate('/cart')}
-								/>
+								<span>
+									Средняя оценка:
+									<h4> {moreData.reviewGrade}</h4>
+								</span>
 							)
 						}
+						<CartMoreButton
+							handleOrderProduct={handleOrderProduct}
+							productId={id}
+							productData={moreData}
+						/>
 					</div>
 					<label className={c.total}>
 						<span>Сумма: {quantity * moreData.price}</span>
@@ -227,24 +232,26 @@ function More() {
 						onChange={(e) => setReviewContent(e.target.value)}
 						type='text'
 					/>
-					<button onClick={() => {
+					<button
+						disabled={loading}
+						onClick={() => {
 						isAuth ? addReviewHandle() : navigate('/user/auth')
-					}}>Отправить</button>
+					}}>Отправить
+					</button>
 				</div>
 			</div>
 			<div className={c.reviewers}>
 				{reviewersData ? (
-					reviewersData
-						.map((item, index) => (
-							<Reviewer
-								key={index}
-								reviewerImg={item.user.profileImg}
-								reviewGrade={item.reviewGrade}
-								name={item.user.username}
-								date={item.date}
-								content={item.content}
-							/>
-						))
+					reviewersData.map((item, index) => (
+						<Reviewer
+							key={index}
+							reviewerImg={item.user.profileImg}
+							reviewGrade={item.reviewGrade}
+							name={item.user.username}
+							date={item.date}
+							content={item.content}
+						/>
+					))
 				) : <EmptyData text={'Пока нет отзывов'}/>}
 			</div>
 		</React.Fragment>
@@ -253,3 +260,22 @@ function More() {
 
 export default More
 
+// {
+// 	!moreData.inCart ? (
+// 		<Button
+// 			buttonText='В корзину'
+// 			onClick={() => {
+// 				isAuth
+// 					?
+// 					handleOrderProduct(id)
+// 					:
+// 					navigate('/user/auth')
+// 			}}
+// 		/>
+// 	) : (
+// 		<Button
+// 			buttonText='Добавлено'
+// 			onClick={() => navigate('/cart')}
+// 		/>
+// 	)
+// }

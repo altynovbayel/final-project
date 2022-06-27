@@ -19,16 +19,11 @@ export const navbarNavigation = [
 	},
 	{
 		id: 2,
-		route: '/promotions',
-		title: 'Акции',
-	},
-	{
-		id: 3,
 		route: '/contacts',
 		title: 'Контакты',
 	},
 	{
-		id: 4,
+		id: 3,
 		route: '/favorites',
 		title: 'Избранное',
 	},
