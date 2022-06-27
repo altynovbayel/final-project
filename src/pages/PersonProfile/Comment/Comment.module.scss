@@ -91,15 +91,23 @@
       .cards_body_footer {
         width: 100%;
         height: 20%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         button {
           padding: 10px 20px;
-          width: 100%;
+          width: 45%;
           border-radius: 5px;
           background: #ff9f84;
-          .link {
-            color: white;
-            font-size: 18px;
-          }
+        }
+        .link {
+          color: white;
+          font-size: 18px;
+        }
+        .delete {
+          background: red;
+          color: white;
+          font-size: 18px;
         }
       }
     }

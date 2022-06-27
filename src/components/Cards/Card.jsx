@@ -1,32 +1,56 @@
 import React from 'react'
 import c from './Card.module.scss'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import {addToCart, addToFavorites, getAllProducts, removeToFavorites} from '../../configs'
+import {
+	addToCart,
+	addToFavorites,
+	getAllProducts,
+	getFavorites,
+	removeToFavorites,
+} from '../../configs'
 import useAlert from '../../hooks/useAlert'
-import CardButton from "../CardButton/CardButton";
-import CardLikeButton from "../CardLikeButton/CardLikeButton";
+import CardButton from '../CardButton/CardButton'
+import CardLikeButton from '../CardLikeButton/CardLikeButton'
 
-function Card({ productList, setProductList }) {
+function Card({ productList, setProductList, page }) {
 	const navigate = useNavigate()
+	const { category } = useParams()
 	const { isAuth } = useIsLogin()
+	const { setTotalPages } = useIsLogin()
 	const { actions } = useAlert()
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
 		cart && actions.sweetAlert('Добавлено в корзину')
-		addToCart(cart, isAuth.uid, id)
-			.then(() => {
-				getAllProducts().then(r => {
+		addToCart(cart, isAuth.uid, id).then(() => {
+			if (page === 'main') {
+				getAllProducts().then((r) => {
 					const newData = Object.entries(r.data).map(([id, item]) => {
 						return {
 							id,
-							...item
+							...item,
 						}
 					})
+					setTotalPages((item) => !item)
 					setProductList(newData)
 				})
-			})
+			} else if (page === 'favorites') {
+				getFavorites(isAuth?.uid).then((r) => {
+					setProductList(() => Object.values(r.data))
+				})
+			} else if (page === 'category') {
+				getAllProducts(isAuth?.uid).then((r) => {
+					const newBase = Object.entries(r.data)
+						.map(([id, item]) => {
+							return { id, ...item }
+						})
+						.filter((item) => item.category === category)
+
+					setProductList(newBase)
+				})
+			}
+		})
 	}
 
 	function countIncrement(id) {
@@ -48,7 +72,7 @@ function Card({ productList, setProductList }) {
 	}
 
 	function setLike(id) {
-		const array = productList.map(item => {
+		const array = productList.map((item) => {
 			return {
 				...item,
 				favorite: item.id === id ? !item.favorite : item.favorite,
@@ -59,33 +83,63 @@ function Card({ productList, setProductList }) {
 	}
 
 	const addToFavoriteHandle = (id) => {
-		!isAuth ? navigate('/user/auth') : actions.sweetAlert('Добавлено в избранное')
-		const favoriteProduct = productList.find(item => item.id === id)
+		!isAuth
+			? navigate('/user/auth')
+			: actions.sweetAlert('Добавлено в избранное')
+		const favoriteProduct = productList.find((item) => item.id === id)
 		addToFavorites(favoriteProduct, isAuth?.uid, id).then(() => {
-			getAllProducts().then((res) => {
-				const newData = Object.entries(res.data).map(([id, item]) => {
-					return {
-						id,
-						...item
-					}
+			if (page === 'main') {
+				getAllProducts().then((res) => {
+					const newData = Object.entries(res.data).map(([id, item]) => {
+						return {
+							id,
+							...item,
+						}
+					})
+					setProductList(newData)
 				})
-				setProductList(newData)
-			})
+			} else if (page === 'category') {
+				getAllProducts().then((r) => {
+					const newBase = Object.entries(r.data)
+						.map(([id, item]) => {
+							return { id, ...item }
+						})
+						.filter((item) => item.category === category)
+					setProductList(newBase)
+				})
+			}
 		})
 	}
 
 	const removeFromFavorites = (id) => {
+		actions.sweetAlert('Удалено из избранных')
 		removeToFavorites(isAuth?.uid, id).then(() => {
-			getAllProducts().then(r => {
-				const newData = Object.entries(r.data).map(([id, item]) => {
-					return {
-						id,
-						...item
-					}
-				})
+			if (page === 'main') {
+				getAllProducts().then((r) => {
+					const newData = Object.entries(r.data).map(([id, item]) => {
+						return {
+							id,
+							...item,
+						}
+					})
 
-				setProductList(newData)
-			})
+					setProductList(newData)
+				})
+			} else if (page === 'favorites') {
+				getFavorites(isAuth?.uid).then((r) => {
+					setProductList(() => Object.values(r.data))
+				})
+			} else if (page === 'category') {
+				getAllProducts(isAuth?.uid).then((r) => {
+					const newBase = Object.entries(r.data)
+						.map(([id, item]) => {
+							return { id, ...item }
+						})
+						.filter((item) => item.category === category)
+
+					setProductList(newBase)
+				})
+			}
 		})
 	}
 
@@ -93,14 +147,7 @@ function Card({ productList, setProductList }) {
 		<>
 			<div className={c.container}>
 				{productList.map(
-					({
-						images,
-						productName,
-						price,
-						id,
-						count,
-						category,
-					}) => (
+					({ images, productName, price, id, count, category }) => (
 						<div key={id} className={c.card}>
 							<div
 								className={c.card_img}
@@ -114,7 +161,11 @@ function Card({ productList, setProductList }) {
 										className={c.text_content}
 										onClick={() => navigate(`/products/${category}/${id}`)}
 									>
-										<h3>{productName}</h3>
+										<h3>
+											{productName.length >= 20
+												? `${productName.slice(0, 17)}...`
+												: productName}
+										</h3>
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>
@@ -155,16 +206,16 @@ function Card({ productList, setProductList }) {
 
 export default Card
 
-	//
-	// .then(() => {
-	// 	const newData = productList.map((item) => {
-	// 		if (item.id === id) {
-	// 			return {
-	// 				...item,
-	// 				inCart: !item.inCart,
-	// 			}
-	// 		}
-	// 		return item
-	// 	})
-	// 	setProductList(newData)
-	// })
+//
+// .then(() => {
+// 	const newData = productList.map((item) => {
+// 		if (item.id === id) {
+// 			return {
+// 				...item,
+// 				inCart: !item.inCart,
+// 			}
+// 		}
+// 		return item
+// 	})
+// 	setProductList(newData)
+// })

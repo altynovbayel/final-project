@@ -1,33 +1,39 @@
 import React from 'react'
 import cs from './Comment.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { getUser } from '../../../configs'
+import { getUser, RemoveComments } from '../../../configs'
 import useIsLogin from '../../../hooks/useIsLogin'
 import Start from './Start'
+import EmptyData from '../../../components/UI/EmptyData/EmptyData'
 
 const Comment = () => {
 	const { isAuth } = useIsLogin()
 	const navigate = useNavigate()
 	const [dataBase, setDataBase] = React.useState(null)
 
-	React.useEffect(() => {
-		getUser(isAuth.uid).then((res) => {
-			const base = Object.entries(res.data?.reviews).map(([id, items]) => {
-				return {
-					id,
-					...items,
-				}
-			})
-			setDataBase(base)
-		})
-	}, [])
+	React.useEffect(() => dataComments(), [])
 
-	if (!dataBase)
-		return (
-			<h1 style={{ textAlign: 'center', margin: '10px 0' }}>
-				Нету комментарии
-			</h1>
-		)
+	function dataComments() {
+		getUser(isAuth.uid).then((res) => {
+			if (res.data.reviews) {
+				const base = Object.entries(res.data?.reviews).map(([id, items]) => {
+					return {
+						id,
+						...items,
+					}
+				})
+				setDataBase(base)
+			} else {
+				setDataBase(null)
+			}
+		})
+	}
+
+	function removeComments(id) {
+		RemoveComments(isAuth.uid, id).then((res) => res && dataComments())
+	}
+
+	if (!dataBase) return <EmptyData text={'Нет отзывов'} />
 
 	return (
 		<>
@@ -68,6 +74,12 @@ const Comment = () => {
 										}
 									>
 										<p className={cs.link}>читать</p>
+									</button>
+									<button
+										className={cs.delete}
+										onClick={() => removeComments(item.id)}
+									>
+										удалить
 									</button>
 								</div>
 							</div>

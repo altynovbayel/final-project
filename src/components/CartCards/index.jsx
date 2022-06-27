@@ -1,52 +1,36 @@
 import React from 'react'
 import c from './CartCards.module.scss'
-import Button from '../UI/Button'
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
 import { AiOutlineStar, AiTwotoneDelete } from 'react-icons/ai'
 import useAlert from '../../hooks/useAlert'
-import { getUser, removeCart } from '../../configs'
-import { updateProfile } from 'firebase/auth'
+import {changeCount, getSingleFromCart, removeCart, getUser } from '../../configs'
+
+
 
 function CartCard({ productList, setProductList, getCard }) {
 	const navigate = useNavigate()
-	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
-	const [count, setCount] = React.useState(1)
-	const [totalPrice, setTotalPrice] = React.useState(null)
-	const [user, setUser] = React.useState(null)
-
-	React.useEffect(() => {
-		getUser(isAuth?.uid).then((r) => setUser(r))
-	}, [isAuth?.uid])
-
+  const {isAuth, setMoneySum } = useIsLogin()
+ 
 	function countIncrement(id) {
-		const arr = productList.map((item) => {
-			return {
-				...item,
-				count: item.id === id ? item.count + 1 : item.count,
-			}
-		})
-		const singleProduct = productList.find((item) => item.id === id)
-
-		updateProfile(isAuth.uid).then((r) => console.log(r))
-		setProductList(arr)
+    getSingleFromCart(id, isAuth?.uid).then((r) => {
+      setMoneySum(sum => sum + r.data.count * r.data.price)
+      changeCount(isAuth?.uid, id, { count: r.data.count + 1 }).then(r => r && getCard())
+    })
 	}
 
 	function countDecrement(id) {
-		const arr = productList.map((item) => {
-			return {
-				...item,
-				count: item.id === id ? item.count - 1 : item.count,
-			}
-		})
-		setProductList(arr)
+    getSingleFromCart(id, isAuth?.uid).then((r) => {
+      setMoneySum(sum => sum - r.data.count * r.data.price)
+      changeCount(isAuth?.uid, id, { count: r.data.count - 1 }).then(r => r && getCard())
+    })
 	}
 
 	function handleRemoveCard(id) {
 		actions.sweetAlert('Удалено из корзины')
-		removeCart(isAuth.uid, id).then((r) => r && getCard())
+    removeCart(isAuth.uid, id).then((r) => r && getCard())
+    getSingleFromCart(id, isAuth?.uid).then(r => setMoneySum(sum => sum - r.data.count * r.data.price))
 	}
 
 	return (
@@ -60,7 +44,6 @@ function CartCard({ productList, setProductList, getCard }) {
 						id,
 						count,
 						category,
-						favorite,
 						reviewGrade,
 					}) => (
 						<div key={id} className={c.card}>
