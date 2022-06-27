@@ -4,53 +4,35 @@ import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
 import { AiOutlineStar, AiTwotoneDelete } from 'react-icons/ai'
 import useAlert from '../../hooks/useAlert'
-import {changeCount, getSingleFromCart, removeCart, updatePrfile } from '../../configs'
+import {changeCount, getSingleFromCart, removeCart, getUser } from '../../configs'
 
 
 
 function CartCard({ productList, setProductList, getCard }) {
 	const navigate = useNavigate()
-	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
-	const [totalPrice, setTotalPrice] = React.useState(0)
-  const [priceMonitoring, setPriceMonitoring] = React.useState(null)
-
-
-  React.useEffect(() => {
-    productList.map(item => {
-      setTotalPrice(prev => prev += item.price * item.count)
-    })
-  }, [priceMonitoring])
-
- 
- React.useEffect(() => {
-  const newValue = {
-    totalPrice
-  } 
-  updatePrfile(isAuth?.uid, newValue).then(r => r)
- }, [totalPrice])
+  const {isAuth, setMoneySum } = useIsLogin()
  
 	function countIncrement(id) {
     getSingleFromCart(id, isAuth?.uid).then((r) => {
-      changeCount(isAuth?.uid, id, { count: r.data.count + 1 })
+      setMoneySum(sum => sum + r.data.count * r.data.price)
+      changeCount(isAuth?.uid, id, { count: r.data.count + 1 }).then(r => r && getCard())
     })
 	}
 
 	function countDecrement(id) {
     getSingleFromCart(id, isAuth?.uid).then((r) => {
-      changeCount(isAuth?.uid, id, { count: r.data.count - 1 })
+      setMoneySum(sum => sum - r.data.count * r.data.price)
+      changeCount(isAuth?.uid, id, { count: r.data.count - 1 }).then(r => r && getCard())
     })
 	}
 
 	function handleRemoveCard(id) {
 		actions.sweetAlert('Удалено из корзины')
-		removeCart(isAuth.uid, id).then((r) => r && getCard())
-
-    productList.filter(item => item.id === id && setTotalPrice(prev => prev - (item.price * item.count)))
+    removeCart(isAuth.uid, id).then((r) => r && getCard())
+    getSingleFromCart(id, isAuth?.uid).then(r => setMoneySum(sum => sum - r.data.count * r.data.price))
 	}
 
-
-  
 	return (
 		<>
 			<div className={c.container}>

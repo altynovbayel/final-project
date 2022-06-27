@@ -1,6 +1,6 @@
 // export const contactsLaptop = (
 //   <div className={cs.container}>
-//     <a className={cs.instagram} target='_blank' href='src/components/Footer/Contacts/index.jsx'>
+//     <a className={cs.instagram} target='_blank' href='src/components/Footer/Contacts/index.js'>
 //       <BsInstagram className={cs.icons}/>
 //       <p>PlayKay.kg</p>
 //     </a>

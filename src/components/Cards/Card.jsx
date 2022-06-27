@@ -8,10 +8,11 @@ import {addToCart, addToFavorites, getAllProducts, getSingleFromCart, removeToFa
 import useAlert from '../../hooks/useAlert'
 import CardButton from "../CardButton/CardButton";
 
-function Card({ productList, setProductList }) {
+function Card({ productList, setProductList}) {
 	const navigate = useNavigate()
 	const [isInCart, setIsInCart] = React.useState(false)
 	const { isAuth } = useIsLogin()
+	const { setTotalPages } = useIsLogin()
 	const { actions } = useAlert()
 
 	React.useEffect(() => {
@@ -30,6 +31,7 @@ function Card({ productList, setProductList }) {
 				}
 				return item
 			})
+			setTotalPages(item => !item)
 			setProductList(newData)
 		})
 			.then(() => {
@@ -41,7 +43,6 @@ function Card({ productList, setProductList }) {
 						}
 					})
 					setProductList(newData)
-					console.log(productList)
 				})
 			})
 	}
@@ -110,7 +111,9 @@ function Card({ productList, setProductList }) {
 										className={c.text_content}
 										onClick={() => navigate(`/products/${category}/${id}`)}
 									>
-										<h3>{productName}</h3>
+										<h3>{
+											productName.length >= 20 ? `${productName.slice(0 , 17)}...` : productName
+										}</h3>
 										<h4>{price} som</h4>
 									</div>
 									<div className={c.like}>

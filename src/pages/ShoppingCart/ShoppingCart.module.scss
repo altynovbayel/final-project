@@ -4,12 +4,15 @@
   justify-content: end;
   button{
     width: 100px;
-    background-color: #E07153;
-    color: white;
-    padding: 5px 8px;
+    background-color: transparent;
+    border-bottom: 1px solid #555;
+    color: black;
     font-size: 13px;
     text-transform: capitalize;
-    border-radius: 5px;
-    padding: 5px 0;
   }
+}
+.order{
+  width: 95%;
+  display: flex;
+  justify-content: end;
 }

@@ -13,7 +13,7 @@ import useAlert from '../../hooks/useAlert'
 
 function ShoppingCart() {
 	const [base, setBase] = React.useState(null)
-	const { isAuth } = useIsLogin()
+  const { isAuth, setMoneySum } = useIsLogin()
   const { actions } = useAlert()
 	function getCard() {
 		getFromCart(isAuth.uid).then((res) => {
@@ -27,12 +27,17 @@ function ShoppingCart() {
   function removeAll() {
     actions.sweetAlert('Удалено всё из корзины')
     removeAllCart(isAuth?.uid).then(r => r && getCard())
-    updateProfile(isAuth?.uid, '{totalPrice:0}')
+    updateProfile(isAuth?.uid, {totalPrice:0})
+    setMoneySum(0)
   }
 
 	React.useEffect(() => {
 		getCard()
 	}, [])
+
+  function handleOrder(){
+    actions.sweetAlert('Ваш заказ принят')
+  }
 
 	if (base === false) return <EmptyData text={'Ваша корзина пуста'} />
 	if (!base) return <div className={cls.loading}> <Loader /> </div>
@@ -42,7 +47,6 @@ function ShoppingCart() {
       <div className={c.btn}> 
         <button onClick={removeAll}>удалить всё</button>
       </div>
-      
 			{
 				<CartCard
 					productList={base}
@@ -50,6 +54,9 @@ function ShoppingCart() {
 					getCard={getCard}
 				/>
 			}
+      <div className={c.order}>
+        <button onClick={handleOrder}>Заказать</button>
+      </div>
 		</React.Fragment>
 	)
 }
