@@ -1,7 +1,7 @@
 import React from 'react'
 import cs from './Comment.module.scss'
 import { useNavigate } from "react-router-dom";
-import {getUser} from '../../../configs';
+import {getUser, RemoveComments} from '../../../configs';
 import useIsLogin from "../../../hooks/useIsLogin";
 import Start from './Start';
 
@@ -10,7 +10,9 @@ const Comment = () => {
 	const navigate = useNavigate()
 	const [dataBase, setDataBase] = React.useState(null)
 
-  React.useEffect(() => {
+  React.useEffect(() => dataComments(), [])
+
+  function dataComments(){
     getUser(isAuth.uid).then(res => {
       if(res.data.reviews){
         const base = Object.entries(res.data?.reviews).map(([id , items]) => {
@@ -24,7 +26,12 @@ const Comment = () => {
         setDataBase(null)
       }
     })
-  }, [])
+  }
+
+  function removeComments(id){
+    RemoveComments(isAuth.uid , id)
+      .then(res => res && dataComments())
+  }
 
   if(!dataBase) return <h1 style={{textAlign:'center', margin:'10px 0'}}>Нет комментарии</h1>
 
@@ -66,6 +73,9 @@ const Comment = () => {
               <div className={cs.cards_body_footer}>
                 <button onClick={() => navigate(`/products/${item.productCategory}/${item.productId}`)}>
                   <p className={cs.link}>читать</p>
+                </button>
+                <button className={cs.delete} onClick={() => removeComments(item.id)}>
+                  удалить
                 </button>
               </div>
             </div>
