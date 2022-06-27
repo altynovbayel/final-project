@@ -10,11 +10,17 @@ const Navbar = () => {
 	const [isDropDown, setIsDropDown] = React.useState(false)
 	const isMobileOrTablet = useMediaQuery({ query: '(max-width: 768px)' })
 	const isLaptopOrMonitor = useMediaQuery({ query: '(min-width: 768px)' })
-
+	const { totalPages } = useIsLogin()
 	const { isAuth } = useIsLogin()
-	// React.useEffect(() => {
-	// 	getUser(isAuth?.uid).then((r) => setMoneySum(r.data.totalPrice))
-	// })
+
+	React.useEffect(() => {
+		getUser(isAuth?.uid)
+			.then(r => r.data?.cart)
+			.then(res => {
+				const base = Object.entries(res).map(([id , item]) => {return {...item, id}})
+				base.forEach(item => setMoneySum( sum => sum + item.count * item.price))
+			})
+	} , [isAuth?.uid , totalPages])
 
 	return (
 		<>

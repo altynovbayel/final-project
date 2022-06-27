@@ -5,6 +5,7 @@ import {auth} from "../../services/firebase/firebase";
 export const AuthContext = React.createContext({})
 
 export const AuthProviders = ({children}) => {
+	const [totalPages , setTotalPages] = React.useState(false)
 	const [isAuth, setIsAuth] = React.useState(null)
 	const [loading, setLoading] = React.useState(true)
 
@@ -24,9 +25,11 @@ export const AuthProviders = ({children}) => {
 	const value = React.useMemo(() => {
 		return {
 			isAuth,
-			loading
+			loading,
+			setTotalPages,
+			totalPages
 		}
-	}, [isAuth, loading])
+	}, [isAuth, loading , setTotalPages , totalPages])
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 };
 

@@ -96,7 +96,7 @@ const MobileProfile = () => {
                     })
                   }}
                 >
-                  Выход
+                  Выйти из аккаунта
                 </button>
               </div>
             </div>

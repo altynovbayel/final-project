@@ -11,6 +11,7 @@ function Card({ productList, setProductList}) {
 	const navigate = useNavigate()
 	const [cartButton, setCartButton] = React.useState(false)
 	const { isAuth } = useIsLogin()
+	const { setTotalPages } = useIsLogin()
 	const { actions } = useAlert()
 
 	const handleGoToShoppingCart = (id) => {
@@ -26,7 +27,7 @@ function Card({ productList, setProductList}) {
 				}
 				return item
 			})
-
+			setTotalPages(item => !item)
 			setProductList(newData)
 		})
 	}
