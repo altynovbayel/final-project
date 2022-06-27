@@ -7,35 +7,40 @@ import {AiFillEye} from 'react-icons/ai'
 import {signOut, updateProfile} from "firebase/auth";
 import {auth} from "../../../services/firebase/firebase";
 import {useNavigate} from "react-router-dom";
+import Loader from "../../Favorites/Loader/Loader";
 
 const MobileProfile = () => {
   const navigate = useNavigate()
   const {isAuth} = useIsLogin()
   const [data , setData] = React.useState(null)
-  const [password , setPassword] = React.useState(false)
 
   React.useEffect(() => {
-    getUser(isAuth.uid).then(res => {
-      setData(res.data)
+    getUser(isAuth?.uid).then(res => {
+      if(!res.data.photo){
+        const base = {...res.data , photo: 'https://api-private.atlassian.com/users/2e5afb4451de305435994b4dbca95d38/avatar'}
+        setData(base)
+      }else {
+        setData(res?.data)
+      }
     })
-  } , [])
+  } , [isAuth?.uid])
 
   function postUpdate(){
-    updatePrfile(isAuth.uid , data).then()
+    updatePrfile(isAuth?.uid , data)
     updateProfile(isAuth ,{
       displayName: data.username,
       photoURL: data.photo
     })
   }
 
-  if(!data) return <h1></h1>
+  if(!data) return <div style={{display: 'flex', justifyContent: 'center' , alignItems: 'center', height: '100vh'}}><Loader/></div>
 
   return (
         <div className={cs.Profile}>
           <div className={cs.cards}>
             <div className={cs.cards_header}>
               <div className={cs.headers_image}>
-                <img src={data.photo} alt=""/>
+                <img src={data?.photo} alt=""/>
               </div>
             </div>
             <div className={cs.cards_body}>

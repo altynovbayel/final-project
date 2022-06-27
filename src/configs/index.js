@@ -20,6 +20,8 @@ export const removeToFavorites = (userId, productId) => instance.delete(`/users/
 
 // export const getFavorites = (userId) => instance.get(`/users/${userId}/favorites/.json`)
 
+export const RemoveComments = (userId, productId) => instance.delete(`/users/${userId}/reviews/${productId}/.json`)
+
 export const getUser = (userId) => instance.get(`/users/${userId}/.json`)
 
 export const updatePrfile = (userId , data) => instance.patch(`/users/${userId}/.json` , data)

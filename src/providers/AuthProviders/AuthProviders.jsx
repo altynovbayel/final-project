@@ -27,7 +27,7 @@ export const AuthProviders = ({children}) => {
 			isAuth,
 			loading,
 			setTotalPages,
-			totalPages
+			totalPages,
 		}
 	}, [isAuth, loading , setTotalPages , totalPages])
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
