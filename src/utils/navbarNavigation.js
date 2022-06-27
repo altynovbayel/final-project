@@ -1,8 +1,12 @@
-import {BsShop} from "react-icons/bs";
-import {GiCakeSlice, GiSlicedBread, GiStairsCake, GiWrappedSweet} from "react-icons/gi";
+import { BsShop } from 'react-icons/bs'
+import {
+	GiCakeSlice,
+	GiSlicedBread,
+	GiStairsCake,
+	GiWrappedSweet,
+} from 'react-icons/gi'
 
 export const navbarNavigation = [
-
 	{
 		id: 0,
 		route: '/',
@@ -15,18 +19,17 @@ export const navbarNavigation = [
 	},
 	{
 		id: 2,
-		route: '/promotions',
-		title: 'Акции',
+		route: '/contacts',
+		title: 'Контакты',
 	},
 	{
 		id: 3,
-		route: '/contacts',
-		title: 'Контакты',
+		route: '/favorites',
+		title: 'Избранное',
 	},
 ]
 
 export const navbarCategories = [
-
 	{
 		id: 0,
 		route: '/',

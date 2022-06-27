@@ -2,13 +2,26 @@ import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import MobileNavbar from './MobileNavbar'
 import LaptopNavbar from './LaptopNavbar'
-import cls from './Navbar.module.scss'
+import { getFromCart, getUser } from '../../configs'
+import useIsLogin from '../../hooks/useIsLogin'
 
 const Navbar = () => {
-	const [moneySum, setMoneySum] = React.useState(12409)
 	const [isDropDown, setIsDropDown] = React.useState(false)
 	const isMobileOrTablet = useMediaQuery({ query: '(max-width: 768px)' })
 	const isLaptopOrMonitor = useMediaQuery({ query: '(min-width: 768px)' })
+  const { totalPages, isAuth, setMoneySum, moneySum } = useIsLogin()
+
+	React.useEffect(() => {
+		getUser(isAuth?.uid)
+			.then(r => r.data?.cart)
+			.then(res => {
+				const base = Object.entries(res).map(([id , item]) => {return {...item, id}})
+        const price = base.reduce((total, item) => {
+          return total += item.count * item.price
+        }, 0)
+        setMoneySum(price)
+			})
+	} , [isAuth?.uid , totalPages])
 
 	return (
 		<>

@@ -1,11 +1,12 @@
-import React from 'react';
+import React from 'react'
+import Laptop from './Laptop'
 
 const Index = () => {
-  return (
-    <div>
-      
-    </div>
-  );
-};
+	return (
+		<>
+			<Laptop />
+		</>
+	)
+}
 
-export default Index;
+export default Index

@@ -1,16 +1,23 @@
 .container{
   width: 90%;
-  margin: 60px auto;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
   .card{
     display: flex;
     gap: 20px;
-    background-color: black;
-    border-radius: 20px;
-    color: white;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    border: 1px solid #ccc;
+    overflow: hidden;
     .card_img{
       width: 200px;
-      height: 150px;
-
+      height: 170px;
       img{
         width: 100%;
         height: 100%;
@@ -19,7 +26,22 @@
     }
     .card_body{
       width: 100%;
-
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .del{
+        svg{
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+      .name{
+        padding-right: 10px;
+        padding-top: 10px;
+        text-transform: capitalize;
+        display: flex;
+        justify-content: space-between;
+      }
       div{
         margin-bottom: 10px;
       }
@@ -37,12 +59,18 @@
           border-radius: 10px;
           cursor: pointer;
           background-color: transparent;
-          color: white;
+          color: black;
           font-size: 24px;
           &:disabled{
             opacity: .5;
           }
         }
+      }
+      .priceBlock{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        padding-right: 10px;
       }
     }
   }

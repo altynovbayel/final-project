@@ -1,12 +1,11 @@
-import Main from "../../pages/Main"
 import Register from "../../pages/Register"
 import Auth from '../../pages/Auth'
 import Category from "../../pages/Category"
 import More from "../../pages/more"
-import Promotions from "../../pages/Promotions"
 import About from "../../pages/About"
 import Contacts from "../../pages/Contacts"
 import { Navigate } from "react-router-dom"
+import Main from "../../pages/Main";
 
 
 export const routesList = [
@@ -42,21 +41,16 @@ export const routesList = [
   },
   {
     id: 7,
-    route: '/promotions',
-    element: <Promotions />,
-  },
-  {
-    id: 8,
     route: '/about',
     element: <About />,
   },
   {
-    id: 9,
+    id: 8,
     route: '/contacts',
     element: <Contacts />,
   },
   {
-    id: 10,
+    id: 9,
     route: '*',
     element: <Navigate to='/' />,
   },

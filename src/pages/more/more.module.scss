@@ -63,8 +63,6 @@
     }
   }
   .content{
-
-
     margin-top: 50px;
     @media (min-width: 768px){
       width: 40%;
@@ -130,7 +128,7 @@
       }
     }
 
-    label{
+    .total{
       width: 100%;
       display: flex;
       margin-top: 1rem;
@@ -191,6 +189,10 @@
       padding: 10px 0;
       font-weight: 500;
       border-radius: 6px;
+
+      &:disabled{
+        opacity: 0.7;
+      }
     }
   }
 }
@@ -199,6 +201,7 @@
   width: 90%;
   margin: 0 auto;
   padding-bottom: 4rem;
+
 }
 
 .loading{
@@ -208,6 +211,3 @@
   justify-content: center;
   align-items: center;
 }
-
-//#ffba5a
-//#a9a9a9

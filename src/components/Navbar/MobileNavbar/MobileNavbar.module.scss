@@ -14,9 +14,11 @@
     }
 
     .logo{
-      font-size: 30px;
-      font-weight: 700;
-      color: #E07153;
+
+      width: 100px;
+      img{
+        width: 100%;
+      }
 
       @media (max-width: 426px) {
         font-size: 25px;

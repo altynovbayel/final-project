@@ -1,35 +1,29 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import c from './more.module.scss'
-import {MdCopyright, MdOutlineFavoriteBorder} from 'react-icons/md'
-import SliderDots from '../../components/Slider/sliderDots'
-import SliderButtons from '../../components/Slider/SliderBtn/SliderButtons'
+import {MdOutlineFavoriteBorder} from 'react-icons/md'
 import MoreDesc from './Description/MoreDesc'
-import Button from '../../components/UI/Button'
 import Reviewer from './Reviewer/Reviewer'
-import {
-	addReview,
-	getAllProducts, getSingleProduct,
-	getUser,
-	putAddedReview,
-	updateProfile,
-} from '../../configs'
+import {addReview, addToCart, getSingleProduct, postReviewProduct, putAddedReview,} from '../../configs'
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
 import Loader from '../Favorites/Loader/Loader'
-import { GoStar } from 'react-icons/go'
+import {GoStar} from 'react-icons/go'
+import EmptyData from "../../components/UI/EmptyData/EmptyData";
+import useAlert from "../../hooks/useAlert";
+import CartMoreButton from "./CartMoreButton/CartMoreButton";
+import LikeMoreButton from "./LikeMoreButton/LikeMoreButton";
 
 function More() {
-	const { id } = useParams()
-	const { isAuth } = useIsLogin()
-	const { actions} = useCards()
+	const {id} = useParams()
+	const {isAuth} = useIsLogin()
+	const {actions} = useCards()
+	const {actions: alertActions} = useAlert()
 	const navigate = useNavigate()
+	const [loading, setLoading] = React.useState(false)
 	const [moreData, setMoreData] = React.useState(null)
 	const [reviewersData, setReviewersData] = React.useState(null)
-	const [indexImg, setIndexImg] = React.useState(1)
-	const [count, setCount] = React.useState(1)
-	const [price, setPrice] = React.useState(null)
-	const [totalPrice, setTotalPrice] = React.useState(0)
+	const [quantity, setQuantity] = React.useState(1)
 	const [reviewContent, setReviewContent] = React.useState('')
 	const [currentStarValue, setCurrentStarValue] = React.useState(0)
 	const [hoverValue, setHoverValue] = React.useState(undefined)
@@ -38,37 +32,6 @@ function More() {
 	const handleMouseOver = (value) => setHoverValue(value)
 	const handleMouseLeave = () => setHoverValue(undefined)
 
-	const addReviewHandle = () => {
-		const data = {
-			date: new Date().toLocaleString(),
-			content: reviewContent,
-			reviewGrade: currentStarValue,
-			user: {
-				username: isAuth.displayName,
-				email: isAuth.email,
-			},
-		}
-		addReview(data, id).then((r) => {
-			if (r.data) {
-				const personReviewData = {
-					reviewContent: data.content,
-					reviewGrade: currentStarValue,
-					date: data.date,
-					productName: moreData.productName,
-					productId: id,
-					productCategory: moreData.category,
-					images: moreData.images,
-				}
-				putAddedReview(personReviewData, isAuth.uid).then(() => {
-					getProduct()
-					setCurrentStarValue(0)
-					setHoverValue(undefined)
-					setReviewContent('')
-				})
-			}
-		})
-	}
-	
 	const getProduct = () => {
 		getSingleProduct(id).then(r => {
 			if (r) {
@@ -83,102 +46,158 @@ function More() {
 						})
 					})
 				)
+				console.log('work')
+
 			}
 		})
 	}
 
+	const addReviewHandle = () => {
+		setLoading(true)
+		const data = {
+			date: new Date().toLocaleString(),
+			content: reviewContent,
+			reviewGrade: currentStarValue,
+			user: {
+				profileImg: isAuth.photoURL,
+				username: isAuth.displayName,
+				email: isAuth.email,
+			},
+		}
+
+		addReview(data, id).then((r) => {
+			if (r.data) {
+				const personReviewData = {
+					reviewContent: data.content,
+					reviewGrade: currentStarValue,
+					date: data.date,
+					productName: moreData.productName,
+					productId: id,
+					productCategory: moreData.category,
+					images: moreData.images,
+				}
+				putAddedReview(personReviewData, isAuth.uid)
+					.then(() => {
+						getProduct()
+						setCurrentStarValue(0)
+						setHoverValue(undefined)
+						setReviewContent('')
+						setLoading(false)
+					})
+			}
+		})
+			.then(() => {
+				if (reviewersData) {
+					const middleReview = reviewersData.reduce((total, item) => total + item.reviewGrade, 0) / reviewersData.length
+					postReviewProduct(id, {reviewGrade: middleReview.toFixed(1)}).then(() => getProduct())
+				} else {
+					postReviewProduct(id, {reviewGrade: currentStarValue}).then(() => {
+						getProduct()
+					})
+				}
+			})
+	}
+
+
 	React.useEffect(() => {
 		getProduct()
-	}, [ id])
+	}, [id])
 
 	const handleIncrement = () => {
-		setCount(prev => prev + 1)
-		setTotalPrice(() => count * price)
-		const newData = {
-			...moreData,
-			count
-		}
-		setMoreData(newData)
+		setQuantity(prev => prev + 1)
+		setMoreData(prev => {
+			return {
+				...prev,
+				count: ++prev.count
+			}
+		})
 	}
 
 	const handleDecrement = () => {
-		setCount((prev) => prev - 1)
-	}
+		setQuantity((prev) => prev - 1)
+		setMoreData(prev => {
+			return {
+				...prev,
+				count: --prev.count
+			}
+		})
 
-	const nextSlide = () => {
-		setIndexImg((prev) => prev + 1)
-		indexImg === moreData.productImg.length && setIndexImg(1)
 	}
-
-	const prevSlide = () => {
-		setIndexImg((prev) => prev - 1)
-		indexImg === 1 && setIndexImg(moreData.productImg.length)
-	}
-
 	const handleOrderProduct = () => {
+		alertActions.sweetAlert('Добавлено в корзину')
+		addToCart(moreData, isAuth.uid, id).then(() => {
+			setMoreData(prev => {
+				return {
+					...prev,
+					inCart: !prev.inCart
+				}
+			})
+		})
 	}
 
 	if (!moreData)
 		return (
 			<div className={c.loading}>
-				<Loader />
+				<Loader/>
 			</div>
 		)
-
 	return (
 		<React.Fragment>
 			<div className={c.container}>
 				<div className={c.slider}>
 					<div className={c.slider_img}>
-						{moreData.images.map((url, i) => (
-							<img
-								className={indexImg === i + 1 ? c.imagesActive : c.images}
-								key={i}
-								src={url}
-								alt='slider'
-							/>
-						))}
-						<SliderButtons next={nextSlide} prev={prevSlide} />
-					</div>
-					<div className={c.dots}>
-						<SliderDots
-							state={indexImg}
-							setState={setIndexImg}
-							list={moreData.images}
+						<img
+							className={c.imagesActive}
+							src={moreData.images}
+							alt='slider'
 						/>
 					</div>
 				</div>
 				<div className={c.content}>
-					<div className={c.likedBtn}>
-						<MdOutlineFavoriteBorder />
-						<p>Add to favorites</p>
-					</div>
+					<LikeMoreButton
+						productId={id}
+						productBase={moreData}
+						getProductBase={getProduct}
+						setProductBase={setMoreData}
+					/>
 					<h1>{moreData.productName}</h1>
 					<div className={c.counter}>
 						<div className={c.count}>
-							<button onClick={handleDecrement} disabled={count === 0}>
+							<button
+								onClick={handleDecrement}
+								disabled={quantity === 1}
+							>
 								-
 							</button>
-							<span>{count}</span>
-							<button onClick={handleIncrement}>+</button>
+							<span>{quantity}</span>
+							<button onClick={handleIncrement}> +</button>
 						</div>
 						<div className={c.priceContainer}>
 							<h2 className={c.price}>{moreData.price} сом</h2>
 						</div>
 					</div>
 					<div className={c.btn}>
-						<span>
-							средняя оценка:
-							<h4> {moreData.reviewGrade}</h4>
-						</span>
-						<Button buttonText={'Заказать'} onClick={handleOrderProduct} />
-
+						{
+							moreData.reviewGrade === 'null' ? (
+								<span></span>
+							) : (
+								<span>
+									Средняя оценка:
+									<h4> {moreData.reviewGrade}</h4>
+								</span>
+							)
+						}
+						<CartMoreButton
+							handleOrderProduct={handleOrderProduct}
+							productId={id}
+							productData={moreData}
+						/>
 					</div>
-					<label>
-						<span className={c.total}>Сумма: {totalPrice}</span>
+					<label className={c.total}>
+						<span>Сумма: {quantity * moreData.price}</span>
 					</label>
 					<div className={c.description}>
-						<MoreDesc text={moreData.description} />
+						<MoreDesc text={moreData.description}/>
 					</div>
 				</div>
 			</div>
@@ -213,24 +232,27 @@ function More() {
 						onChange={(e) => setReviewContent(e.target.value)}
 						type='text'
 					/>
-					<button onClick={addReviewHandle}>Отправить</button>
+					<button
+						disabled={loading}
+						onClick={() => {
+						isAuth ? addReviewHandle() : navigate('/user/auth')
+					}}>Отправить
+					</button>
 				</div>
 			</div>
 			<div className={c.reviewers}>
 				{reviewersData ? (
-					reviewersData
-						.map((item, index) => (
-							<Reviewer
-								key={index}
-								reviewGrade={item.reviewGrade}
-								name={item.user.username}
-								date={item.date}
-								content={item.content}
-							/>
-						))
-				) : (
-					<h1>no reviews</h1>
-				)}
+					reviewersData.map((item, index) => (
+						<Reviewer
+							key={index}
+							reviewerImg={item.user.profileImg}
+							reviewGrade={item.reviewGrade}
+							name={item.user.username}
+							date={item.date}
+							content={item.content}
+						/>
+					))
+				) : <EmptyData text={'Пока нет отзывов'}/>}
 			</div>
 		</React.Fragment>
 	)
@@ -238,30 +260,22 @@ function More() {
 
 export default More
 
-// const getData = React.useCallback(() => {
-// 	actions.getSingle(id).then(({ data }) => {
-// 		data.reviewers &&
-// 			setReviewersData(() => {
-// 				return Object.entries(data.reviewers).map(([id, item]) => {
-// 					return {
-// 						id,
-// 						...item,
-// 					}
-// 				})
-// 			})
-// 		setMoreData(() => {
-// 			return {
-// 				...data,
-// 				reviewersData,
-// 			}
-// 		})
-// 	})
-// }, [actions, id, reviewersData])
-
-// React.useEffect(() => {
-// 	getData()
-// 	console.log(moreData)
-// 	// setCount(data.count)
-// 	// setPrice(data.price)
-// 	// setTotalPrice(data.price)
-// }, [])
+// {
+// 	!moreData.inCart ? (
+// 		<Button
+// 			buttonText='В корзину'
+// 			onClick={() => {
+// 				isAuth
+// 					?
+// 					handleOrderProduct(id)
+// 					:
+// 					navigate('/user/auth')
+// 			}}
+// 		/>
+// 	) : (
+// 		<Button
+// 			buttonText='Добавлено'
+// 			onClick={() => navigate('/cart')}
+// 		/>
+// 	)
+// }

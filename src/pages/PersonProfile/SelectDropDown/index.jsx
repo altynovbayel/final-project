@@ -2,7 +2,7 @@ import React from 'react';
 import cs from "./dropDown.module.scss";
 import {selectList} from "../../../utils/selectList";
 import Comment from "../Comment/Comment";
-import MobileProdil from "../MobileProfil";
+import MobileProdil from "../Profile";
 
 const DropDown = () => {
 

@@ -1,7 +1,7 @@
 
 .dropdown {
   position: fixed;
-  top: -100%;
+  top: -1000%;
   width: 100%;
   background: #F5F5F5;
   transition: all 0.3s ease-in-out;
@@ -96,8 +96,10 @@
   }
 
   .logo{
-    font-size: 30px;
-    color: #E07153;
-    font-weight: 600;
+    width: 100px;
+    padding-bottom: 1.4rem;
+    img{
+      width: 100%;
+    }
   }
 }

@@ -1,0 +1,44 @@
+.pagination {
+  width: 100%;
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+  .list {
+    display: flex;
+    .li {
+      margin: 0 5px;
+      border-radius: 5px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      background: #ccc;
+      cursor: pointer;
+      &.active {
+        background: #E07153
+      }
+    }
+  }
+
+  .btn {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: #ccc;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+    &:hover {
+      background: black;
+    }
+    svg {
+      width: 80%;
+      height: 80%;
+      color: white;
+    }
+  }
+}
