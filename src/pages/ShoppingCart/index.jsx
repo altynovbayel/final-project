@@ -25,7 +25,7 @@ function ShoppingCart() {
 	}
 
   function removeAll() {
-    actions.sweetAlert('Удалено из корзины')
+    actions.sweetAlert('Удалено всё из корзины')
     removeAllCart(isAuth?.uid).then(r => r && getCard())
     updateProfile(isAuth?.uid, '{totalPrice:0}')
   }
@@ -38,7 +38,6 @@ function ShoppingCart() {
 	if (!base) return <div className={cls.loading}> <Loader /> </div>
 	return (
 		<React.Fragment>
-			
       <Title text={'Ваша корзина'} />
       <div className={c.btn}> 
         <button onClick={removeAll}>удалить всё</button>

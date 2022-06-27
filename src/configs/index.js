@@ -34,4 +34,4 @@ export const removeCart = (userId, productId) => instance.delete(`/users/${userI
 
 export const removeAllCart = (userId) => instance.delete(`/users/${userId}/cart/.json`)
 
-
+export const changeCount = (userId, productId, data) => instance.patch(`/users/${userId}/cart/${productId}/.json`, data)

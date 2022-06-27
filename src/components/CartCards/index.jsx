@@ -4,49 +4,42 @@ import { useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
 import { AiOutlineStar, AiTwotoneDelete } from 'react-icons/ai'
 import useAlert from '../../hooks/useAlert'
-import { getUser, removeCart, updatePrfile } from '../../configs'
+import {changeCount, getSingleFromCart, removeCart, updatePrfile } from '../../configs'
+
+
 
 function CartCard({ productList, setProductList, getCard }) {
 	const navigate = useNavigate()
 	const { isAuth } = useIsLogin()
 	const { actions } = useAlert()
 	const [totalPrice, setTotalPrice] = React.useState(0)
+  const [priceMonitoring, setPriceMonitoring] = React.useState(null)
 
 
   React.useEffect(() => {
     productList.map(item => {
       setTotalPrice(prev => prev += item.price * item.count)
     })
-  }, [])
+  }, [priceMonitoring])
 
  
  React.useEffect(() => {
-  const newAuth = {
+  const newValue = {
     totalPrice
   } 
-  updatePrfile(isAuth?.uid, newAuth)
+  updatePrfile(isAuth?.uid, newValue).then(r => r)
  }, [totalPrice])
-
+ 
 	function countIncrement(id) {
-		const arr = productList.map((item) => {
-      item.id === id && setTotalPrice(prev => prev + item.price * item.count)
-			return {
-				...item,
-				count: item.id === id ? item.count + 1 : item.count,
-			}
-		})
-		setProductList(arr)
+    getSingleFromCart(id, isAuth?.uid).then((r) => {
+      changeCount(isAuth?.uid, id, { count: r.data.count + 1 })
+    })
 	}
 
 	function countDecrement(id) {
-		const arr = productList.map((item) => {
-      item.id === id && setTotalPrice(prev => prev - item.price)
-			return {
-				...item,
-				count: item.id === id ? item.count - 1 : item.count,
-			}
-		})
-		setProductList(arr)
+    getSingleFromCart(id, isAuth?.uid).then((r) => {
+      changeCount(isAuth?.uid, id, { count: r.data.count - 1 })
+    })
 	}
 
 	function handleRemoveCard(id) {
@@ -81,7 +74,7 @@ function CartCard({ productList, setProductList, getCard }) {
 							<div className={c.card_body}>
 								<div className={c.name}>
 									{productName.split('').length > 20
-										? `${productName.split('').slice(0, 16).joink('')}...`
+										? `${productName.split('').slice(0, 16).join('')}...`
 										: productName}
 									<div className={c.del}>
 										<AiTwotoneDelete onClick={() => handleRemoveCard(id)} />

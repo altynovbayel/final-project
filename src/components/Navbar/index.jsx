@@ -2,7 +2,7 @@ import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import MobileNavbar from './MobileNavbar'
 import LaptopNavbar from './LaptopNavbar'
-import { getUser } from '../../configs'
+import { getFromCart, getUser } from '../../configs'
 import useIsLogin from '../../hooks/useIsLogin'
 
 const Navbar = () => {
@@ -13,9 +13,9 @@ const Navbar = () => {
 
 	const { isAuth } = useIsLogin()
 
-	React.useEffect(() => {
-    getUser(isAuth?.uid).then((r) => setMoneySum(r.data.totalPrice))
-  }, [isAuth?.uid])
+	// React.useEffect(() => {
+  //   getFromCart(isAuth?.uid).then((r) => setMoneySum(r.data.totalPrice))
+  // }, [isAuth?.uid])
 
 	return (
 		<>
