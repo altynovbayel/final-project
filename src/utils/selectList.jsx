@@ -15,18 +15,3 @@ export const selectList = [
     value: 'ordersHistory',
   },
 ]
-
-export const changeDataList = [
-  {
-    id: 1,
-    title: 'Password',
-  },
-  {
-    id: 2,
-    title: 'Image',
-  },
-  {
-    id: 3,
-    title: 'Phone',
-  },
-]
