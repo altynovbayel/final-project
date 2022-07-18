@@ -1,0 +1,14 @@
+.sortButton{
+  padding: 10px 1rem;
+  color: whitesmoke;
+  background: #02293D;
+  border-radius: 5px;
+  font-size: 15px;
+
+  &.active{
+    box-shadow: 0 0 5px #02293D;
+    background: #5392A0;
+  }
+}
+
+

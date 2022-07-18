@@ -3,6 +3,7 @@ import Card from '../../../components/Cards/Card'
 import Anchor from '../../../components/Anchor/Anchor'
 import Pagination from './Pagination'
 import EmtyData from '../../../components/UI/EmptyData/EmptyData'
+import Chat from "../../../components/Chat/Chat";
 
 function MainBlock({ dataMain, setDataMain, page, setPage }) {
 	const [data, setData] = React.useState(dataMain)
@@ -35,6 +36,7 @@ function MainBlock({ dataMain, setDataMain, page, setPage }) {
 		<div>
 			{base && <Card productList={base} setProductList={setData} page='main' />}
 			<Anchor />
+			<Chat/>
 			<Pagination TOTAL_PAGE={TOTAL_PAGE} page={page} setPage={setPage} />
 		</div>
 	)

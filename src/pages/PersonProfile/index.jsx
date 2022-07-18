@@ -2,7 +2,6 @@ import React from 'react'
 import cs from './PersonProfile.module.scss'
 import {useMediaQuery} from "react-responsive";
 import SelectDropDown from "./SelectDropDown";
-import Comment from "./Comment/Comment";
 import MobileProfile from './Profile';
 
 const PersonProfile = () => {
@@ -12,7 +11,7 @@ const PersonProfile = () => {
 	return (
 		<div className={cs.root}>
 			{isMobile && <SelectDropDown />}
-			{isLaptop && (<><MobileProfile/> <Comment/></>)}
+			{isLaptop && (<><MobileProfile/></>)}
 		</div>
 	)
 }

@@ -46,8 +46,6 @@ function More() {
 						})
 					})
 				)
-				console.log('work')
-
 			}
 		})
 	}
@@ -65,7 +63,7 @@ function More() {
 			},
 		}
 
-		addReview(data, id).then((r) => {
+		addReview(data, id, isAuth?.uid).then((r) => {
 			if (r.data) {
 				const personReviewData = {
 					reviewContent: data.content,
@@ -259,23 +257,3 @@ function More() {
 }
 
 export default More
-
-// {
-// 	!moreData.inCart ? (
-// 		<Button
-// 			buttonText='В корзину'
-// 			onClick={() => {
-// 				isAuth
-// 					?
-// 					handleOrderProduct(id)
-// 					:
-// 					navigate('/user/auth')
-// 			}}
-// 		/>
-// 	) : (
-// 		<Button
-// 			buttonText='Добавлено'
-// 			onClick={() => navigate('/cart')}
-// 		/>
-// 	)
-// }

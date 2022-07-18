@@ -3,16 +3,17 @@ import cs from "./dropDown.module.scss";
 import {selectList} from "../../../utils/selectList";
 import Comment from "../Comment/Comment";
 import MobileProdil from "../Profile";
+import OrdersHistory from "../OrdersHistory/OrdersHistory";
 
 const DropDown = () => {
 
   const listComponents = {
     personalData: <MobileProdil/>,
     commentData: <Comment/>,
+    ordersHistory: <OrdersHistory/>
   }
 
   function change(value){setActiveComponents(listComponents[value])}
-
 
   const [activeComponents , setActiveComponents] = React.useState(listComponents["personalData"])
 
