@@ -29,8 +29,6 @@ const MobileProfile = () => {
 		})
 	}
 
-	// console.log(data)
-	// console.log(isAuth)
 
 	if (!data) return <h1></h1>
 

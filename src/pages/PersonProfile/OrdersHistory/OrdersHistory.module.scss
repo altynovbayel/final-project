@@ -1,0 +1,42 @@
+.root{
+  width: 95%;
+  margin: 5rem auto 0 auto;
+
+  .refresh{
+    display: flex;
+    justify-content: flex-end;
+    width: 95%;
+    margin: 1rem auto;
+
+    svg{
+      font-size: 25px;
+      cursor: pointer;
+    }
+  }
+}
+
+.loading{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty{
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.loadingTable{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

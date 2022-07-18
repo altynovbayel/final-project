@@ -15,11 +15,13 @@ const Navbar = () => {
 		getUser(isAuth?.uid)
 			.then(r => r.data?.cart)
 			.then(res => {
-				const base = Object.entries(res).map(([id , item]) => {return {...item, id}})
-        const price = base.reduce((total, item) => {
-          return total += item.count * item.price
-        }, 0)
-        setMoneySum(price)
+				if(res) {
+					const base = Object.entries(res).map(([id , item]) => {return {...item, id}})
+					const price = base.reduce((total, item) => {
+						return total += item.count * item.price
+					}, 0)
+					setMoneySum(price)
+				}
 			})
 	} , [isAuth?.uid , totalPages])
 
