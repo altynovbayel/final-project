@@ -62,7 +62,11 @@ const Register = () => {
 					<h3>Регистрация</h3>
 				</div>
 				<div className={cls.formBody}>
-					{wrongData && <span>Неправильный email или пароль</span>}
+					{wrongData && (
+						<span style={{ fontSize: 14, color: '#c72f31' }}>
+							Короткий пароль или Email уже существует
+						</span>
+					)}
 					<FormInput
 						inputType='email'
 						placeholder='Ваше email'

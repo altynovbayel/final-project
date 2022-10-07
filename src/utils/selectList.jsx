@@ -9,19 +9,9 @@ export const selectList = [
     title: 'Ваши отзывы',
     value: 'commentData',
   },
-]
-
-export const changeDataList = [
-  {
-    id: 1,
-    title: 'Password',
-  },
-  {
-    id: 2,
-    title: 'Image',
-  },
   {
     id: 3,
-    title: 'Phone',
+    title: 'История заказов',
+    value: 'ordersHistory',
   },
 ]

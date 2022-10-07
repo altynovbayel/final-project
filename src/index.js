@@ -9,8 +9,8 @@ import {AuthProviders} from "./providers/AuthProviders/AuthProviders";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<AuthProviders>
-    <Router>
-      <App />
-    </Router>
+		<Router>
+			<App/>
+		</Router>
 	</AuthProviders>
 );

@@ -16,14 +16,14 @@ import CardLikeButton from '../CardLikeButton/CardLikeButton'
 function Card({ productList, setProductList, page }) {
 	const navigate = useNavigate()
 	const { category } = useParams()
-	const { isAuth } = useIsLogin()
-	const { setTotalPages } = useIsLogin()
+	const { isAuth ,setTotalPages} = useIsLogin()
 	const { actions } = useAlert()
 
 	const handleGoToShoppingCart = (id) => {
 		const cart = productList.find((product) => product.id === id)
 		cart && actions.sweetAlert('Добавлено в корзину')
-		addToCart(cart, isAuth.uid, id).then(() => {
+		addToCart(cart, isAuth.uid, id).then(r => {
+
 			if (page === 'main') {
 				getAllProducts().then((r) => {
 					const newData = Object.entries(r.data).map(([id, item]) => {
@@ -205,17 +205,3 @@ function Card({ productList, setProductList, page }) {
 }
 
 export default Card
-
-//
-// .then(() => {
-// 	const newData = productList.map((item) => {
-// 		if (item.id === id) {
-// 			return {
-// 				...item,
-// 				inCart: !item.inCart,
-// 			}
-// 		}
-// 		return item
-// 	})
-// 	setProductList(newData)
-// })
