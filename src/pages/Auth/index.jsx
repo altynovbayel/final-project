@@ -8,7 +8,7 @@ import FormButton from '../../components/UI/FormButton'
 import { IoMdClose } from 'react-icons/io'
 import { Link, useNavigate } from 'react-router-dom'
 import useIsLogin from "../../hooks/useIsLogin";
-import Loader from "../Favorites/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 
 const Auth = () => {
 	const {

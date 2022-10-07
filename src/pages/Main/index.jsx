@@ -2,7 +2,7 @@ import React from 'react';
 import useCards from "../../hooks/useCards";
 import MainBlock from "./Main";
 import cls from "./main.module.scss";
-import Loader from "../Favorites/Loader/Loader";
+import Loader from "../../components/Loader/Loader";
 import Sort from "../../components/Sort";
 import Slider from "../../components/Slider/Slider";
 import {sliderList} from "../../utils/List";

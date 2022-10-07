@@ -7,7 +7,7 @@ import {AiFillEye} from 'react-icons/ai'
 import {signOut, updateProfile} from "firebase/auth";
 import {auth} from "../../../services/firebase/firebase";
 import {useNavigate} from "react-router-dom";
-import Loader from "../../Favorites/Loader/Loader";
+import Loader from "../../../components/Loader/Loader";
 
 const MobileProfile = () => {
   const navigate = useNavigate()

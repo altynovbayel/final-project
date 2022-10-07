@@ -28,11 +28,12 @@ function CartCard({ productList, setProductList, getCard }) {
 	}
 
 	function handleRemoveCard(id) {
-		actions.sweetAlert('Удалено из корзины')
+		actions.sweetAlert('Удалено из корзины').then()
     removeCart(isAuth.uid, id).then((r) => r && getCard())
     getSingleFromCart(id, isAuth?.uid).then(r => setMoneySum(sum => sum - r.data.count * r.data.price))
 	}
-
+  
+  console.log(productList)
 	return (
 		<>
 			<div className={c.container}>

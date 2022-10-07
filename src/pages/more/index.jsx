@@ -7,7 +7,7 @@ import Reviewer from './Reviewer/Reviewer'
 import {addReview, addToCart, getSingleProduct, postReviewProduct, putAddedReview,} from '../../configs'
 import useCards from '../../hooks/useCards'
 import useIsLogin from '../../hooks/useIsLogin'
-import Loader from '../Favorites/Loader/Loader'
+import Loader from '../../components/Loader/Loader'
 import {GoStar} from 'react-icons/go'
 import EmptyData from "../../components/UI/EmptyData/EmptyData";
 import useAlert from "../../hooks/useAlert";
@@ -46,8 +46,6 @@ function More() {
 						})
 					})
 				)
-				console.log('work')
-
 			}
 		})
 	}

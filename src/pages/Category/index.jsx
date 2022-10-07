@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import Loader from '../Favorites/Loader/Loader'
+import Loader from '../../components/Loader/Loader'
 import cls from '../Main/main.module.scss'
 
 import Card from '../../components/Cards/Card'
@@ -28,7 +28,6 @@ const Category = () => {
 	React.useEffect(() => {
 		getProducts()
 	}, [getProducts])
-	console.log(productBase)
 
 	if (!productBase)
 		return (
