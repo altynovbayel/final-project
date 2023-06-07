@@ -1,10 +1,10 @@
 import React from 'react'
 import cs from './Favorites.module.scss'
 import Card from '../../components/Cards/Card'
-import Loader from './Loader/Loader'
-import { getAllProducts, getUser } from '../../configs'
+import Loader from '../../components/Loader/Loader'
 import useIsLogin from '../../hooks/useIsLogin'
 import EmptyData from '../../components/UI/EmptyData/EmptyData'
+import {getUser} from "../../configs";
 
 const Favorites = () => {
 	const [dataBase, setDataBase] = React.useState(null)
@@ -27,12 +27,7 @@ const Favorites = () => {
 	}, [isAuth?.uid])
 
 	if (dataBase === false) return <EmptyData text={'У вас нет избранных'} />
-	if (!dataBase)
-		return (
-			<div className={cs.container}>
-				<Loader />
-			</div>
-		)
+	if (!dataBase) return <div className={cs.container}><Loader /></div>
 	return (
 		<React.Fragment>
 			<h1 className={cs.favorites_text}>Избранное</h1>

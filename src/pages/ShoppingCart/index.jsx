@@ -9,7 +9,7 @@ import {
 } from '../../configs'
 import useIsLogin from '../../hooks/useIsLogin'
 import cls from '../Main/main.module.scss'
-import Loader from '../Favorites/Loader/Loader'
+import Loader from '../../components/Loader/Loader'
 import Title from '../../components/UI/TitleText'
 import CartCard from '../../components/CartCards'
 import EmptyData from '../../components/UI/EmptyData/EmptyData'

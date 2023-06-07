@@ -8,6 +8,7 @@ const CartMoreButton = ({productId, handleOrderProduct, productData}) => {
 	const [isInCart, setIsInCart] = React.useState(false)
 	const {isAuth} = useIsLogin()
 	const navigate = useNavigate()
+ 
 	React.useEffect(() => {
 		getSingleFromCart(productId, isAuth?.uid).then(r => {
 			r.data && setIsInCart(true)

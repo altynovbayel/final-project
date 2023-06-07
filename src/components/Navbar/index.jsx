@@ -2,7 +2,7 @@ import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import MobileNavbar from './MobileNavbar'
 import LaptopNavbar from './LaptopNavbar'
-import { getFromCart, getUser } from '../../configs'
+import { getUser } from '../../configs'
 import useIsLogin from '../../hooks/useIsLogin'
 
 const Navbar = () => {

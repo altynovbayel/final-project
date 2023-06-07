@@ -8,7 +8,7 @@ import FormButton from '../../components/UI/FormButton'
 import { IoMdClose } from 'react-icons/io'
 import { Link, useNavigate } from 'react-router-dom'
 import useIsLogin from '../../hooks/useIsLogin'
-import Loader from '../Favorites/Loader/Loader'
+import Loading from '../../components/UI/Loading/Loading'
 
 const Auth = () => {
 	const {
@@ -22,7 +22,7 @@ const Auth = () => {
 
 	const navigate = useNavigate()
 	const { isAuth, loading } = useIsLogin()
-	const [responseErrors, setResponseErrors] = React.useState(false)
+	const [responseErrors,  setResponseErrors] = React.useState(false)
 	React.useEffect(() => {
 		isAuth && navigate('/profile')
 	}, [isAuth, navigate])
@@ -44,7 +44,7 @@ const Auth = () => {
 	if (loading)
 		return (
 			<div className={cls.loading}>
-				<Loader />
+				<Loading />
 			</div>
 		)
 	return (

@@ -8,7 +8,6 @@ import {
 	changeCount,
 	getSingleFromCart,
 	removeCart,
-	getUser,
 } from '../../configs'
 
 function CartCard({productList, setProductList, getCard}) {
@@ -17,17 +16,15 @@ function CartCard({productList, setProductList, getCard}) {
 	const {isAuth, setMoneySum} = useIsLogin()
 
 	function countIncrement(id) {
-		getSingleFromCart(id, isAuth?.uid).then((r) => {
-			setMoneySum((sum) => sum + r.data.count * r.data.price)
-			changeCount(isAuth?.uid, id, {count: r.data.count + 1}).then(
-				(r) => r && getCard()
-			)
+		getSingleFromCart(id, isAuth?.uid).then(r => {
+			setMoneySum((sum) => sum + r.data?.count * r.data?.price)
+			changeCount(isAuth?.uid, id, {count: r.data.count + 1}).then(r => r && getCard())
 		})
 	}
 
 	function countDecrement(id) {
 		getSingleFromCart(id, isAuth?.uid).then((r) => {
-			setMoneySum((sum) => sum - r.data.count * r.data.price)
+			setMoneySum((sum) => sum - r.data.price)
 			changeCount(isAuth?.uid, id, {count: r.data.count - 1}).then(
 				(r) => r && getCard()
 			)
@@ -41,7 +38,7 @@ function CartCard({productList, setProductList, getCard}) {
 			setMoneySum((sum) => sum - r.data.count * r.data.price)
 		)
 	}
-
+ 
 	return (
 		<>
 			<div className={c.container}>

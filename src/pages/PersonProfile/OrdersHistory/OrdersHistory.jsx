@@ -10,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Loader from "../../Favorites/Loader/Loader";
+import Loader from "../../../components/Loader/Loader";
 import EmptyData from "../../../components/UI/EmptyData/EmptyData";
 import Button from "../../../components/UI/Button";
 import {useNavigate} from "react-router-dom";

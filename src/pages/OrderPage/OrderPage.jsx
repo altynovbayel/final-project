@@ -6,8 +6,8 @@ import {getSingleOrderedProduct, getUser, removeAllCart} from "../../configs";
 import Button from "../../components/UI/Button";
 import {useNavigate} from "react-router-dom";
 import ProductCredentials from "./components/ProductCredentials";
-import Loader from "../Favorites/Loader/Loader";
 import PropertyCredentials from "./components/PropertyCredentials";
+import Loader from "../../components/Loader/Loader";
 
 const OrderPage = () => {
 	const {isAuth} = useIsLogin()
