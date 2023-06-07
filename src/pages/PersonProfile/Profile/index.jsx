@@ -6,14 +6,10 @@ import {BsFillPencilFill} from "react-icons/bs";
 import {signOut, updateProfile} from "firebase/auth";
 import {auth} from "../../../services/firebase/firebase";
 import {useNavigate} from "react-router-dom";
-<<<<<<< HEAD
-import Loader from "../../../components/Loader/Loader";
-=======
-import Loader from "../../Favorites/Loader/Loader";
 import SortButton from "./components/SortButton/SortButton";
 import Comment from "../Comment/Comment";
 import OrdersHistory from "../OrdersHistory/OrdersHistory";
->>>>>>> 5904ae45414fc78442cd8f190ddce6d7d8f147e4
+import Loader from "../../../components/Loader/Loader";
 
 const MobileProfile = () => {
 	const navigate = useNavigate()

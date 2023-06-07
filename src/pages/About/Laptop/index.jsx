@@ -1,43 +1,15 @@
 import React from 'react';
 import cs from './Laptop.module.scss'
 import Swiper from "./swiper";
-import {GiCakeSlice} from "react-icons/gi";
+
 import Cards from "./cards";
 import {BsFillArrowDownCircleFill, BsFillArrowUpCircleFill} from "react-icons/bs";
 import Map from '../../Contacts/map';
 import { getAllProducts } from '../../../configs';
+import { aboutList } from '../../../utils/List';
 
 const Laptop = () => {
-  const list = [
-    {
-      id:1,
-      icons: <GiCakeSlice/>,
-      text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem corporis dicta, laborum molestias perspiciatis vel. Inventore ipsa minus nisi pariatur repellat. A deserunt id inventore iste magni nihil possimus.',
-      route: '/products/cakes',
-      names: 'Торты',
-    },
-    {
-      id:1,
-      icons: <GiCakeSlice/>,
-      text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem corporis dicta, laborum molestias perspiciatis vel. Inventore ipsa minus nisi pariatur repellat. A deserunt id inventore iste magni nihil possimus.',
-      route: '/products/sweets',
-      names: 'Сладости'
-    },
-    {
-      id:1,
-      icons: <GiCakeSlice/>,
-      text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem corporis dicta, laborum molestias perspiciatis vel. Inventore ipsa minus nisi pariatur repellat. A deserunt id inventore iste magni nihil possimus.',
-      route: '/products/bakery',
-      names: 'ХЛЕБ'
-    },
-    {
-      id:1,
-      icons: <GiCakeSlice/>,
-      text:'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem corporis dicta, laborum molestias perspiciatis vel. Inventore ipsa minus nisi pariatur repellat. A deserunt id inventore iste magni nihil possimus.',
-      route: '/products/pies',
-      names: 'Пироги'
-    },
-  ]
+  
 
   const [swiperState , setSwiperState] = React.useState(1)
   const [scrollTop , setScrollTop] = React.useState(70)
@@ -62,7 +34,7 @@ const Laptop = () => {
       </div>
       <h1 className={cs.logo}>Наши продукты</h1>
       <div className={cs.cards_container}>
-        <Cards list={list}/>
+        <Cards list={aboutList}/>
       </div>
       <div className={cs.btn_container}>
         <button

@@ -22,7 +22,7 @@ const Auth = () => {
 
 	const navigate = useNavigate()
 	const { isAuth, loading } = useIsLogin()
-	const [responseErrors, setResponseErrors] = React.useState(false)
+	const [responseErrors,  setResponseErrors] = React.useState(false)
 	React.useEffect(() => {
 		isAuth && navigate('/profile')
 	}, [isAuth, navigate])

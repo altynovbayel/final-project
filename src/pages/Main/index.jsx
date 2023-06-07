@@ -33,7 +33,6 @@ const Main = () => {
 	}, [])
 
 	if (!productBase) return <div className={cls.loading}><Loader/></div>
-
 	return (
 		<>
 			<Slider list={sliderList}/>

@@ -46,9 +46,9 @@ export const getMessages = userId => instance.get(`/messages/${userId}/.json`)
 
 export const orderProduct = (userId, data) => instance.post(`/orders/${userId}/.json`, data)
 
-export const getOrderedProducts = userId => instance.get(`orders/${userId}/.json`)
+export const getOrderedProducts = userId => instance.get(`/orders/${userId}/.json`)
 
-export const getSingleOrderedProduct = (userId, orderedProductId) => instance.get(`orders/${userId}/${orderedProductId}.json`)
+export const getSingleOrderedProduct = (userId, orderedProductId) => instance.get(`/orders/${userId}/${orderedProductId}.json`)
 
 export const getAllOrderedProducts = () => instance.get('/orders.json')
 
@@ -57,3 +57,5 @@ export const getHistoryOrderedProducts = userId => instance.get(`/orders/${userI
 export const deleteOrderFromHistory = (userId, orderId) => instance.delete(`/orders/${userId}/${orderId}/.json`)
 
 export const cancelOrderFromHistory = (userId, orderId) => instance.delete(`/orders/${userId}/${orderId}/.json`)
+
+export const getContacts = () => instance.get('/contacts.json')

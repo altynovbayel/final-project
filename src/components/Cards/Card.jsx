@@ -23,7 +23,6 @@ function Card({ productList, setProductList, page }) {
 		const cart = productList.find((product) => product.id === id)
 		cart && actions.sweetAlert('Добавлено в корзину')
 		addToCart(cart, isAuth.uid, id).then(r => {
-
 			if (page === 'main') {
 				getAllProducts().then((r) => {
 					const newData = Object.entries(r.data).map(([id, item]) => {
